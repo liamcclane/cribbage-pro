@@ -56,10 +56,17 @@ export class GameComponent implements OnInit {
     console.log(this.p1.ghostHand);
     console.log(this.p1.hand);
   }
+  /**
+   * This function deals with the human discarding their cards into either the crib
+   * or the count,
+   * We always save the index of the card that human is discarding
+   * Then, if the length of the human HAND(not ghost hand) is > 4 discard into cribe changing both the 
+   * ghost and actualy DB hand
+   * Else make a copy of the card into theCrib and delete from ghost but SAVE the hand DB
+   * @param c : this is a Card Object
+   */
   discard(c: Card) {
     console.log(c);
-    //loop though the players hand and find the index of which one you 
-    // are adding to the crib
     let ind: number;
     for (let i = 0; i < this.p1.hand.length; i++) {
       if (this.p1.hand[i] == c) {
@@ -68,14 +75,12 @@ export class GameComponent implements OnInit {
     }
     if (this.p1.hand.length > 4) {
       console.log("-----------inside if--------");
-      //discard into the crib EMPTYING out of the players hand
-      // push into the crib 
       this.crib.push(c);
       this.p1.hand.splice(ind, 1);
       this.p1.ghostHand.splice(ind, 1);
     } else {
       // checking if the player is trying to discard a blank space
-      if (c.val == 14) {
+      if (c.val == 0) {
         return;
       }
       // ghosthand
@@ -84,7 +89,7 @@ export class GameComponent implements OnInit {
       this.theCount.push(c);
       for (let i = 0; i < this.p1.ghostHand.length; i++) {
         if (this.p1.ghostHand[i] == c) {
-          this.p1.ghostHand[i] = new Card('', 14);
+          this.p1.ghostHand[i] = new Card('', 0);
         }
       }
     }
@@ -93,22 +98,26 @@ export class GameComponent implements OnInit {
     let n = Math.floor((Math.random() * 10) + 1);
     let n2 = Math.floor((Math.random() * 10) + 1);
     console.log("moving player1 peg ", n2);
-    this.catchPegBUp(n, this.p1);
+    this.increaseScore(n, this.p1);
     console.log("moving the black peg ", n2);
-    this.catchPegBUp(n2, this.comp);
+    this.increaseScore(n2, this.comp);
   }
-  catchPegBUp(scoreIncrease: number, p: Player) {
-    //move the back peg up till they are equal
-    let oldscore=p.scoreA
-    while (p.scoreB!=oldscore){
-      console.log("Am I Stuck Here???");
-      let diff = p.scoreA-p.scoreB;
-      this.movePegsTimeDelay(diff,p,'B');
-    }
-    console.log("yay we are equal")
+  /**
+   * this function deals with moving Peg B to catch up with peg A
+   * then inside it calls the movePegsTimeDelay function with correct time and timeDelay
+   * @param scoreIncrease {number} this is the score increase from the round
+   * @param p {Player} this is either the human or the computer
+   */
+  increaseScore(scoreIncrease: number, p: Player) {
+    //move peg B
+    let diff = p.scoreA-p.scoreB;
+    console.log(diff);
+    console.log("moving peg b "+diff+ "times")
+    this.movePegsTimeDelay(diff,p,'B',0);
     // now pegs are at the same place,
     // continue to move foward the given points
-    this.movePegsTimeDelay(scoreIncrease,p,'A');
+    console.log("moving peg a "+diff+ "times with extra time delay")
+    this.movePegsTimeDelay(scoreIncrease,p,'A',diff);
   }
   clearScore() {
     this.p1.scoreA = 0;
@@ -116,35 +125,22 @@ export class GameComponent implements OnInit {
     this.comp.scoreA = 0;
     this.comp.scoreB = 0;
   }
-  movePegsTimeDelay(n: number, p: Player, whichPeg: string) {
+  /**
+   * This is nice that move the pegs smoothly every second
+   * @param n : number that the peg will be moving
+   * @param p : Player either human or computer
+   * @param whichPeg : this is either 'A' or 'B'
+   * @param addtionalTimeD : most of the time this will be zero while the B peg is catching
+   */
+  movePegsTimeDelay(n: number, p: Player, whichPeg: string,addtionalTimeD:number) {
     for (let i = 0; i < n; i++) {
       let myVar = setTimeout(() => {
         if (whichPeg == 'A'){
-          console.log("increasing A")
           p.scoreA++;
         } else {
-          console.log("increasing B")
           p.scoreB++
-        };
-        // if(p===this.p1){
-        //   if(whichPeg =='A') this.p1.scoreA++;
-        //   else this.p1.scoreB++;
-        //   // if(this.p1.scoreA<this.p1.scoreB){
-        //   //   // this will move the A and B to the same number
-        //   //   let diff = this.p1.scoreB-this.p1.scoreA;
-        //   //   this.movePegsTimeDelay(diff,this.p1);
-        //   //   // this.p1.scoreA++
-        //   // } else if(this.p1.scoreA>this.p1.scoreB) {
-        //   //   let diff = this.p1.scoreA-this.p1.scoreB;
-        //   //   this.movePegsTimeDelay(diff,this.p1);
-        //   // } else{
-        //   //   this.p1.scoreA++
-        //   // }
-        // } else {
-        //   if(whichPeg=='A') this.comp.scoreA++;
-        //   else this.comp.scoreB++;
-        // }
-      }, 1000 * i);
+        } 
+      }, 1000 * i+(addtionalTimeD*1000));
     }
   }
 }

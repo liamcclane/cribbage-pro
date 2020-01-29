@@ -7,7 +7,7 @@
         <button (click)="catchPegBUp(3,comp)">Move Black by 3</button>
         <button (click)="catchPegBUp(1,p1)">Move Gold by 1</button>
         <button (click)="catchPegBUp(3,p1)">Move Gold by 3</button>
-        <button (click)="movePegsTimeDelay(10,p1,'B')">Move Gold B by 10</button>
+        <button (click)="movePegsTimeDelay(10,p1,'A')">Move Gold B by 10</button>
 
         <!-- <button (click)="startGame()">start Game</button> -->
         <div class="tableTop" style="display: block; background-color: rgb(62, 151, 235);">
@@ -55,11 +55,11 @@
     <div class="cribBoard">
         <ng-container *ngFor="let d of scoreDivs">
             <div class="playerPWrapper peg" style="background-color: rgba(255, 255, 0, 0.226);">
-                <div *ngIf="p1.scoreA==d" class="peg circle" id="player1PositionA">A</div>
+                <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">A</div>
                 <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB">B</div>
             </div>
             <div class="compPWrapper peg" style="background-color:rgba(55, 57, 59, 0.363);">
-                <div *ngIf="comp.scoreA==d" class="peg circle" id="compPositionA">A</div>
+                <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">A</div>
                 <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB">B</div>
             </div>
         </ng-container>
