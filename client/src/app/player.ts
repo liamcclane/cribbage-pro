@@ -7,11 +7,11 @@ export class Player {
     hand:Card[]=[];
     ghostHand:Card[]=[];
     name:string
-    constructor(n){
+    constructor(n:string){
         this.name = n;
         this.score = 0;
     }
-    doToGhost(){
-        this.ghostHand=this.hand;
-    }
+    // doToGhost(){
+    //     this.ghostHand=this.hand;
+    // }
 }

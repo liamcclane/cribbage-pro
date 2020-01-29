@@ -17,10 +17,13 @@ export class Card {
     }
 
     getImgConCat(v:number,s:string){
-        let dict = {11:'j',12:'q',13:'k'};
+        //the 14 is for making dummy cards
+        let dict = {11:'j',12:'q',13:'k',14:'b2fv'};
         if(v>10){
             this.imgConCat = s+dict[v];
-        } else {
+        } else if(v==14){
+            this.imgConCat = dict[v];
+        }else{
             this.imgConCat = s+v;
         }
     }

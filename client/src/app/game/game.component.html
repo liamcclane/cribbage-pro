@@ -1,70 +1,46 @@
 <div class="container">
-    <button (click)="startGame()">start Game</button>
+    <button (click)="movePegs()" >Move the pegs</button>
+    <!-- <button (click)="startGame()">start Game</button> -->
     <div class="tableTop" style="display: block; background-color: rgb(62, 151, 235);">
+        The Count Cards
+        <div class="inLine" *ngFor="let c of theCount">
+            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+        </div>
+    </div>
+    <div class="tableTop" style="color:white; display: block; background-color: rgb(62, 151, 235);">
         Crib ; dealer is => <span style="font-weight: bold;">{{dealer}}</span> 
         <div class="inLine" *ngFor="let c of crib">
             <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
         </div>
     </div>
-    Player1
-    <div class="tableTop" style="display: block; background-color: red;">
+    <div class="tableTop" style="color:white;display: block; background-color: red;">
+        Player1 
+        <h1>
+            ghostHand
+        </h1>
         <div class="inLine" *ngFor="let c of p1.ghostHand">
             <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
         </div>
+        <h1>
+            Player1 HAND!
+        </h1>
+        <div class="inLine" *ngFor="let c of p1.hand">
+            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+        </div>
     </div>
-    Whole down cards
-    <div class="tableTop" style="display: block; background-color: red;">
+    <div class="tableTop" style="color:white; display: block; background-color: rgb(8, 55, 98);">
+        Computer Cards
+        <div class="inLine" *ngFor="let c of comp.hand">
+            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+        </div>
+    </div>
+    <div class="tableTop" style="color:white; display: block; background-color: black">
+        All face down cards
         <div class="inLine" *ngFor="let c of deck.order">
             <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
         </div>
     </div>
 </div>
-<!-- 
-<div style="padding: 20px;" >
-    <div class="tableTop" style="display: block; background-color: rgb(62, 151, 235);">
-        Crib ; CribOwner is => <span style="font-weight: bold;">{{cribOwner}}</span> 
-        <div class="inLine" *ngFor="let c of crib">
-            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-        </div>
-    </div>
-    <div class="tableTop" style="display: block;">
-        The Count Area
-        <div class="inLine" *ngFor="let c of countDeck">
-            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-        </div>
-    </div>
-
-    <div class="tableTop">
-        P1 Hand
-        <ng-container *ngIf="p1Hand.length<=4">
-            <ng-container *ngFor="let c of p1Hand; let i = index">
-               <img id="card_id{{i}}" (click)="discardIntoCount(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-           </ng-container>
-        </ng-container>
-        <ng-container *ngIf="p1Hand.length>4" >
-            <ng-container *ngFor="let c of p1Hand; let i = index">
-                <img id="card_id{{i}}" (click)="discardIntoCrib(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-            </ng-container>
-        </ng-container>
-    </div>
-    <div  style="display: block;">
-        this is the start card!! =>
-        <img src="./../../assets/images/{{startCard.imgConCat}}.png" alt="{{startCard.cardWords}}">
-    </div>
-    <div class="tableTop" style="display: block; background-color: bisque;">
-        Comp Hand
-        <div class="inLine" *ngFor="let c of compHand">
-            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-        </div>
-    </div>
-    <div class="tableTop" style="display: block; background-color: black; color: aliceblue;">
-        all conceled cards
-        <div class="inLine" *ngFor="let c of deck">
-            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-        </div>
-    </div>
-    <button (click)="dealFromEnd(deck,p1Hand)" >Give to Player 1</button>
-    <button (click)="dealFromEnd(deck,compHand)" >Give to Computer</button>
-    <div class="scoreBoard">
-    </div>
-</div> -->
+<div class="cribBoard">
+    placeholder
+</div>

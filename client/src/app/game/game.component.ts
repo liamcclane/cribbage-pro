@@ -18,50 +18,72 @@ export class GameComponent implements OnInit {
   comp: Player = new Player('comp');
   deck: Deck = new Deck();
   crib: Card[] = [];
+  theCount: Card[] = [];
   dealer: "Player";
-  
 
   constructor() { }
 
   ngOnInit() {
-    this.startNewGame();
+    this.startGame();
   }
-  startNewGame() {
-    this.startNewRound();
+  startGame() {
+    this.startRound();
   }
-  startNewRound() {
+  startRound() {
+    //every round needs to clear all the global 'decks'
+    // this.deck = new Deck();
+    // this.crib = [];
+    // this.theCount = [];
     this.deal6Cards();
   }
   deal6Cards() {
     for (let i = 0; i < 6; i++) {
       // console.log(this.p1);
       this.p1.hand.push(this.deck.order.pop());
-      this.p1.doToGhost();
       this.comp.hand.push(this.deck.order.pop());
-      this.comp.doToGhost();
     }
+    let copy:Card[] = []
+    for(let i = 0; i<this.p1.hand.length;i++){
+      copy.push(this.p1.hand[i]);
+    }
+    this.p1.ghostHand = copy;
     console.log(this.p1.ghostHand);
+    console.log(this.p1.hand);
   }
   discard(c: Card) {
     console.log(c);
+    //loop though the players hand and find the index of which one you 
+    // are adding to the crib
+    let ind: number;
+    for (let i = 0; i < this.p1.hand.length; i++) {
+      if (this.p1.hand[i] == c) {
+        ind = i;
+      }
+    }
     if (this.p1.hand.length > 4) {
+      console.log("-----------inside if--------");
       //discard into the crib EMPTYING out of the players hand
-      //loop though the players hand and find the index of which one you 
-      // are adding to the crib
-      let ind: number;
-      for (let i = 0; i < this.p1.hand.length; i++) {
-        if (this.p1.hand[i] == c) {
-          console.log("found it");
-          // push into the crib 
-          this.crib.push(c);
-          ind = i;
+      // push into the crib 
+      this.crib.push(c);
+      this.p1.hand.splice(ind, 1);
+      this.p1.ghostHand.splice(ind, 1);
+    } else {
+      // checking if the player is trying to discard a blank space
+      if(c.val==14){
+        return;
+      }
+      // ghosthand
+      // check who's turn it is
+      // validate if you can play this card
+      this.theCount.push(c);
+      for(let i = 0; i<this.p1.ghostHand.length;i++){
+        if(this.p1.ghostHand[i]==c){
+          this.p1.ghostHand[i] = new Card('',14);
         }
       }
-      this.p1.hand.splice(ind, 1);
-    } else {
-      // ghosthand
-      // validate if 
     }
   }
-
+  movePegs(){
+    let n = Math.floor((Math.random() * 10) + 1);
+  }
 }
