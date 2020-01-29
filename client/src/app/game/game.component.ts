@@ -20,11 +20,17 @@ export class GameComponent implements OnInit {
   crib: Card[] = [];
   theCount: Card[] = [];
   dealer: "Player";
+  scoreDivs: number[] = [];
 
   constructor() { }
 
   ngOnInit() {
     this.startGame();
+    for (let i = 0; i < 100; i++) {
+      this.scoreDivs.push(i);
+    }
+    this.p1.scoreA = 5;
+    this.p1.scoreB = 2;
   }
   startGame() {
     this.startRound();
@@ -42,8 +48,8 @@ export class GameComponent implements OnInit {
       this.p1.hand.push(this.deck.order.pop());
       this.comp.hand.push(this.deck.order.pop());
     }
-    let copy:Card[] = []
-    for(let i = 0; i<this.p1.hand.length;i++){
+    let copy: Card[] = []
+    for (let i = 0; i < this.p1.hand.length; i++) {
       copy.push(this.p1.hand[i]);
     }
     this.p1.ghostHand = copy;
@@ -69,34 +75,76 @@ export class GameComponent implements OnInit {
       this.p1.ghostHand.splice(ind, 1);
     } else {
       // checking if the player is trying to discard a blank space
-      if(c.val==14){
+      if (c.val == 14) {
         return;
       }
       // ghosthand
       // check who's turn it is
       // validate if you can play this card
       this.theCount.push(c);
-      for(let i = 0; i<this.p1.ghostHand.length;i++){
-        if(this.p1.ghostHand[i]==c){
-          this.p1.ghostHand[i] = new Card('',14);
+      for (let i = 0; i < this.p1.ghostHand.length; i++) {
+        if (this.p1.ghostHand[i] == c) {
+          this.p1.ghostHand[i] = new Card('', 14);
         }
       }
     }
   }
-  movePegs(){
+  movePegsRand() {
     let n = Math.floor((Math.random() * 10) + 1);
     let n2 = Math.floor((Math.random() * 10) + 1);
-    this.p1.score += n;
-    this.comp.score +=n2;
+    console.log("moving player1 peg ", n2);
+    this.catchPegBUp(n, this.p1);
+    console.log("moving the black peg ", n2);
+    this.catchPegBUp(n2, this.comp);
   }
-  clearScore(){
-    this.p1.score =0;
-    this.comp.score =0;
+  catchPegBUp(scoreIncrease: number, p: Player) {
+    //move the back peg up till they are equal
+    let oldscore=p.scoreA
+    while (p.scoreB!=oldscore){
+      console.log("Am I Stuck Here???");
+      let diff = p.scoreA-p.scoreB;
+      this.movePegsTimeDelay(diff,p,'B');
+    }
+    console.log("yay we are equal")
+    // now pegs are at the same place,
+    // continue to move foward the given points
+    this.movePegsTimeDelay(scoreIncrease,p,'A');
   }
-  moveBlack(){
-    this.comp.score ++;
+  clearScore() {
+    this.p1.scoreA = 0;
+    this.p1.scoreB = 0;
+    this.comp.scoreA = 0;
+    this.comp.scoreB = 0;
   }
-  moveGold(){
-    this.p1.score ++;
+  movePegsTimeDelay(n: number, p: Player, whichPeg: string) {
+    for (let i = 0; i < n; i++) {
+      let myVar = setTimeout(() => {
+        if (whichPeg == 'A'){
+          console.log("increasing A")
+          p.scoreA++;
+        } else {
+          console.log("increasing B")
+          p.scoreB++
+        };
+        // if(p===this.p1){
+        //   if(whichPeg =='A') this.p1.scoreA++;
+        //   else this.p1.scoreB++;
+        //   // if(this.p1.scoreA<this.p1.scoreB){
+        //   //   // this will move the A and B to the same number
+        //   //   let diff = this.p1.scoreB-this.p1.scoreA;
+        //   //   this.movePegsTimeDelay(diff,this.p1);
+        //   //   // this.p1.scoreA++
+        //   // } else if(this.p1.scoreA>this.p1.scoreB) {
+        //   //   let diff = this.p1.scoreA-this.p1.scoreB;
+        //   //   this.movePegsTimeDelay(diff,this.p1);
+        //   // } else{
+        //   //   this.p1.scoreA++
+        //   // }
+        // } else {
+        //   if(whichPeg=='A') this.comp.scoreA++;
+        //   else this.comp.scoreB++;
+        // }
+      }, 1000 * i);
+    }
   }
 }

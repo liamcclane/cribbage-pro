@@ -3,15 +3,15 @@ import { ThrowStmt } from '@angular/compiler'
 import { Card } from './card';
 
 export class Player {
-    score: number
-    scoreConCat: string
+    scoreA: number
+    scoreB: number
     hand:Card[]=[];
     ghostHand:Card[]=[];
     name:string
     constructor(n:string){
         this.name = n;
-        this.score = 0;
-        this.scoreConCat = `margin-left:${this.score * 10}px;`;
+        this.scoreA = 0;
+        this.scoreB = 0;
     }
     // doToGhost(){
     //     this.ghostHand=this.hand;
