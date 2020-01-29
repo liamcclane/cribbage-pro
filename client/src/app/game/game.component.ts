@@ -85,5 +85,18 @@ export class GameComponent implements OnInit {
   }
   movePegs(){
     let n = Math.floor((Math.random() * 10) + 1);
+    let n2 = Math.floor((Math.random() * 10) + 1);
+    this.p1.score += n;
+    this.comp.score +=n2;
+  }
+  clearScore(){
+    this.p1.score =0;
+    this.comp.score =0;
+  }
+  moveBlack(){
+    this.comp.score ++;
+  }
+  moveGold(){
+    this.p1.score ++;
   }
 }
