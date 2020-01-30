@@ -1,9 +1,12 @@
+import { Player } from './player';
+
 export class Card {
     suit:string ;
     val:number ;
     cribbageVal: number;
     imgConCat:string;
     cardWords:string ;
+    owner:Player;
     /**
      * When constucting a Card please pass in the single charater suit 
      * and then the val for the card, if you want a facedown card put val 0

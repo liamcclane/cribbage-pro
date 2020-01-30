@@ -5,10 +5,12 @@
     background-color: rgb(189, 149, 96);
     margin: 0px auto;
     display: inline-block;
+    display: flex;
 }
 .cardArea{
     display: inline-block;
-    width: 50%;
+    flex-grow: 2;
+    /* max-width: fit-content; */
 }
 img, .card {
     height: 96px;
@@ -69,7 +71,7 @@ img, .card {
     vertical-align: top;
 }
 .rightHalf{
-    /* margin-left: 180px; */
+    margin-left: 80px;
 }
 .rasecourse{
     display: inline-block;
@@ -87,9 +89,10 @@ img, .card {
     border: 2px solid white;
     background-color: black;
 }
-/* .playerPWrapper{
-    margin-left: 5px;
-} */
+#countArea{
+    /* position: absolute; */
+    background-color: rgba(240, 248, 255, 0.411);
+}
 .compPWrapper{
     margin-left: 4px;
 }

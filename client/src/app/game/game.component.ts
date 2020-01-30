@@ -20,8 +20,9 @@ export class GameComponent implements OnInit {
   crib: Card[] = [];
   theCount: Card[] = [];
   dealer: "Player";
-  scoreDivs1tp60: number[] = [];
-  scoreDivs60to120: number[] = [];
+  scoreDivs1tp40: number[] = [];
+  scoreDivs40to80: number[] = [];
+  scoreDivs80to120: number[] = [];
   theStartCard:Card = new Card('',0);
 
   constructor() { }
@@ -29,12 +30,18 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.startGame();
     for (let i = -1; i < 120; i++) {
-      if(i<60) this.scoreDivs1tp60.unshift(i);
-      else this.scoreDivs60to120.push(i);
+      if(i>80) this.scoreDivs80to120.unshift(i);
+      else if(i>40)this.scoreDivs40to80.push(i);
+      else this.scoreDivs1tp40.unshift(i);
     }
-    this.p1.scoreA = -1;
-    this.p1.scoreB = 0;
+    this.p1.scoreB = -1;
+    this.p1.scoreA = 0;
     this.comp.scoreB=-1;
+  }
+  fakeCardsIntoCount(){
+    this.theCount.push(new Card('',0));
+    this.theCount.push(new Card('',0));
+    this.theCount.push(new Card('',0));
   }
   startGame() {
     this.startRound();
@@ -49,8 +56,12 @@ export class GameComponent implements OnInit {
   deal6Cards() {
     for (let i = 0; i < 6; i++) {
       // console.log(this.p1);
-      this.p1.hand.push(this.deck.order.pop());
-      this.comp.hand.push(this.deck.order.pop());
+      let cardForPlayer=this.deck.order.pop()
+      cardForPlayer.owner = this.p1;
+      this.p1.hand.push(cardForPlayer);
+      let cardForComp=this.deck.order.pop()
+      cardForPlayer.owner = this.comp;
+      this.comp.hand.push(cardForComp);
     }
     let copy: Card[] = []
     for (let i = 0; i < this.p1.hand.length; i++) {
@@ -138,6 +149,8 @@ export class GameComponent implements OnInit {
    * @param addtionalTimeD : most of the time this will be zero while the B peg is catching
    */
   movePegsTimeDelay(n: number, p: Player, whichPeg: string,addtionalTimeD:number) {
+    // doing some math to make the peg move faster
+    let speedtime = 0;
     for (let i = 0; i < n; i++) {
       let myVar = setTimeout(() => {
         if (whichPeg == 'A'){
@@ -145,7 +158,7 @@ export class GameComponent implements OnInit {
         } else {
           p.scoreB++
         } 
-      }, 1000 * i+(addtionalTimeD*1000));
+      }, 500 * i+(addtionalTimeD*500));
     }
   }
   getTheStartCard(){
