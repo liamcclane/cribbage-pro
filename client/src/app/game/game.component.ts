@@ -20,17 +20,21 @@ export class GameComponent implements OnInit {
   crib: Card[] = [];
   theCount: Card[] = [];
   dealer: "Player";
-  scoreDivs: number[] = [];
+  scoreDivs1tp60: number[] = [];
+  scoreDivs60to120: number[] = [];
+  theStartCard:Card = new Card('',0);
 
   constructor() { }
 
   ngOnInit() {
     this.startGame();
-    for (let i = 0; i < 100; i++) {
-      this.scoreDivs.push(i);
+    for (let i = -1; i < 120; i++) {
+      if(i<60) this.scoreDivs1tp60.unshift(i);
+      else this.scoreDivs60to120.push(i);
     }
-    this.p1.scoreA = 5;
-    this.p1.scoreB = 2;
+    this.p1.scoreA = -1;
+    this.p1.scoreB = 0;
+    this.comp.scoreB=-1;
   }
   startGame() {
     this.startRound();
@@ -53,8 +57,6 @@ export class GameComponent implements OnInit {
       copy.push(this.p1.hand[i]);
     }
     this.p1.ghostHand = copy;
-    console.log(this.p1.ghostHand);
-    console.log(this.p1.hand);
   }
   /**
    * This function deals with the human discarding their cards into either the crib
@@ -74,13 +76,16 @@ export class GameComponent implements OnInit {
       }
     }
     if (this.p1.hand.length > 4) {
-      console.log("-----------inside if--------");
+      // console.log("-----------inside if--------");
       this.crib.push(c);
       this.p1.hand.splice(ind, 1);
       this.p1.ghostHand.splice(ind, 1);
+      if(this.p1.hand.length==4){
+        this.getTheStartCard();
+      }
     } else {
       // checking if the player is trying to discard a blank space
-      if (c.val == 0) {
+      if (c.val == 0||c.val==20) {
         return;
       }
       // ghosthand
@@ -89,7 +94,7 @@ export class GameComponent implements OnInit {
       this.theCount.push(c);
       for (let i = 0; i < this.p1.ghostHand.length; i++) {
         if (this.p1.ghostHand[i] == c) {
-          this.p1.ghostHand[i] = new Card('', 0);
+          this.p1.ghostHand[i] = new Card('', 20);
         }
       }
     }
@@ -97,9 +102,9 @@ export class GameComponent implements OnInit {
   movePegsRand() {
     let n = Math.floor((Math.random() * 10) + 1);
     let n2 = Math.floor((Math.random() * 10) + 1);
-    console.log("moving player1 peg ", n2);
+    console.log("moving player1 peg ****** "+ n2);
     this.increaseScore(n, this.p1);
-    console.log("moving the black peg ", n2);
+    console.log("moving the black peg -------"+ n2);
     this.increaseScore(n2, this.comp);
   }
   /**
@@ -142,5 +147,8 @@ export class GameComponent implements OnInit {
         } 
       }, 1000 * i+(addtionalTimeD*1000));
     }
+  }
+  getTheStartCard(){
+    this.theStartCard=this.deck.order.pop();
   }
 }
