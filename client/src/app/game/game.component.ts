@@ -28,12 +28,14 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.startGame();
     for (let i = -1; i < 121; i++) {
       if(i>80) this.scoreDivs80to120.unshift(i);
       else if(i>40)this.scoreDivs40to80.push(i);
       else this.scoreDivs1tp40.unshift(i);
     }
+  }
+  readyToBegin(){
+    this.startGame();
     this.p1.scoreB = -1;
     this.p1.scoreA = 0;
     this.comp.scoreB=-1;
@@ -44,6 +46,10 @@ export class GameComponent implements OnInit {
     this.theCount.push(new Card('',0));
   }
   startGame() {
+    // while(there is not winner){
+      // this.startRound
+
+    // }
     this.startRound();
   }
   startRound() {
