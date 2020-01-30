@@ -2,35 +2,59 @@
     <div class="cardArea">
         <div class="playground">
 
-            <div
-                style="display: inline-block; width: 200px;vertical-align: top;background-color: rgba(245, 222, 179, 0.425);">
-                <h1>Play 1 ScoreA:{{p1.scoreA}}</h1>
-                <h1>Comp ScoreA:{{comp.scoreA}}</h1>
+            <div class="row text-left">
+                <div class="inLine">
+                    Play 1 ScoreA: <span>{{p1.scoreA}}</span>
+                    Comp ScoreA: <span>{{comp.scoreA}}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- if the computer is the dealer AKA they have the crib out out all these divs-->
+                <div class="cribArea inLine">
+                    <div class="inLine" *ngFor="let c of crib">
+                        <ng-container *ngIf="c!=crib[crib.length-1]">
+                            <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
+                        </ng-container>
+                        <ng-container *ngIf="c==crib[crib.length-1]">
+                            <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                        </ng-container>
+                    </div>
+                </div>
+                Computer Cards
+                <div class="tableTop inLine">
+                    <div class="inLine" *ngFor="let c of comp.hand">
+                        <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-left" id="countArea">
+                <div class="inLine">
+                    <p>Start Card</p>
+                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
+                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
+                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
+                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                        alt="{{theStartCard.cardWords}}">
+                </div>
+                <div class="tableTop inLine" id="layDown" *ngFor="let c of theCount">
+                    <div style="padding: 20px 0px;">
+                        <img *ngIf="c.owner!=p1" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                            alt="{{c.cardWords}}">
+                    </div>
+                    <div style="padding: 20px 0px;">
+                        <img *ngIf="c.owner==p1" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                            alt="{{c.cardWords}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
             </div>
             <button (click)="movePegsRand()">Move the pegsRand</button>
-            <button (click)="fakeCardsIntoCount()">Add Fake Cards</button>
-            <h1>The Start Card</h1>
-            <img class="card" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
-                alt="{{theStartCard.cardWords}}">
+            <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
             <!-- <button (click)="startGame()">start Game</button> -->
-            <div class="tableTop" id="countArea" *ngFor="let c of theCount"
-                style="display: block; background-color: rgba(62, 151, 235, 0.342);">
-                <div style="display: block; background-color: rgba(195, 0, 255, 0.89);">
-                    <div class="topCount" *ngIf="c.owner==p1" style="background-color: purple; padding: 20px;">
-                        <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                    </div>
-                    <div class="bottomCount" *ngIf="c.owner!=p1"
-                        style="padding: 20px; background-color: rgb(255, 72, 0);">
-                        <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                    </div>
-                </div>
-            </div>
-            <div class="tableTop" style="color:white; display: block; background-color: rgba(62, 151, 235, 0.5);">
-                Crib ; dealer is => <span style="font-weight: bold;"> d{{dealer}}</span>
-                <div class="inLine" *ngFor="let c of crib">
-                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                </div>
-            </div>
             <div class="tableTop" style="color:white;display: block; background-color: rgba(255, 0, 0, 0.527);">
                 Player1
                 <h1>
@@ -42,26 +66,21 @@
                             alt="{{c.cardWords}}">
                     </ng-container>
                 </div>
-                <h1>
+                <!-- <h1>
                     Player1 HAND!
                 </h1>
                 <div class="inLine" *ngFor="let c of p1.hand">
                     <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
                         alt="{{c.cardWords}}">
-                </div>
+                </div> -->
             </div>
-            <!-- <div class="tableTop" style="color:white; display: block; background-color: rgba(8, 54, 98, 0.534);">
-                Computer Cards
-                <div class="inLine" *ngFor="let c of comp.hand">
-                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                </div>
-            </div>
+
             <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
                 All face down cards
                 <div class="inLine" *ngFor="let c of deck.order">
                     <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 

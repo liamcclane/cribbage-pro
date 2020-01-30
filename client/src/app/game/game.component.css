@@ -1,6 +1,6 @@
-/* * {
+* {
     outline: 1px dotted red;
-} */
+}
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -16,6 +16,12 @@
     flex-grow: 2;
     /* max-width: fit-content; */
 }
+.row{
+    width: auto;
+    min-height: 30px;
+    background-color: rgba(255, 255, 0, 0.685);
+    display: block;
+}
 .playground{
     margin: 0px 14% 0px auto ;
     text-align: center;
@@ -30,6 +36,14 @@ img, .card {
 }
 .inLine{
     display: inline-block;
+}
+    .inLine span{
+        font-weight: bolder;
+        color: red;
+        background-color: white;
+    }
+.text-left{
+    text-align: left;
 }
 .up {
     background-color: rgba(165, 42, 42, 0.253);
@@ -57,13 +71,13 @@ img, .card {
 .cribBoard{
     display: inline-block;
     width: 224px;
-    height: 880px;
+    height: 773px;
     vertical-align: top;
     background-image: url('./../../assets/images/wood.jfif');
     background-position: center;
     text-align: center;
-    padding: 89px 10px 30px 10px;
-    border-radius: 100px;
+    padding: 30px 10px 20px 10px;
+    border-radius: 50px;
     box-shadow: 10px 10px 10px black;
     margin-right: 20px;
     border: 1px solid black;
@@ -114,4 +128,11 @@ img, .card {
 }
 .topCount, .bottomCount{
     display: block;
+}
+.cardSlice{
+    width: 13px;
+    height: 96px;
+}
+.cribCard{
+    margin: 0px;
 }

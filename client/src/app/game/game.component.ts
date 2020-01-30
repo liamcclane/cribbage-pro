@@ -38,10 +38,8 @@ export class GameComponent implements OnInit {
     this.p1.scoreA = 0;
     this.comp.scoreB=-1;
   }
-  fakeCardsIntoCount(){
-    this.theCount.push(new Card('',0));
-    this.theCount.push(new Card('',0));
-    this.theCount.push(new Card('',0));
+  fakeCardIntoCount(){
+    this.theCount.push(this.comp.ghostHand.pop());
   }
   startGame() {
     this.startRound();
@@ -65,9 +63,26 @@ export class GameComponent implements OnInit {
     }
     let copy: Card[] = []
     for (let i = 0; i < this.p1.hand.length; i++) {
+      this.p1.hand[i].owner = this.p1;
+      console.log("we are pushing a copy of");
+      console.log(this.p1.hand[i]);
+      console.log("in to the ghost hand");
       copy.push(this.p1.hand[i]);
     }
     this.p1.ghostHand = copy;
+    let copy2: Card[] = []
+    for (let i = 0; i < this.comp.hand.length; i++) {
+      this.comp.hand[i].owner = this.comp;
+      console.log("we are pushing a copy of");
+      console.log(this.comp.hand[i]);
+      console.log("in to the ghost hand");
+      copy2.push(this.comp.hand[i]);
+    }
+    this.comp.ghostHand = copy2;
+    this.crib.push(this.comp.hand.pop());
+    this.crib.push(this.comp.ghostHand.pop());
+    this.crib.push(this.comp.hand.pop());
+    this.crib.push(this.comp.ghostHand.pop());
   }
   /**
    * This function deals with the human discarding their cards into either the crib
@@ -102,6 +117,8 @@ export class GameComponent implements OnInit {
       // ghosthand
       // check who's turn it is
       // validate if you can play this card
+      console.log("pushing this card into the count");
+      console.log(c)
       this.theCount.push(c);
       for (let i = 0; i < this.p1.ghostHand.length; i++) {
         if (this.p1.ghostHand[i] == c) {
