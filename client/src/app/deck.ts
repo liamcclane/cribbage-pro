@@ -38,18 +38,33 @@ export class Deck {
         this.order.push(c);
     }
     /**
-     * This function takes a card as a parameter and RETURNS 
+     * This function takes a card as a parameter and RETURNS
      * the sliced deck
      * @param c : This is the card we want removed out the of Deck
      */
     removeByCard(c:Card):void{
-        if(this.order.length ==0) return;
+        if (this.order.length === 0) { return; }
         let ind = 0;
-        for(let i = 0; i< this.order.length; i++){
-            if(this.order[i]==c) ind = i;
+        for (let i = 0; i < this.order.length; i++){
+            if (this.order[i] === c) { ind = i; }
         }
-        this.order.slice(ind,1);
+        this.order.splice(ind, 1);
     }
+
+    /**
+     * takes a card and a deck and passes that card to the deck that was passed in okay? okay.
+     * @param c
+     * @param d
+     */
+    giveToDeck(c: Card, d: Deck) {
+        let ind = 0;
+        for (let i = 0; i < this.order.length; i++) {
+            if (this.order[i] === c) { ind = i; }
+        }
+        d.push(c);
+        this.order.splice(ind, 1);
+    }
+
     /**
      * this function empty the deck
      */
