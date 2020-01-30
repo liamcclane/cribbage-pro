@@ -1,60 +1,67 @@
 <div class="container">
     <div class="cardArea">
-        <div style="display: inline-block; width: 200px;vertical-align: top;background-color: wheat;">
-            <h1>Play 1 ScoreA:{{p1.scoreA}}</h1>
-            <h1>Comp ScoreA:{{comp.scoreA}}</h1>
-        </div>
-        <button (click)="movePegsRand()">Move the pegsRand</button>
-        <button (click)="fakeCardsIntoCount()">Add Fake Cards</button>
-        <h1>The Start Card</h1>
-        <img class="card" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
-        <!-- <button (click)="startGame()">start Game</button> -->
-        <div class="tableTop" id="countArea" *ngFor="let c of theCount" style="display: block; background-color: rgba(62, 151, 235, 0.342);">
-            <div style="display: block; background-color: rgba(195, 0, 255, 0.89);">  
-                <div class="topCount" *ngIf="c.owner==p1"  style="background-color: purple; padding: 20px;">
-                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+        <div class="playground">
+
+            <div
+                style="display: inline-block; width: 200px;vertical-align: top;background-color: rgba(245, 222, 179, 0.425);">
+                <h1>Play 1 ScoreA:{{p1.scoreA}}</h1>
+                <h1>Comp ScoreA:{{comp.scoreA}}</h1>
+            </div>
+            <button (click)="movePegsRand()">Move the pegsRand</button>
+            <button (click)="fakeCardsIntoCount()">Add Fake Cards</button>
+            <h1>The Start Card</h1>
+            <img class="card" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                alt="{{theStartCard.cardWords}}">
+            <!-- <button (click)="startGame()">start Game</button> -->
+            <div class="tableTop" id="countArea" *ngFor="let c of theCount"
+                style="display: block; background-color: rgba(62, 151, 235, 0.342);">
+                <div style="display: block; background-color: rgba(195, 0, 255, 0.89);">
+                    <div class="topCount" *ngIf="c.owner==p1" style="background-color: purple; padding: 20px;">
+                        <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                    </div>
+                    <div class="bottomCount" *ngIf="c.owner!=p1"
+                        style="padding: 20px; background-color: rgb(255, 72, 0);">
+                        <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                    </div>
                 </div>
-                <div class="bottomCount" *ngIf="c.owner!=p1" style="padding: 20px; background-color: rgb(255, 72, 0);">
+            </div>
+            <div class="tableTop" style="color:white; display: block; background-color: rgba(62, 151, 235, 0.5);">
+                Crib ; dealer is => <span style="font-weight: bold;"> d{{dealer}}</span>
+                <div class="inLine" *ngFor="let c of crib">
                     <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
                 </div>
             </div>
-        </div>
-        <div class="tableTop" style="color:white; display: block; background-color: rgb(62, 151, 235);">
-            Crib ; dealer is => <span style="font-weight: bold;"> d{{dealer}}</span>
-            <div class="inLine" *ngFor="let c of crib">
-                <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-            </div>
-        </div>
-        <div class="tableTop" style="color:white;display: block; background-color: red;">
-            Player1
-            <h1>
-                ghostHand
-            </h1>
-            <div class="inLine" *ngFor="let c of p1.ghostHand">
-                <ng-container *ngIf="c.val != 20">
+            <div class="tableTop" style="color:white;display: block; background-color: rgba(255, 0, 0, 0.527);">
+                Player1
+                <h1>
+                    ghostHand
+                </h1>
+                <div class="inLine" *ngFor="let c of p1.ghostHand">
+                    <ng-container *ngIf="c.val != 20">
+                        <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                            alt="{{c.cardWords}}">
+                    </ng-container>
+                </div>
+                <h1>
+                    Player1 HAND!
+                </h1>
+                <div class="inLine" *ngFor="let c of p1.hand">
                     <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
                         alt="{{c.cardWords}}">
-                </ng-container>
+                </div>
             </div>
-            <h1>
-                Player1 HAND!
-            </h1>
-            <div class="inLine" *ngFor="let c of p1.hand">
-                <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
-                    alt="{{c.cardWords}}">
+            <!-- <div class="tableTop" style="color:white; display: block; background-color: rgba(8, 54, 98, 0.534);">
+                Computer Cards
+                <div class="inLine" *ngFor="let c of comp.hand">
+                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                </div>
             </div>
-        </div>
-        <div class="tableTop" style="color:white; display: block; background-color: rgb(8, 55, 98);">
-            Computer Cards
-            <div class="inLine" *ngFor="let c of comp.hand">
-                <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-            </div>
-        </div>
-        <div class="tableTop" style="color:white; display: block; background-color: black">
-            All face down cards
-            <div class="inLine" *ngFor="let c of deck.order">
-                <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-            </div>
+            <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
+                All face down cards
+                <div class="inLine" *ngFor="let c of deck.order">
+                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                </div>
+            </div> -->
         </div>
     </div>
 
@@ -63,6 +70,22 @@
         <div class="rasecourse">
             <div class="halfOfBoard">
                 <div class="smallRow" *ngFor="let d of scoreDivs1tp40">
+                    <div id="peg{{d}}p1" class="playerPWrapper peg circle emptyPeg">
+                        <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
+                        <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">
+                        </div>
+                        <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB"></div>
+                    </div>
+                    <div id="peg{{d}}comp" class="compPWrapper peg circle emptyPeg">
+                        <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">
+                        </div>
+                        <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB"></div>
+                        <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
+                    </div>
+                </div>
+            </div>
+            <div class="halfOfBoard rightHalf">
+                <div class="smallRow" *ngFor="let d of scoreDivs40to80">
                     <div class="playerPWrapper peg circle emptyPeg">
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">
@@ -78,30 +101,14 @@
                 </div>
             </div>
             <div class="halfOfBoard rightHalf">
-                <div class="smallRow" *ngFor="let d of scoreDivs40to80">
-                    <div class="playerPWrapper peg circle emptyPeg" >
-                        <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
-                        <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">
-                        </div>
-                        <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB"></div>
-                    </div>
-                    <div class="compPWrapper peg circle emptyPeg" >
-                        <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">
-                        </div>
-                        <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB"></div>
-                        <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
-                    </div>
-                </div>
-            </div>
-            <div class="halfOfBoard rightHalf">
                 <div class="smallRow" *ngFor="let d of scoreDivs80to120">
-                    <div class="playerPWrapper peg circle emptyPeg" >
+                    <div class="playerPWrapper peg circle emptyPeg">
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">A
                         </div>
                         <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB">B</div>
                     </div>
-                    <div class="compPWrapper peg circle emptyPeg" >
+                    <div class="compPWrapper peg circle emptyPeg">
                         <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">A
                         </div>
                         <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB">B</div>
@@ -110,6 +117,6 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
 </div>

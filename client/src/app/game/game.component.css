@@ -2,7 +2,11 @@
     outline: 1px dotted red;
 } */
 .container {
-    background-color: rgb(189, 149, 96);
+    background-image: url('./../../assets/images/serene1.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* max-width: 1280px; */
     margin: 0px auto;
     display: inline-block;
     display: flex;
@@ -11,6 +15,11 @@
     display: inline-block;
     flex-grow: 2;
     /* max-width: fit-content; */
+}
+.playground{
+    margin: 0px 14% 0px auto ;
+    text-align: center;
+    max-width: 1000px;
 }
 img, .card {
     height: 96px;
@@ -23,7 +32,7 @@ img, .card {
     display: inline-block;
 }
 .up {
-    background-color: brown;
+    background-color: rgba(165, 42, 42, 0.253);
     padding-bottom: 50px;
 }
 .tableTop {
@@ -41,9 +50,9 @@ img, .card {
     position:absolute;
 }
 
-#card_id4 {
-    background-color: brown;
-    padding-bottom: 50px;
+#peg0p1,#peg0comp {
+    /* background-color: red; */
+    margin-top: 20px;
 }
 .cribBoard{
     display: inline-block;
