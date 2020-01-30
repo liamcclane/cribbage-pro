@@ -1,6 +1,6 @@
-* {
+/* * {
     outline: 1px dotted red;
-}
+} */
 .container {
     background-color: rgb(189, 149, 96);
     margin: 0px auto;
@@ -48,30 +48,37 @@ img, .card {
 .cribBoard{
     display: inline-block;
     width: 224px;
-    height: 838px;
+    height: 880px;
     vertical-align: top;
-    background-image: url('./../../assets/images/wood.png');
+    background-image: url('./../../assets/images/wood.jfif');
     background-position: center;
-    background-size: cover;
-    padding: 15px;
+    text-align: center;
+    padding: 89px 10px 30px 10px;
+    border-radius: 100px;
+    box-shadow: 10px 10px 10px black;
+    margin-right: 20px;
+    border: 1px solid black;
 }
 .peg{
-    height: 5px;
-    width: 5px;
+    height: 10px;
+    width: 10px;
     display: inline-block;
 }
 .smallRow{
     display: block;
-    background-color: rgba(255, 192, 203, 0.555) ;
+    /* background-color: rgba(255, 192, 203, 0.555) ; */
     /* width: 50px; */
 }
 .halfOfBoard{
     display: inline-block;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     vertical-align: top;
 }
+.emptyPeg{
+    background-color: rgba(32, 31, 31, 0.733);
+}
 .rightHalf{
-    margin-left: 80px;
+    margin-left: 62px;
 }
 .rasecourse{
     display: inline-block;
@@ -91,8 +98,11 @@ img, .card {
 }
 #countArea{
     /* position: absolute; */
-    background-color: rgba(240, 248, 255, 0.411);
+    background-color: rgba(240, 248, 255, 0.473);
 }
 .compPWrapper{
     margin-left: 4px;
+}
+.topCount, .bottomCount{
+    display: block;
 }

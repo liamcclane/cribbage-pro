@@ -5,17 +5,16 @@
             <h1>Comp ScoreA:{{comp.scoreA}}</h1>
         </div>
         <button (click)="movePegsRand()">Move the pegsRand</button>
-        <button (click)="fakeCardsIntoCount()">Move the pegsRand</button>
+        <button (click)="fakeCardsIntoCount()">Add Fake Cards</button>
         <h1>The Start Card</h1>
         <img class="card" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
         <!-- <button (click)="startGame()">start Game</button> -->
-        <div class="tableTop" id="countArea" style="display: block; background-color: rgb(62, 151, 235);">
-            The Count Cards
-            <div *ngFor="let c of theCount;i as index">
-                <ng-container class="topCount inLine" *ngIf="c.owner==p1">
+        <div class="tableTop" id="countArea" *ngFor="let c of theCount" style="display: block; background-color: rgba(62, 151, 235, 0.342);">
+            <div style="display: block; background-color: rgba(195, 0, 255, 0.89);">  
+                <div class="topCount" *ngIf="c.owner==p1"  style="background-color: purple; padding: 20px;">
                     <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                </ng-container>
-                <div class="bottomCount inLine" *ngIf="c.owner!=p1">
+                </div>
+                <div class="bottomCount" *ngIf="c.owner!=p1" style="padding: 20px; background-color: rgb(255, 72, 0);">
                     <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
                 </div>
             </div>
@@ -60,21 +59,17 @@
     </div>
 
 
-
-
-
-
     <div class="cribBoard">
         <div class="rasecourse">
             <div class="halfOfBoard">
                 <div class="smallRow" *ngFor="let d of scoreDivs1tp40">
-                    <div class="playerPWrapper peg" style="background-color: rgba(255, 255, 0, 0.226);">
+                    <div class="playerPWrapper peg circle emptyPeg">
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">
                         </div>
                         <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB"></div>
                     </div>
-                    <div class="compPWrapper peg" style="background-color:rgba(55, 57, 59, 0.363);">
+                    <div class="compPWrapper peg circle emptyPeg">
                         <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">
                         </div>
                         <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB"></div>
@@ -84,13 +79,13 @@
             </div>
             <div class="halfOfBoard rightHalf">
                 <div class="smallRow" *ngFor="let d of scoreDivs40to80">
-                    <div class="playerPWrapper peg" style="background-color: rgba(255, 255, 0, 0.226);">
+                    <div class="playerPWrapper peg circle emptyPeg" >
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">
                         </div>
                         <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB"></div>
                     </div>
-                    <div class="compPWrapper peg" style="background-color:rgba(55, 57, 59, 0.363);">
+                    <div class="compPWrapper peg circle emptyPeg" >
                         <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">
                         </div>
                         <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB"></div>
@@ -100,13 +95,13 @@
             </div>
             <div class="halfOfBoard rightHalf">
                 <div class="smallRow" *ngFor="let d of scoreDivs80to120">
-                    <div class="playerPWrapper peg" style="background-color: rgba(255, 255, 0, 0.226);">
+                    <div class="playerPWrapper peg circle emptyPeg" >
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">A
                         </div>
                         <div *ngIf="p1.scoreB==d" class="peg circle" id="player1PositionB">B</div>
                     </div>
-                    <div class="compPWrapper peg" style="background-color:rgba(55, 57, 59, 0.363);">
+                    <div class="compPWrapper peg circle emptyPeg" >
                         <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle" id="compPositionA">A
                         </div>
                         <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB">B</div>
