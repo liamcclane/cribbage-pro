@@ -1,6 +1,6 @@
-* {
+/* * {
     outline: 1px dotted red;
-}
+} */
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -33,6 +33,7 @@ img, .card {
     margin-top:50px;
     display: inline-block;
     margin: 0px 15px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
 }
 .inLine{
     display: inline-block;
@@ -135,4 +136,7 @@ img, .card {
 }
 .cribCard{
     margin: 0px;
+}
+button{
+    margin-left: 10px;
 }

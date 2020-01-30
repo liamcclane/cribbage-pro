@@ -1,12 +1,14 @@
 <div class="container">
     <div class="cardArea">
         <div class="playground">
-
+            
             <div class="row text-left">
                 <div class="inLine">
                     Play 1 ScoreA: <span>{{p1.scoreA}}</span>
                     Comp ScoreA: <span>{{comp.scoreA}}</span>
                 </div>
+                <button (click)="movePegsRand()">Move the pegsRand</button>
+                <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
             </div>
 
             <div class="row">
@@ -52,14 +54,11 @@
             <div class="row">
 
             </div>
-            <button (click)="movePegsRand()">Move the pegsRand</button>
-            <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
             <!-- <button (click)="startGame()">start Game</button> -->
             <div class="tableTop" style="color:white;display: block; background-color: rgba(255, 0, 0, 0.527);">
-                Player1
                 <h1>
-                    ghostHand
-                </h1>
+                    Player1
+                </h1 >
                 <div class="inLine" *ngFor="let c of p1.ghostHand">
                     <ng-container *ngIf="c.val != 20">
                         <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
@@ -76,8 +75,8 @@
             </div>
 
             <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
-                All face down cards
-                <div class="inLine" *ngFor="let c of deck.order">
+                Crib Cards
+                <div class="inLine" *ngFor="let c of crib">
                     <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
                 </div>
             </div>

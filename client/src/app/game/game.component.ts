@@ -80,9 +80,9 @@ export class GameComponent implements OnInit {
     }
     this.comp.ghostHand = copy2;
     this.crib.push(this.comp.hand.pop());
-    this.crib.push(this.comp.ghostHand.pop());
+    this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
-    this.crib.push(this.comp.ghostHand.pop());
+    this.comp.ghostHand.pop();
   }
   /**
    * This function deals with the human discarding their cards into either the crib
@@ -118,7 +118,7 @@ export class GameComponent implements OnInit {
       // check who's turn it is
       // validate if you can play this card
       console.log("pushing this card into the count");
-      console.log(c)
+      console.log(c);
       this.theCount.push(c);
       for (let i = 0; i < this.p1.ghostHand.length; i++) {
         if (this.p1.ghostHand[i] == c) {
