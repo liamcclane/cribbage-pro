@@ -16,75 +16,88 @@ export class GameComponent implements OnInit {
 
   p1: Player = new Player('p1');
   comp: Player = new Player('comp');
-  deck: Deck = new Deck();
-  crib: Card[] = [];
-  theCount: Card[] = [];
+  mainDeck: Deck = new Deck();
+  crib: Deck = new Deck();
+  theCount: Deck = new Deck();
+  theStartCard: Card = new Card('', 0);
   dealer: "Player";
   scoreDivs1tp40: number[] = [];
   scoreDivs40to80: number[] = [];
   scoreDivs80to120: number[] = [];
-  theStartCard:Card = new Card('',0);
-
+  /**
+   * Round class
+   * 
+   * needs
+   * two players
+   * deck
+   * start card
+   * Judge
+   * theCount deck
+   * whos turn 
+   * crib []
+   */
   constructor() { }
-
   ngOnInit() {
+    this.getTheDivs();
+  }
+  getTheDivs() {
     for (let i = -1; i < 121; i++) {
-      if(i>80) this.scoreDivs80to120.unshift(i);
-      else if(i>40)this.scoreDivs40to80.push(i);
+      if (i > 80) this.scoreDivs80to120.unshift(i);
+      else if (i > 40) this.scoreDivs40to80.push(i);
       else this.scoreDivs1tp40.unshift(i);
     }
   }
-  readyToBegin(){
+  readyToBegin() {
     this.startGame();
     this.p1.scoreB = -1;
     this.p1.scoreA = 0;
-    this.comp.scoreB=-1;
+    this.comp.scoreB = -1;
   }
-  fakeCardIntoCount(){
-    this.theCount.push(this.comp.ghostHand.pop());
+  fakeCardIntoCount() {
+    this.theCount.push(this.mainDeck.pop());
   }
   startGame() {
-    // while(there is not winner){
-      // this.startRound
-
-    // }
     this.startRound();
   }
   startRound() {
-    //every round needs to clear all the global 'decks'
-    // this.deck = new Deck();
-    // this.crib = [];
-    // this.theCount = [];
+    // every round needs to clear all the global round vars
+    this.mainDeck.empty();
+    this.mainDeck.createDeck();
+    this.crib.empty();
+    this.theCount.empty();
+    this.theStartCard = new Card('', 0);
+    this.p1.hand.empty();
     this.deal6Cards();
   }
   deal6Cards() {
     for (let i = 0; i < 6; i++) {
       // console.log(this.p1);
-      let cardForPlayer=this.deck.order.pop()
+      let cardForPlayer = this.mainDeck.pop()
+      let cardForComp = this.mainDeck.pop()
       cardForPlayer.owner = this.p1;
-      this.p1.hand.push(cardForPlayer);
-      let cardForComp=this.deck.order.pop()
       cardForPlayer.owner = this.comp;
+      this.p1.hand.push(cardForPlayer);
       this.comp.hand.push(cardForComp);
     }
-    let copy: Card[] = []
-    for (let i = 0; i < this.p1.hand.length; i++) {
-      this.p1.hand[i].owner = this.p1;
+    let copy = new Deck();
+    for (let i = 0; i < this.p1.hand.order.length; i++) {
+      this.p1.hand.order[i].owner = this.p1;
       console.log("we are pushing a copy of");
-      console.log(this.p1.hand[i]);
+      console.log(this.p1.hand.order[i]);
       console.log("in to the ghost hand");
-      copy.push(this.p1.hand[i]);
+      copy.push(this.p1.hand.order[i]);
     }
     this.p1.ghostHand = copy;
-    let copy2: Card[] = []
-    for (let i = 0; i < this.comp.hand.length; i++) {
+    let copy2 = new Deck();
+    for (let i = 0; i < this.comp.hand.order.length; i++) {
       this.comp.hand[i].owner = this.comp;
       console.log("we are pushing a copy of");
-      console.log(this.comp.hand[i]);
+      console.log(this.comp.hand.order[i]);
       console.log("in to the ghost hand");
-      copy2.push(this.comp.hand[i]);
+      copy2.push(this.comp.hand.order[i]);
     }
     this.comp.ghostHand = copy2;
+    // automatically have computer push into the crib
     this.crib.push(this.comp.hand.pop());
     this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
@@ -101,44 +114,37 @@ export class GameComponent implements OnInit {
    */
   discard(c: Card) {
     console.log(c);
-    let ind: number;
-    for (let i = 0; i < this.p1.hand.length; i++) {
-      if (this.p1.hand[i] == c) {
-        ind = i;
-      }
-    }
-    if (this.p1.hand.length > 4) {
-      // console.log("-----------inside if--------");
-      this.crib.push(c);
-      this.p1.hand.splice(ind, 1);
-      this.p1.ghostHand.splice(ind, 1);
-      if(this.p1.hand.length==4){
+    if (this.p1.hand.order.length > 4) {
+      this.p1.hand.removeByCard(c);
+      this.p1.ghostHand.removeByCard(c);
+      if (this.p1.hand.order.length == 4) {
         this.getTheStartCard();
+        // and starting the count 
       }
     } else {
       // checking if the player is trying to discard a blank space
-      if (c.val == 0||c.val==20) {
-        return;
-      }
-      // ghosthand
-      // check who's turn it is
+      if (c.val == 0 || c.val == 20) return;
+      // check whos turn it is
+      //********************************************************************* */
+      //********************************************************************* */
       // validate if you can play this card
-      console.log("pushing this card into the count");
-      console.log(c);
-      this.theCount.push(c);
-      for (let i = 0; i < this.p1.ghostHand.length; i++) {
-        if (this.p1.ghostHand[i] == c) {
-          this.p1.ghostHand[i] = new Card('', 20);
-        }
+      if(this.canPlayCard()){
+        console.log("pushing this card into the count");
+        console.log(c);
+        this.theCount.push(c);
+        this.p1.ghostHand.removeByCard(c);
       }
     }
+  }
+  canPlayCard(){
+    return true;
   }
   movePegsRand() {
     let n = Math.floor((Math.random() * 10) + 1);
     let n2 = Math.floor((Math.random() * 10) + 1);
-    console.log("moving player1 peg ****** "+ n2);
+    console.log("moving player1 peg ****** " + n2);
     this.increaseScore(n, this.p1);
-    console.log("moving the black peg -------"+ n2);
+    console.log("moving the black peg -------" + n2);
     this.increaseScore(n2, this.comp);
   }
   /**
@@ -149,14 +155,14 @@ export class GameComponent implements OnInit {
    */
   increaseScore(scoreIncrease: number, p: Player) {
     //move peg B
-    let diff = p.scoreA-p.scoreB;
+    let diff = p.scoreA - p.scoreB;
     console.log(diff);
-    console.log("moving peg b "+diff+ "times")
-    this.movePegsTimeDelay(diff,p,'B',0);
+    console.log("moving peg b " + diff + "times")
+    this.movePegsTimeDelay(diff, p, 'B', 0);
     // now pegs are at the same place,
     // continue to move foward the given points
-    console.log("moving peg a "+diff+ "times with extra time delay")
-    this.movePegsTimeDelay(scoreIncrease,p,'A',diff);
+    console.log("moving peg a " + diff + "times with extra time delay")
+    this.movePegsTimeDelay(scoreIncrease, p, 'A', diff);
   }
   clearScore() {
     this.p1.scoreA = 0;
@@ -171,20 +177,23 @@ export class GameComponent implements OnInit {
    * @param whichPeg : this is either 'A' or 'B'
    * @param addtionalTimeD : most of the time this will be zero while the B peg is catching
    */
-  movePegsTimeDelay(n: number, p: Player, whichPeg: string,addtionalTimeD:number) {
+  movePegsTimeDelay(n: number, p: Player, whichPeg: string, addtionalTimeD: number) {
     // doing some math to make the peg move faster
     let speedtime = 0;
     for (let i = 0; i < n; i++) {
       let myVar = setTimeout(() => {
-        if (whichPeg == 'A'){
+        if (whichPeg == 'A') {
           p.scoreA++;
         } else {
           p.scoreB++
-        } 
-      }, 500 * i+(addtionalTimeD*500));
+        }
+      }, 500 * i + (addtionalTimeD * 500));
     }
   }
-  getTheStartCard(){
-    this.theStartCard=this.deck.order.pop();
+  getTheStartCard() {
+    let card = this.mainDeck.order.pop();
+    console.log("***THE START CARD IS***");
+    console.log(card);
+    this.theStartCard = card;
   }
 }
