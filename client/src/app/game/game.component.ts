@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.startGame();
-    for (let i = -1; i < 121; i++) {
+    for (let i = -1; i <= 121; i++) {
       if(i>80) this.scoreDivs80to120.unshift(i);
       else if(i>40)this.scoreDivs40to80.push(i);
       else this.scoreDivs1tp40.unshift(i);
@@ -128,8 +128,8 @@ export class GameComponent implements OnInit {
     }
   }
   movePegsRand() {
-    let n = Math.floor((Math.random() * 10) + 1);
-    let n2 = Math.floor((Math.random() * 10) + 1);
+    let n = Math.floor((Math.random() * 10) + 10);
+    let n2 = Math.floor((Math.random() * 10) + 10);
     console.log("moving player1 peg ****** "+ n2);
     this.increaseScore(n, this.p1);
     console.log("moving the black peg -------"+ n2);

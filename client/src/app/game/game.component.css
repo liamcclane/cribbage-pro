@@ -1,5 +1,5 @@
 * {
-    outline: 1px dotted red;
+    /* outline: 1px dotted red; */
 }
 .container {
     background-image: url('./../../assets/images/serene1.gif');
@@ -64,23 +64,92 @@ img, .card {
     position:absolute;
 }
 
-#peg0p1,#peg0comp {
-    /* background-color: red; */
-    margin-top: 20px;
+#firstRow, #secondRow{
+    margin-top:50px;
 }
+
+#smallRow38{
+    transform: rotate(30deg);
+    margin-left: 5px;
+}
+
+#smallRow39{
+    transform: rotate(45deg);
+    margin-left: 20px;
+}
+
+#smallRow40{
+    transform: rotate(60deg);
+    margin-left: 50px;
+}
+#lbl-40{
+    display: inline-block;
+    margin-top: 40px;
+}
+#smallRow41{
+    transform: rotate(-60deg);
+    margin-right: 50px;
+}
+#smallRow42{
+    transform: rotate(-45deg);
+    margin-right: 20px;
+}
+#smallRow43{
+    transform: rotate(-30deg);
+    margin-right: 5px;
+}
+
+#smallRow78{
+    transform: rotate(-30deg);
+    margin-left: 5px;
+}
+
+#smallRow79{
+    transform: rotate(-45deg);
+    margin-left: 20px;
+}
+
+#smallRow80{
+    transform: rotate(-60deg);
+    margin-left: 50px;
+}
+
+#lbl-80{
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 40px;
+}
+
+#smallRow81{
+    transform: rotate(60deg);
+    margin-right: 50px;
+}
+
+#smallRow82{
+    transform: rotate(45deg);
+    margin-right: 20px;
+}
+
+#smallRow83{
+    transform: rotate(30deg);
+    margin-right: 5px;
+}
+
 .cribBoard{
     display: inline-block;
-    width: 224px;
-    height: 773px;
+    min-width: 300px;
+    height: fit-content;
     vertical-align: top;
     background-image: url('./../../assets/images/wood.jfif');
     background-position: center;
     text-align: center;
-    padding: 30px 10px 20px 10px;
+    /* padding: 30px 10px 20px 10px; */
     border-radius: 50px;
     box-shadow: 10px 10px 10px black;
     margin-right: 20px;
     border: 1px solid black;
+    color: #382205;
+    font-weight: bold;
 }
 .peg{
     height: 10px;
@@ -100,12 +169,13 @@ img, .card {
 .emptyPeg{
     background-color: rgba(32, 31, 31, 0.733);
 }
-.rightHalf{
+/* .rightHalf{
     margin-left: 62px;
-}
+} */
 .rasecourse{
+    width: 100%;
     display: inline-block;
-    width: 222px;
+    /* width: 222px; */
 }
 .circle{
     border-radius: 50%;
