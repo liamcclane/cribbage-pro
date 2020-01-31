@@ -8,13 +8,22 @@
                     Computer <span>{{comp.scoreA}}</span>
                 </div>
 
-                <button (click)="movePegsRand()">Move the pegsRand</button>
+                <!-- <button (click)="movePegsRand()">Move the pegsRand</button> -->
                 <ng-container *ngIf="discarded">
                     <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
                 </ng-container>
-                <ng-container *ngIf="gameStarted === false">
-                    <button (click)="readyToBegin()">Let deal and start the game</button>
+                <ng-container *ngIf="gameStarted === false && theCount.order.length != 8">
+                    <button (click)="readyToBegin()">Let's Play</button>
                 </ng-container>
+                <ng-container *ngIf="theCount.order.length == 8">
+                    Roud Over
+                    <button (click)="startRound()">Start Next Round</button>
+                </ng-container>
+                <div class="inLine score">
+                        Player 1 round score : {{roundIncrease[0]}} <br>
+                        Comp 1 round score : {{roundIncrease[1]}} <br>
+                        Dealer({{crib.owner.name}}) 1 round score : {{roundIncrease[2]}} <br>
+                </div>
 
             </div>
 
@@ -23,7 +32,8 @@
                     <h1> Computer </h1>
                 </div>
                 <div class="centerMe inLine">
-                    <div class="inLine" *ngIf="crib.owner==p1">
+                    <!-- Crib Area-->
+                    <div class="inLine" *ngIf="crib.owner==comp">
                         <div class="inLine" *ngFor="let c of crib.order">
                             <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
                                 <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png"
@@ -34,6 +44,7 @@
                             </ng-container>
                         </div>
                     </div>
+                    <!--Hand Area-->
                     <div class="tableTop inLine">
                         <div class="inLine" *ngFor="let c of comp.hand.order">
                             <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
@@ -71,13 +82,15 @@
                     <h1>Player1 </h1>
                 </div>
                 <div class="centerMe inLine">
+                    <!-- Player 1 Cards-->
                     <div class="inLine" *ngFor="let c of p1.ghostHand.order">
                         <ng-container *ngIf="c.val != 20">
                             <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
                                 alt="{{c.cardWords}}">
                         </ng-container>
                     </div>
-                    <div class="inLine" *ngIf="crib.owner==comp">
+                    <!-- Crib Area-->
+                    <div class="inLine" *ngIf="crib.owner==p1">
                         <div class="inLine" *ngFor="let c of crib.order">
                             <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
                                 <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png"
@@ -87,6 +100,20 @@
                                 <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
                             </ng-container>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="theCount.order.length == 8" class="compHand text-left">
+                <!-- <button (click)="startGame()">start Game</button> -->
+                <div class="inLine" id="fixME">
+                    <h1>Crib</h1>
+                </div>
+                <div class="centerMe inLine">
+                    <div class="inLine" *ngFor="let c of crib.order">
+                        <ng-container *ngIf="c.val != 20">
+                            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                                alt="{{c.cardWords}}">
+                        </ng-container>
                     </div>
                 </div>
             </div>

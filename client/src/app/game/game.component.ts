@@ -11,36 +11,23 @@ import { Judge } from '../judge';
 })
 export class GameComponent implements OnInit {
 
+  // will only get reset at END scores of 121
+  p1: Player = new Player('Player 1');
+  comp: Player = new Player('Computer');
   judge: Judge = new Judge();
   discarded = false;
-  p1: Player = new Player('p1');
-  comp: Player = new Player('comp');
+  gameStarted = false;
+  // things that get reset per round
   mainDeck: Deck = new Deck();
   crib: Deck = new Deck();
   theCount: Deck = new Deck();
   theStartCard: Card = new Card('', 0);
-  gameStarted = false;
-  dealer: 'Player';
+  roundIncrease: number[] = [0,0,0];
+  revealCrib = false;
+  // all of these var are for making the crib board
   scoreDivs1tp40: number[] = [];
   scoreDivs40to80: number[] = [];
   scoreDivs80to120: number[] = [];
-  /**
-   * Round class
-   *
-   * needs
-   * two players
-   * deck
-   * start card
-   * Judge
-   * theCount deck
-   * whos turn
-   * crib []
-   */
-
-
-    // suit:string ;
-    // val:number ;
-    // cribbageVal: number;
   constructor() { }
   ngOnInit() {
     for (let i = -1; i <= 121; i++) {
@@ -49,17 +36,18 @@ export class GameComponent implements OnInit {
       else this.scoreDivs1tp40.unshift(i);
     }
     this.crib.owner = this.p1;
-    this.startGame();
-  }
-  readyToBegin() {
-    this.startGame();
     this.p1.scoreB = -1;
     this.p1.scoreA = 0;
     this.comp.scoreB = -1;
+    this.gameStarted = false;
+    // this.startGame();
+  }
+  readyToBegin() {
     this.gameStarted = true;
+    this.startGame();
   }
   fakeCardIntoCount() {
-    if (this.theCount.order.length === 8) {
+    if (this.theCount.order.length-1 >= 8) {
       // LAST CARD!
       console.log('Last card!!');
       this.atCountEnd();
@@ -71,6 +59,7 @@ export class GameComponent implements OnInit {
   
   }
   startGame() {
+    // while there is not winner
     this.startRound();
   }
   startRound() {
@@ -84,6 +73,8 @@ export class GameComponent implements OnInit {
     this.p1.ghostHand.empty();
     this.comp.hand.empty();
     this.comp.ghostHand.empty();
+    this.roundIncrease = [0,0,0];
+    this.revealCrib = false;
     this.swapDealer();
     this.deal6Cards();
   }
@@ -126,8 +117,7 @@ export class GameComponent implements OnInit {
     this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
     this.comp.ghostHand.pop();
-
-    console.log(this.crib);
+    // console.log(this.crib);
   }
   /**
    * This function deals with the human discarding their cards into either the crib
@@ -149,7 +139,7 @@ export class GameComponent implements OnInit {
         // and starting the count
       }
       // console.log(this.crib);
-      console.log(this.p1);
+      // console.log(this.p1);
     } else {
       // checking if the player is trying to discard a blank space
       if (c.val === 0 || c.val === 20) { return; }
@@ -228,9 +218,13 @@ export class GameComponent implements OnInit {
   }
   getTheStartCard() {
     const card = this.mainDeck.order.pop();
-    console.log('***THE START CARD IS***');
-    console.log(card);
+    // console.log('***THE START CARD IS***');
+    // console.log(card);
     this.theStartCard = card;
+    if(card.val== 11){
+      if(this.crib.owner == this.p1) this.increaseScore(2,this.p1);
+      else this.increaseScore(2,this.comp);
+    }
   }
 
 
@@ -244,9 +238,11 @@ export class GameComponent implements OnInit {
     cards.push(start);
     return this.judge.countHand(cards, isCrib);
   }
-
+  /**
+   * this function is called for lasklkajsd
+   */
   atCountEnd() {
-
+    this.revealCrib = true;
     const playerScore = this.scoreHands(this.p1.hand.order, this.theStartCard, false);
     const compScore = this.scoreHands(this.comp.hand.order, this.theStartCard, false);
     const cribScore = this.scoreHands(this.crib.order, this.theStartCard, true);
@@ -255,5 +251,27 @@ export class GameComponent implements OnInit {
     console.log('comp score', compScore);
     console.log('crib score', cribScore);
 
+    this.roundIncrease[0] = playerScore.total;
+    this.roundIncrease[1] = compScore.total;
+    this.roundIncrease[2] = cribScore.total;
+
+    // let n = Math.floor((Math.random() * 10) + 10);
+    // let n2 = Math.floor((Math.random() * 10) + 10);
+    // console.log("moving player1 peg ****** "+ n2);
+    // this.increaseScore(, this.p1);
+    // console.log('moving the black peg -------' + n2);
+    this.increaseScore(playerScore.total, this.p1);
+    this.increaseScore(compScore.total, this.comp);
+
+    if(this.crib.owner == this.p1) this.increaseScore(cribScore.total,this.p1);
+    else this.increaseScore(cribScore.total,this.comp);
+
+    this.checkIfGameOver();
+
+  }
+  checkIfGameOver(){
+    if(this.p1.scoreA > 120 || this.comp.scoreA>120){
+      this.gameStarted = false
+    }
   }
 }

@@ -53,6 +53,7 @@ export class Deck {
 
     /**
      * takes a card and a deck and passes that card to the deck that was passed in okay? okay.
+     * AND removes that card from called upon's players hand
      * @param c
      * @param d
      */
