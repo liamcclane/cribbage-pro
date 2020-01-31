@@ -1,47 +1,42 @@
-* {
+/* *{
     outline: 1px dotted red;
-}
-.example-box {
-    width: 200px;
-    height: 200px;
-    border: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
-    cursor: move;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #fff;
-    border-radius: 4px;
-    margin-right: 25px;
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    padding: 10px;
-    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-                0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  }
-  
-  .example-box:active {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  }
-  
-  .example-boundary {
-    width: 400px;
-    height: 400px;
-    max-width: 100%;
-    border: dotted #ccc 2px;
-  }
-  
+} */
 .container {
-    background-color: rgb(189, 149, 96);
+    background-image: url('./../../assets/images/serene1.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* max-width: 1280px; */
     margin: 0px auto;
+    /* display: inline-block; */
+    display: flex;
+}
+.cardArea{
     display: inline-block;
-    /* text-align: center; */
+    flex-grow: 2;
+    /* max-width: fit-content; */
+    padding-top: 25px;
+}
+.playground{
+    margin: 0px 14% 0px auto ;
+    text-align: center;
+    max-width: 1000px;
+    padding: 30px;
+    border: 2px solid rgba(29, 28, 28, 0.753);
+    border-radius: 20px;
+    box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
+    background-color: rgba(240, 248, 255, 0.253);
+}
+.centerMe{
+    text-align: center;
+}
+.compHand{
+    min-height: 200px;
+    text-align: left;
+    text-align: center;
+    padding-top: 20px;
+    /* display: flex; */
+    flex-grow: 2;
 }
 img, .card {
     height: 96px;
@@ -49,25 +44,47 @@ img, .card {
     margin-top:50px;
     display: inline-block;
     margin: 0px 15px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
+}
+h1 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./../../assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    color: #291904;
+    border: 1px solid black;
+    margin-right: 20px;
+    vertical-align: top;
+}
+#fixME{
+    vertical-align: top;
+}
+.score{
+    background-color: rgba(240, 248, 255, 0.801);
+    padding: 10px 10px; 
+    border: whitesmoke;
+    border-radius: 20px;
 }
 .inLine{
     display: inline-block;
 }
+    .inLine span{
+        font-weight: bolder;
+    }
+.text-left{
+    text-align: left;
+}
 .up {
-    background-color: brown;
+    background-color: rgba(165, 42, 42, 0.253);
     padding-bottom: 50px;
 }
 .tableTop {
     vertical-align: top;
     display: inline-block;
-    /* width: 500px;
-    height: 300px; */
-    /* background-color: rgb(11, 83, 11);
-    border: 2px solid grey;
-    border-radius: 50%; */
-    /* height:200px; */
     padding: 10px 5px;
-    /* background-color: aqua; */
 }
 .scoreBoard {
     vertical-align: top;
@@ -76,11 +93,175 @@ img, .card {
     display: inline-block;
     height: 500px;
     width: 100px;
+    position:absolute;
 }
 
-#card_id4 {
-    background-color: brown;
-    padding-bottom: 50px;
-    /* height: 200px; */
-    /* margin-top:-100px; */
+#firstRow, #secondRow{
+    margin-top:50px;
+}
+
+#smallRow38{
+    transform: rotate(30deg);
+    margin-left: 5px;
+}
+
+#smallRow39{
+    transform: rotate(45deg);
+    margin-left: 20px;
+}
+
+#smallRow40{
+    transform: rotate(60deg);
+    margin-left: 50px;
+}
+#lbl-40{
+    display: inline-block;
+    margin-top: 40px;
+}
+#smallRow41{
+    transform: rotate(-60deg);
+    margin-right: 50px;
+}
+#smallRow42{
+    transform: rotate(-45deg);
+    margin-right: 20px;
+}
+#smallRow43{
+    transform: rotate(-30deg);
+    margin-right: 5px;
+}
+
+#smallRow78{
+    transform: rotate(-30deg);
+    margin-left: 5px;
+}
+
+#smallRow79{
+    transform: rotate(-45deg);
+    margin-left: 20px;
+}
+
+#smallRow80{
+    transform: rotate(-60deg);
+    margin-left: 50px;
+}
+
+#lbl-80{
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 40px;
+}
+
+#smallRow81{
+    transform: rotate(60deg);
+    margin-right: 50px;
+}
+
+#smallRow82{
+    transform: rotate(45deg);
+    margin-right: 20px;
+}
+
+#smallRow83{
+    transform: rotate(30deg);
+    margin-right: 5px;
+}
+
+.cribBoard{
+    display: inline-block;
+    min-width: 300px;
+    height: fit-content;
+    vertical-align: top;
+    background-image: url('./../../assets/images/wood.jfif');
+    background-position: center;
+    text-align: center;
+    padding: 30px 10px 20px 10px;
+    border-radius: 50px;
+    box-shadow: 10px 10px 10px black;
+    margin-right: 20px;
+    border: 1px solid black;
+    color: #291904;
+    font-weight: bold;
+}
+.peg{
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+}
+.smallRow{
+    display: block;
+    /* background-color: rgba(255, 192, 203, 0.555) ; */
+    /* width: 50px; */
+}
+.halfOfBoard{
+    display: inline-block;
+    /* border: 3px solid blue; */
+    vertical-align: top;
+}
+.emptyPeg{
+    background-color: rgba(32, 31, 31, 0.733);
+}
+/* .rightHalf{
+    margin-left: 62px;
+} */
+.rasecourse{
+    width: 100%;
+    display: inline-block;
+    /* width: 222px; */
+}
+.circle{
+    border-radius: 50%;
+}
+#player1PositionA,#player1PositionB{
+    border: 1px solid black;
+    background-color: gold;
+}
+#compPositionA,#compPositionB{
+    color: white;
+    border: 2px solid white;
+    background-color: black;
+}
+#countArea{
+    /* position: absolute; */
+    /* height: 30%; */
+    vertical-align: top;
+    background-color: rgba(240, 248, 255, 0.473);
+    padding: 10px 0px 10px 20px;
+}
+.compPWrapper{
+    margin-left: 4px;
+}
+.topCount, .bottomCount{
+    display: block;
+}
+.offSet{
+    padding: 20px 0px;
+}
+.centerThis {
+    margin: 0px auto;
+}
+.cardSlice{
+    width: 13px;
+    height: 96px;
+}
+.cribCard{
+    margin: 0px;
+}
+.stackedCards{
+    margin-left: -5px;
+}
+.text-right{
+    text-align: right;
+}
+.lessMargin{
+    margin: 0px 2px;
+    vertical-align: top;
+    padding: 0px;
+}
+@media only screen and (max-width: 480px){ /*phone*/
+
+}@media only screen and (min-width: 481px ) and (max-width: 1040px){ /*tablet*/
+}
+
+@media only screen and (min-width: 1042px){ /*computer screen*/
 }

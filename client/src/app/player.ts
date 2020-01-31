@@ -3,15 +3,19 @@ import { ThrowStmt } from '@angular/compiler'
 import { Card } from './card';
 
 export class Player {
-    score: number
-    hand:Card[]=[];
-    ghostHand:Card[]=[];
+    scoreA: number
+    scoreB: number
+    hand:Deck;
+    ghostHand:Deck;
     name:string
-    constructor(n){
+    constructor(n:string){
         this.name = n;
-        this.score = 0;
+        this.scoreA = 0;
+        this.scoreB = 0;
+        this.ghostHand = new Deck();
+        this.hand = new Deck();
     }
-    doToGhost(){
-        this.ghostHand=this.hand;
-    }
+    // doToGhost(){
+    //     this.ghostHand=this.hand;
+    // }
 }
