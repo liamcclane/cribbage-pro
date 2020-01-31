@@ -7,9 +7,15 @@
                     Player1 <span>{{p1.scoreA}}</span> <br>
                     Computer <span>{{comp.scoreA}}</span>
                 </div>
-                <button style="margin-left: 10px;" (click)="movePegsRand()">Move the pegsRand</button>
-                <button style="margin-left: 10px;" (click)="fakeCardIntoCount()">Add to countArea from comp</button>
-                <button style="margin-left: 10px;" (click)="readyToBegin()">Let deal and start the game</button>
+
+                <button (click)="movePegsRand()">Move the pegsRand</button>
+                <ng-container *ngIf="discarded">
+                    <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
+                </ng-container>
+                <ng-container *ngIf="gameStarted === false">
+                    <button (click)="readyToBegin()">Let deal and start the game</button>
+                </ng-container>
+
             </div>
 
             <div class="compHand text-left">

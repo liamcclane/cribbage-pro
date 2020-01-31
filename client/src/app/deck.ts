@@ -3,21 +3,21 @@ import { Player } from './player';
 import { ThrowStmt } from '@angular/compiler';
 
 export class Deck {
-    order: Card[]=[];
-    owner:Player;
-    constructor(){
+    order: Card[] = [];
+    owner: Player;
+    constructor() {
         // this.createOrderedDeck();
         // this.shuffle()
     }
     /**
      * This function creates 52 cards AND shuffels them
      */
-    createDeck(){
-        let d = [];
-        let suits = ['s','d','c','h'];
-        for(let s of suits){
-            for(let i = 1; i<=13; i++){
-                let c = new Card(s,i);
+    createDeck() {
+        const d = [];
+        const suits = ['s', 'd', 'c', 'h'];
+        for (const s of suits) {
+            for (let i = 1; i <= 13; i++) {
+                const c = new Card(s, i);
                 d.unshift(c);
             }
         }
@@ -27,14 +27,14 @@ export class Deck {
     /**
      * quick shuffle function
      */
-    shuffle(){
-        this.order.sort(()=>Math.random()-0.5);
+    shuffle() {
+        this.order.sort(() => Math.random() - 0.5);
     }
-    pop():Card{
-        if(this.order.length==0) return new Card('',0);
+    pop(): Card {
+        if (this.order.length === 0) { return new Card('', 0); }
         return this.order.pop();
     }
-    push(c:Card){
+    push(c: Card) {
         this.order.push(c);
     }
     /**
@@ -42,10 +42,10 @@ export class Deck {
      * the sliced deck
      * @param c : This is the card we want removed out the of Deck
      */
-    removeByCard(c:Card):void{
+    removeByCard(c: Card): void {
         if (this.order.length === 0) { return; }
         let ind = 0;
-        for (let i = 0; i < this.order.length; i++){
+        for (let i = 0; i < this.order.length; i++) {
             if (this.order[i] === c) { ind = i; }
         }
         this.order.splice(ind, 1);
@@ -68,7 +68,7 @@ export class Deck {
     /**
      * this function empty the deck
      */
-    empty(){
+    empty() {
         this.order = [];
     }
 }
