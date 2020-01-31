@@ -1,20 +1,20 @@
 <div class="container">
     <div class="cardArea">
         <div class="playground">
-
-            <div class="row text-left">
+            <!-- <div class="text-left">
                 <div class="inLine">
                     Play 1 ScoreA: <span>{{p1.scoreA}}</span>
                     Comp ScoreA: <span>{{comp.scoreA}}</span>
                 </div>
                 <button (click)="movePegsRand()">Move the pegsRand</button>
-                <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
-                <button (click)="readyToBegin()">Let deal and start the game</button>
-            </div>
-
-            <div class="row">
+            </div> -->
+            
+            <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
+            <button (click)="readyToBegin()">Let deal and start the game</button>
+            <div class=" compHand">
+                <h1> Computer Cards </h1>
                 <!-- if the computer is the dealer AKA they have the crib out out all these divs-->
-                <div class="cribArea inLine">
+                <div class="inLine">
                     <div class="inLine" *ngFor="let c of crib.order">
                         <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
                             <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
@@ -24,7 +24,6 @@
                         </ng-container>
                     </div>
                 </div>
-                Computer Cards
                 <div class="tableTop inLine">
                     <div class="inLine" *ngFor="let c of comp.hand.order">
                         <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
@@ -32,64 +31,70 @@
                 </div>
             </div>
 
-            <div class="row text-left" id="countArea">
+            <div class=" text-left" id="countArea">
                 <div class="inLine">
                     <p>Start Card</p>
-                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="theStartCard">
+                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="card cribCard stackedCards" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                        alt="theStartCard">
                     <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
-                <div class="tableTop inLine" id="layDown" *ngFor="let c of theCount.order">
+                <div class="tableTop inLine layDown" *ngFor="let c of theCount.order">
+                    <ng-container>
+                        
+                    </ng-container>
                     <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner!=p1" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                        <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
                             alt="{{c.cardWords}}">
                     </div>
                     <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner==p1" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                        <img *ngIf="c.owner==p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
                             alt="{{c.cardWords}}">
                     </div>
                 </div>
             </div>
-            <div class="row">
-
-            </div>
-            <!-- <button (click)="startGame()">start Game</button> -->
-            <div class="tableTop" style="color:white;display: block; background-color: rgba(255, 0, 0, 0.527);">
-                <h1>
-                    Player1
-                </h1 >
+            <div class=" compHand">
+                <h1>Player1 </h1>
+                <!-- <button (click)="startGame()">start Game</button> -->
                 <div class="inLine" *ngFor="let c of p1.ghostHand.order">
                     <ng-container *ngIf="c.val != 20">
                         <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
                             alt="{{c.cardWords}}">
                     </ng-container>
                 </div>
-                <!-- <h1>
-                    DB HAND!
-                </h1>
-                <div class="inLine" *ngFor="let c of p1.hand.order">
+                <div class="inLine" >
+                    <div class="inLine" *ngFor="let c of crib.order">
+                        <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
+                            <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
+                        </ng-container>
+                        <ng-container *ngIf="c==crib.order[crib.order.length-1]">
+                            <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                        </ng-container>
+                    </div>
+                </div>
+                <!-- <div class="inLine text-right" *ngFor="let c of p1.hand.order">
                     <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
                         alt="{{c.cardWords}}">
                 </div> -->
-            </div>
-
-            <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
-                Crib Cards
-                <div class="inLine" *ngFor="let c of crib.order">
-                    <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                </div>
+                <!-- <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
+                        Crib Cards
+                        <div class="inLine" *ngFor="let c of crib.order">
+                            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                        </div>
+                    </div> -->
             </div>
         </div>
     </div>
 
 
+
     <div class="cribBoard">
         <div class="rasecourse">
             <div class="halfOfBoard">
-                <div class="smallRow" *ngFor="let d of scoreDivs1tp40">
+                <div class="small" *ngFor="let d of scoreDivs1tp40">
                     <div id="peg{{d}}p1" class="playerPWrapper peg circle emptyPeg">
                         <!-- <ng-container *ngIf="p1.scoreA!=d || p1.scoreA!=p1.scoreB">{{d}}</ng-container> -->
                         <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg circle" id="player1PositionA">

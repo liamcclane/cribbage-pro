@@ -1,6 +1,6 @@
-/* * {
-    outline: 1px dotted red;
-} */
+* {
+    /* outline: 1px dotted red; */
+}
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -8,7 +8,7 @@
     background-size: cover;
     /* max-width: 1280px; */
     margin: 0px auto;
-    display: inline-block;
+    /* display: inline-block; */
     display: flex;
 }
 .cardArea{
@@ -16,16 +16,20 @@
     flex-grow: 2;
     /* max-width: fit-content; */
 }
-.row{
-    width: auto;
-    min-height: 30px;
-    background-color: rgba(255, 255, 0, 0.685);
-    display: block;
-}
 .playground{
     margin: 0px 14% 0px auto ;
     text-align: center;
     max-width: 1000px;
+    padding: 30px;
+    border: 2px solid rgba(29, 28, 28, 0.753);
+    border-radius: 20px;
+    box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
+    background-color: rgba(240, 248, 255, 0.253);
+}
+.compHand{
+    min-height: 200px;
+    text-align: left;
+    text-align: center;
 }
 img, .card {
     height: 96px;
@@ -122,6 +126,7 @@ img, .card {
 }
 #countArea{
     /* position: absolute; */
+    height: 30%;
     background-color: rgba(240, 248, 255, 0.473);
 }
 .compPWrapper{
@@ -137,6 +142,26 @@ img, .card {
 .cribCard{
     margin: 0px;
 }
+.stackedCards{
+    margin-left: -5px;
+}
 button{
     margin-left: 10px;
+}
+.text-right{
+    text-align: right;
+}
+.lessMargin{
+    margin: 0px 2px;
+    padding: 0px;
+}
+.layDown{
+    margin: 0px auto;
+}
+@media only screen and (max-width: 480px){ /*phone*/
+
+}@media only screen and (min-width: 481px ) and (max-width: 1040px){ /*tablet*/
+}
+
+@media only screen and (min-width: 1042px){ /*computer screen*/
 }
