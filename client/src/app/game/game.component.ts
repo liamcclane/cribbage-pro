@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { Deck } from '../deck';
 import { Card } from '../card';
-// import { ActivatedRoute } from '@angular/router';
-// import { Route } from '@angular/compiler/src/core';
-// import { ThrowStmt } from '@angular/compiler';
-// import { areAllEquivalent } from '@angular/compiler/src/output/output_ast';
+import { Judge } from '../judge';
 
 @Component({
   selector: 'app-game',
@@ -14,12 +11,15 @@ import { Card } from '../card';
 })
 export class GameComponent implements OnInit {
 
+  judge: Judge = new Judge();
+  discarded = false;
   p1: Player = new Player('p1');
   comp: Player = new Player('comp');
   mainDeck: Deck = new Deck();
   crib: Deck = new Deck();
   theCount: Deck = new Deck();
   theStartCard: Card = new Card('', 0);
+  gameStarted = false;
   dealer: 'Player';
   scoreDivs1tp40: number[] = [];
   scoreDivs40to80: number[] = [];
@@ -36,8 +36,21 @@ export class GameComponent implements OnInit {
    * whos turn
    * crib []
    */
+
+
+    // suit:string ;
+    // val:number ;
+    // cribbageVal: number;
   constructor() { }
   ngOnInit() {
+    const testCards = [
+      { suit: 'c', val: 5, cribbageVal: 5 },
+      { suit: 's', val: 5, cribbageVal: 5 },
+      { suit: 'd', val: 5, cribbageVal: 5 },
+      { suit: 'h', val: 5, cribbageVal: 5 },
+    ];
+    const testCard = { suit: 'd', val: 11, cribbageVal: 10 };
+    this.scoreHands(testCards, testCard, false);
     this.getTheDivs();
   }
   getTheDivs() {
@@ -55,12 +68,18 @@ export class GameComponent implements OnInit {
     this.p1.scoreB = -1;
     this.p1.scoreA = 0;
     this.comp.scoreB = -1;
+    this.gameStarted = true;
   }
   fakeCardIntoCount() {
-    this.theCount.push(this.mainDeck.pop());
-
-
-    this.comp.ghostHand.pop();
+    if (this.theCount.order.length === 8) {
+      // LAST CARD!
+      console.log('Last card!!');
+      console.log(this.p1);
+      console.log(this.theStartCard);
+    } else {
+      this.theCount.push(this.mainDeck.pop());
+      this.comp.ghostHand.pop();
+    }
   }
   startGame() {
     this.startRound();
@@ -129,6 +148,7 @@ export class GameComponent implements OnInit {
       this.p1.ghostHand.removeByCard(c);
       if (this.p1.hand.order.length === 4) {
         this.getTheStartCard();
+        this.discarded = true;
         // and starting the count
       }
       // console.log(this.crib);
@@ -149,6 +169,8 @@ export class GameComponent implements OnInit {
       if (this.theCount.order.length === 8) {
         // LAST CARD!
         console.log('Last card!!');
+
+        this.scoreHands(this.p1.hand.order, this.theStartCard, false);
       }
     }
   }
@@ -211,5 +233,17 @@ export class GameComponent implements OnInit {
     console.log('***THE START CARD IS***');
     console.log(card);
     this.theStartCard = card;
+  }
+
+
+  scoreHands(hand, start, isCrib) {
+    const cards = [];
+    start.isStart = true;
+    for (const i of hand) {
+      console.log(i);
+      cards.push(i);
+    }
+    cards.push(start);
+    this.judge.countHand(cards, false);
   }
 }

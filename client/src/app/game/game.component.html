@@ -8,8 +8,12 @@
                     Comp ScoreA: <span>{{comp.scoreA}}</span>
                 </div>
                 <button (click)="movePegsRand()">Move the pegsRand</button>
-                <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
-                <button (click)="readyToBegin()">Let deal and start the game</button>
+                <ng-container *ngIf="discarded">
+                    <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
+                </ng-container>
+                <ng-container *ngIf="gameStarted === false">
+                    <button (click)="readyToBegin()">Let deal and start the game</button>
+                </ng-container>
             </div>
 
             <div class="row">
