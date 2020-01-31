@@ -43,14 +43,6 @@ export class GameComponent implements OnInit {
     // cribbageVal: number;
   constructor() { }
   ngOnInit() {
-    const testCards = [
-      { suit: 'c', val: 5, cribbageVal: 5 },
-      { suit: 's', val: 5, cribbageVal: 5 },
-      { suit: 'd', val: 5, cribbageVal: 5 },
-      { suit: 'h', val: 5, cribbageVal: 5 },
-    ];
-    const testCard = { suit: 'd', val: 11, cribbageVal: 10 };
-    this.scoreHands(testCards, testCard, false);
     this.getTheDivs();
   }
   getTheDivs() {
@@ -74,8 +66,8 @@ export class GameComponent implements OnInit {
     if (this.theCount.order.length === 8) {
       // LAST CARD!
       console.log('Last card!!');
-      console.log(this.p1);
-      console.log(this.theStartCard);
+      this.atCountEnd();
+
     } else {
       this.theCount.push(this.mainDeck.pop());
       this.comp.ghostHand.pop();
@@ -169,8 +161,9 @@ export class GameComponent implements OnInit {
       if (this.theCount.order.length === 8) {
         // LAST CARD!
         console.log('Last card!!');
+        this.atCountEnd();
 
-        this.scoreHands(this.p1.hand.order, this.theStartCard, false);
+        // this.scoreHands(this.p1.hand.order, this.theStartCard, false);
       }
     }
   }
@@ -244,6 +237,18 @@ export class GameComponent implements OnInit {
       cards.push(i);
     }
     cards.push(start);
-    this.judge.countHand(cards, false);
+    return this.judge.countHand(cards, isCrib);
+  }
+
+  atCountEnd() {
+
+    const playerScore = this.scoreHands(this.p1.hand.order, this.theStartCard, false);
+    const compScore = this.scoreHands(this.comp.hand.order, this.theStartCard, false);
+    const cribScore = this.scoreHands(this.crib.order, this.theStartCard, true);
+
+    console.log('player score', playerScore);
+    console.log('comp score', compScore);
+    console.log('crib score', cribScore);
+
   }
 }

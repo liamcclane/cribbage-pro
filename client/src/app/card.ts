@@ -33,14 +33,14 @@ export class Card {
      * @param s : this is the single character reprensenting 'c'="clubs"... and so on
      */
     getImgConCat(v: number, s: string) {
-        //the 14 is for making dummy cards
+        // the 14 is for making dummy cards
         const dict = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv', 20: 'blank'};
         if ( v > 10) {
-            this.imgConCat = s+dict[v];
-        } else if(v==0 ||v==20){
+            this.imgConCat = s + dict[v];
+        } else if (v === 0 || v === 20) {
             this.imgConCat = dict[v];
-        }else{
-            this.imgConCat = s+v;
+        } else {
+            this.imgConCat = s + v;
         }
     }
     /**
@@ -48,10 +48,10 @@ export class Card {
      * @param n :takes the actual card value
      * @param s :takes the character that represents the suit
      */
-    getCardWords(n:number,s:string) {
-        let valToString = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
-            "Eight", "Nine", "Ten", "Jack", "Queen", "King"];
-        let suitToWord = {s : "Spades", c:"Clubs", d: "Diamonds",h:"Hearts"};
-        this.cardWords = `${valToString[n-1]} of ${suitToWord[s]}`;
+    getCardWords(n: number, s: string) {
+        const valToString = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
+            'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'];
+        const suitToWord = {s : 'Spades', c: 'Clubs', d: 'Diamonds', h: 'Hearts'};
+        this.cardWords = `${valToString[n - 1]} of ${suitToWord[s]}`;
     }
 }

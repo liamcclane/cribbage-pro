@@ -112,7 +112,7 @@ export class Judge {
       }
     }
 
-    console.log(cribbageValue);
+    // console.log(cribbageValue);
 
     // check five card runs
     if (this.isRun( cribbageValue )) {
@@ -157,9 +157,8 @@ export class Judge {
       }
     }
     // log it
-    console.log(combos);
     console.log(currentScore);
-    // void
+    return currentScore;
   }
   // recursive wrapper function for generate combos, creates r sized combos from arr.length
   generateCombo(arr: any, r: number) {
