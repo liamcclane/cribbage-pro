@@ -1,6 +1,6 @@
-* {
+/* * {
     outline: 1px dotted red;
-}
+} */
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -129,6 +129,7 @@ img, .card {
     /* height: 30%; */
     vertical-align: top;
     background-color: rgba(240, 248, 255, 0.473);
+    padding: 10px 0px 10px 20px;
 }
 .compPWrapper{
     margin-left: 4px;

@@ -31,31 +31,27 @@
                 </div>
             </div>
 
-            <div class="inLine text-left compHand" id="countArea">
+            <div class="row text-left" id="countArea">
                 <div class="inLine">
-                    <p>Start Card</p>
-                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="card cribCard stackedCards" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
-                        alt="theStartCard">
+                    <!-- <p>Start Card</p> -->
+                    <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
+                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="theStartCard">
                     <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
-                <div class="centerThis inLine">
-                    <div class="inLine" *ngFor="let c of theCount.order">
-                        <div class="offSet">
-                            <img *ngIf="c.owner!=p1" class="card lessMargin"
-                                src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                        </div>
-                        <div class="offSet">
-                            <img *ngIf="c.owner==p1" class="card lessMargin"
-                                src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
-                        </div>
+                <div class="tableTop inLine" id="layDown" *ngFor="let c of theCount.order">
+                    <div style="padding: 20px 0px;">
+                        <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
+                            alt="{{c.cardWords}}">
+                    </div>
+                    <div style="padding: 20px 0px;">
+                        <img *ngIf="c.owner==p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
+                            alt="{{c.cardWords}}">
                     </div>
                 </div>
             </div>
-
 
             <div class=" compHand">
                 <h1>Player1 </h1>
