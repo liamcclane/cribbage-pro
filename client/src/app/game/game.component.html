@@ -6,11 +6,11 @@
                     Play 1 ScoreA: <span>{{p1.scoreA}}</span>
                     Comp ScoreA: <span>{{comp.scoreA}}</span>
                 </div>
-                <button (click)="movePegsRand()">Move the pegsRand</button>
             </div> -->
             
-            <button (click)="fakeCardIntoCount()">Add to countArea from comp</button>
-            <button (click)="readyToBegin()">Let deal and start the game</button>
+            <button (click)="movePegsRand()">Move the pegsRand</button>
+            <button style="margin-left: 10px;" (click)="fakeCardIntoCount()">Add to countArea from comp</button>
+            <button style="margin-left: 10px;" (click)="readyToBegin()">Let deal and start the game</button>
             <div class=" compHand">
                 <h1> Computer Cards </h1>
                 <!-- if the computer is the dealer AKA they have the crib out out all these divs-->
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class=" text-left" id="countArea">
+            <div class="inLine text-left compHand" id="countArea">
                 <div class="inLine">
                     <p>Start Card</p>
                     <img class="cardSlice cribCard stackedCards" src="./../../assets/images/b2pl.png" alt="cardWord">
@@ -42,20 +42,21 @@
                     <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
-                <div class="tableTop inLine layDown" *ngFor="let c of theCount.order">
-                    <ng-container>
-                        
-                    </ng-container>
-                    <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
-                            alt="{{c.cardWords}}">
-                    </div>
-                    <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner==p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
-                            alt="{{c.cardWords}}">
+                <div class="centerThis inLine">
+                    <div class="inLine" *ngFor="let c of theCount.order">
+                        <div class="offSet">
+                            <img *ngIf="c.owner!=p1" class="card lessMargin"
+                                src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                        </div>
+                        <div class="offSet">
+                            <img *ngIf="c.owner==p1" class="card lessMargin"
+                                src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                        </div>
                     </div>
                 </div>
             </div>
+
+
             <div class=" compHand">
                 <h1>Player1 </h1>
                 <!-- <button (click)="startGame()">start Game</button> -->
@@ -65,7 +66,7 @@
                             alt="{{c.cardWords}}">
                     </ng-container>
                 </div>
-                <div class="inLine" >
+                <div class="inLine">
                     <div class="inLine" *ngFor="let c of crib.order">
                         <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
                             <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
