@@ -4,30 +4,34 @@
             <!-- <h1>Welcome!</h1> -->
             <div class="text-left">
                 <div class="inLine score">
-                        Play 1 ScoreA: <span>{{p1.scoreA}}</span> <br>
-                        Comp ScoreA: <span>{{comp.scoreA}}</span>
+                    Player1 <span>{{p1.scoreA}}</span> <br>
+                    Computer <span>{{comp.scoreA}}</span>
                 </div>
                 <button style="margin-left: 10px;" (click)="movePegsRand()">Move the pegsRand</button>
                 <button style="margin-left: 10px;" (click)="fakeCardIntoCount()">Add to countArea from comp</button>
                 <button style="margin-left: 10px;" (click)="readyToBegin()">Let deal and start the game</button>
             </div>
-            
-            <div class="compHand">
-                <h1> Computer </h1>
-                <!-- if the computer is the dealer AKA they have the crib out out all these divs-->
-                <div class="inLine" *ngIf="crib.owner==p1">
-                    <div class="inLine" *ngFor="let c of crib.order">
-                        <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
-                            <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
-                        </ng-container>
-                        <ng-container *ngIf="c==crib.order[crib.order.length-1]">
-                            <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
-                        </ng-container>
-                    </div>
+
+            <div class="compHand text-left">
+                <div class="inLine">
+                    <h1> Computer </h1>
                 </div>
-                <div class="tableTop inLine">
-                    <div class="inLine" *ngFor="let c of comp.hand.order">
-                        <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                <div class="centerMe inLine">
+                    <div class="inLine" *ngIf="crib.owner==p1">
+                        <div class="inLine" *ngFor="let c of crib.order">
+                            <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
+                                <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png"
+                                    alt="{{c.cardWords}}">
+                            </ng-container>
+                            <ng-container *ngIf="c==crib.order[crib.order.length-1]">
+                                <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="tableTop inLine">
+                        <div class="inLine" *ngFor="let c of comp.hand.order">
+                            <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,7 +42,8 @@
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="theStartCard">
+                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                        alt="theStartCard">
                     <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
@@ -54,35 +59,30 @@
                 </div>
             </div>
 
-            <div class=" compHand">
-                <h1>Player1 </h1>
+            <div class="compHand text-left">
                 <!-- <button (click)="startGame()">start Game</button> -->
-                <div class="inLine" *ngFor="let c of p1.ghostHand.order">
-                    <ng-container *ngIf="c.val != 20">
-                        <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
-                            alt="{{c.cardWords}}">
-                    </ng-container>
+                <div class="inLine" id="fixME">
+                    <h1>Player1 </h1>
                 </div>
-                <div class="inLine" *ngIf="crib.owner==comp">
-                    <div class="inLine" *ngFor="let c of crib.order">
-                        <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
-                            <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png" alt="{{c.cardWords}}">
-                        </ng-container>
-                        <ng-container *ngIf="c==crib.order[crib.order.length-1]">
-                            <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                <div class="centerMe inLine">
+                    <div class="inLine" *ngFor="let c of p1.ghostHand.order">
+                        <ng-container *ngIf="c.val != 20">
+                            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                                alt="{{c.cardWords}}">
                         </ng-container>
                     </div>
-                </div>
-                <!-- <div class="inLine text-right" *ngFor="let c of p1.hand.order">
-                    <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
-                        alt="{{c.cardWords}}">
-                </div> -->
-                <!-- <div class="tableTop" style="color:white; display: block; background-color: rgba(0, 0, 0, 0.377)">
-                        Crib Cards
+                    <div class="inLine" *ngIf="crib.owner==comp">
                         <div class="inLine" *ngFor="let c of crib.order">
-                            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                            <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
+                                <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png"
+                                    alt="{{c.cardWords}}">
+                            </ng-container>
+                            <ng-container *ngIf="c==crib.order[crib.order.length-1]">
+                                <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                            </ng-container>
                         </div>
-                    </div> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

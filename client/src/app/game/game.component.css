@@ -1,3 +1,6 @@
+/* *{
+    outline: 1px dotted red;
+} */
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -24,10 +27,16 @@
     box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
     background-color: rgba(240, 248, 255, 0.253);
 }
+.centerMe{
+    text-align: center;
+}
 .compHand{
     min-height: 200px;
     text-align: left;
     text-align: center;
+    padding-top: 20px;
+    /* display: flex; */
+    flex-grow: 2;
 }
 img, .card {
     height: 96px;
@@ -48,6 +57,9 @@ h1 {
     color: #291904;
     border: 1px solid black;
     margin-right: 20px;
+    vertical-align: top;
+}
+#fixME{
     vertical-align: top;
 }
 .score{
