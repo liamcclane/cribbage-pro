@@ -1,6 +1,3 @@
-* {
-    /* outline: 1px dotted red; */
-}
 .container {
     background-image: url('./../../assets/images/serene1.gif');
     background-position: center;
@@ -15,6 +12,7 @@
     display: inline-block;
     flex-grow: 2;
     /* max-width: fit-content; */
+    padding-top: 25px;
 }
 .playground{
     margin: 0px 14% 0px auto ;
@@ -39,13 +37,30 @@ img, .card {
     margin: 0px 15px;
     box-shadow: 5px 5px 5px rgb(14, 13, 13);
 }
+h1 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./../../assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    color: #291904;
+    border: 1px solid black;
+    margin-right: 20px;
+    vertical-align: top;
+}
+.score{
+    background-color: rgba(240, 248, 255, 0.801);
+    padding: 10px 10px; 
+    border: whitesmoke;
+    border-radius: 20px;
+}
 .inLine{
     display: inline-block;
 }
     .inLine span{
         font-weight: bolder;
-        color: red;
-        background-color: white;
     }
 .text-left{
     text-align: left;
@@ -148,12 +163,12 @@ img, .card {
     background-image: url('./../../assets/images/wood.jfif');
     background-position: center;
     text-align: center;
-    /* padding: 30px 10px 20px 10px; */
+    padding: 30px 10px 20px 10px;
     border-radius: 50px;
     box-shadow: 10px 10px 10px black;
     margin-right: 20px;
     border: 1px solid black;
-    color: #382205;
+    color: #291904;
     font-weight: bold;
 }
 .peg{
