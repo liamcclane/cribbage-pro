@@ -1,4 +1,4 @@
-/* * {
+/* *{
     outline: 1px dotted red;
 } */
 .container {
@@ -8,24 +8,35 @@
     background-size: cover;
     /* max-width: 1280px; */
     margin: 0px auto;
-    display: inline-block;
+    /* display: inline-block; */
     display: flex;
 }
 .cardArea{
     display: inline-block;
     flex-grow: 2;
     /* max-width: fit-content; */
-}
-.row{
-    width: auto;
-    min-height: 30px;
-    background-color: rgba(255, 255, 0, 0.685);
-    display: block;
+    padding-top: 25px;
 }
 .playground{
     margin: 0px 14% 0px auto ;
     text-align: center;
     max-width: 1000px;
+    padding: 30px;
+    border: 2px solid rgba(29, 28, 28, 0.753);
+    border-radius: 20px;
+    box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
+    background-color: rgba(240, 248, 255, 0.253);
+}
+.centerMe{
+    text-align: center;
+}
+.compHand{
+    min-height: 200px;
+    text-align: left;
+    text-align: center;
+    padding-top: 20px;
+    /* display: flex; */
+    flex-grow: 2;
 }
 img, .card {
     height: 96px;
@@ -35,13 +46,33 @@ img, .card {
     margin: 0px 15px;
     box-shadow: 5px 5px 5px rgb(14, 13, 13);
 }
+h1 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./../../assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    color: #291904;
+    border: 1px solid black;
+    margin-right: 20px;
+    vertical-align: top;
+}
+#fixME{
+    vertical-align: top;
+}
+.score{
+    background-color: rgba(240, 248, 255, 0.801);
+    padding: 10px 10px; 
+    border: whitesmoke;
+    border-radius: 20px;
+}
 .inLine{
     display: inline-block;
 }
     .inLine span{
         font-weight: bolder;
-        color: red;
-        background-color: white;
     }
 .text-left{
     text-align: left;
@@ -65,14 +96,81 @@ img, .card {
     position:absolute;
 }
 
-#peg0p1,#peg0comp {
-    /* background-color: red; */
-    margin-top: 20px;
+#firstRow, #secondRow{
+    margin-top:50px;
 }
+
+#smallRow38{
+    transform: rotate(30deg);
+    margin-left: 5px;
+}
+
+#smallRow39{
+    transform: rotate(45deg);
+    margin-left: 20px;
+}
+
+#smallRow40{
+    transform: rotate(60deg);
+    margin-left: 50px;
+}
+#lbl-40{
+    display: inline-block;
+    margin-top: 40px;
+}
+#smallRow41{
+    transform: rotate(-60deg);
+    margin-right: 50px;
+}
+#smallRow42{
+    transform: rotate(-45deg);
+    margin-right: 20px;
+}
+#smallRow43{
+    transform: rotate(-30deg);
+    margin-right: 5px;
+}
+
+#smallRow78{
+    transform: rotate(-30deg);
+    margin-left: 5px;
+}
+
+#smallRow79{
+    transform: rotate(-45deg);
+    margin-left: 20px;
+}
+
+#smallRow80{
+    transform: rotate(-60deg);
+    margin-left: 50px;
+}
+
+#lbl-80{
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 40px;
+}
+
+#smallRow81{
+    transform: rotate(60deg);
+    margin-right: 50px;
+}
+
+#smallRow82{
+    transform: rotate(45deg);
+    margin-right: 20px;
+}
+
+#smallRow83{
+    transform: rotate(30deg);
+    margin-right: 5px;
+}
+
 .cribBoard{
     display: inline-block;
-    width: 224px;
-    height: 773px;
+    min-width: 300px;
+    height: fit-content;
     vertical-align: top;
     background-image: url('./../../assets/images/wood.jfif');
     background-position: center;
@@ -82,6 +180,8 @@ img, .card {
     box-shadow: 10px 10px 10px black;
     margin-right: 20px;
     border: 1px solid black;
+    color: #291904;
+    font-weight: bold;
 }
 .peg{
     height: 10px;
@@ -101,12 +201,13 @@ img, .card {
 .emptyPeg{
     background-color: rgba(32, 31, 31, 0.733);
 }
-.rightHalf{
+/* .rightHalf{
     margin-left: 62px;
-}
+} */
 .rasecourse{
+    width: 100%;
     display: inline-block;
-    width: 222px;
+    /* width: 222px; */
 }
 .circle{
     border-radius: 50%;
@@ -122,13 +223,22 @@ img, .card {
 }
 #countArea{
     /* position: absolute; */
+    /* height: 30%; */
+    vertical-align: top;
     background-color: rgba(240, 248, 255, 0.473);
+    padding: 10px 0px 10px 20px;
 }
 .compPWrapper{
     margin-left: 4px;
 }
 .topCount, .bottomCount{
     display: block;
+}
+.offSet{
+    padding: 20px 0px;
+}
+.centerThis {
+    margin: 0px auto;
 }
 .cardSlice{
     width: 13px;
@@ -137,6 +247,21 @@ img, .card {
 .cribCard{
     margin: 0px;
 }
-button{
-    margin-left: 10px;
+.stackedCards{
+    margin-left: -5px;
+}
+.text-right{
+    text-align: right;
+}
+.lessMargin{
+    margin: 0px 2px;
+    vertical-align: top;
+    padding: 0px;
+}
+@media only screen and (max-width: 480px){ /*phone*/
+
+}@media only screen and (min-width: 481px ) and (max-width: 1040px){ /*tablet*/
+}
+
+@media only screen and (min-width: 1042px){ /*computer screen*/
 }

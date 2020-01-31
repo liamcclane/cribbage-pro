@@ -43,17 +43,13 @@ export class GameComponent implements OnInit {
     // cribbageVal: number;
   constructor() { }
   ngOnInit() {
-    this.getTheDivs();
-  }
-  getTheDivs() {
-    for (let i = -1; i < 121; i++) {
-      if (i > 80) { this.scoreDivs80to120.unshift(i);
-      } else if (i > 40) {
-         this.scoreDivs40to80.push(i);
-      } else {
-        this.scoreDivs1tp40.unshift(i);
-      }
+    for (let i = -1; i <= 121; i++) {
+      if(i>80) this.scoreDivs80to120.unshift(i);
+      else if(i>40)this.scoreDivs40to80.push(i);
+      else this.scoreDivs1tp40.unshift(i);
     }
+    this.crib.owner = this.p1;
+    this.startGame();
   }
   readyToBegin() {
     this.startGame();
@@ -69,9 +65,10 @@ export class GameComponent implements OnInit {
       this.atCountEnd();
 
     } else {
-      this.theCount.push(this.mainDeck.pop());
+      this.theCount.push(this.comp.hand.pop());
       this.comp.ghostHand.pop();
     }
+  
   }
   startGame() {
     this.startRound();
@@ -84,7 +81,15 @@ export class GameComponent implements OnInit {
     this.theCount.empty();
     this.theStartCard = new Card('', 0);
     this.p1.hand.empty();
+    this.p1.ghostHand.empty();
+    this.comp.hand.empty();
+    this.comp.ghostHand.empty();
+    this.swapDealer();
     this.deal6Cards();
+  }
+  swapDealer(){
+    if(this.crib.owner == this.p1) this.crib.owner = this.comp;
+    else this.crib.owner = this.p1;
   }
   deal6Cards() {
     for (let i = 0; i < 6; i++) {
@@ -171,9 +176,9 @@ export class GameComponent implements OnInit {
     return true;
   }
   movePegsRand() {
-    const n = Math.floor((Math.random() * 10) + 1);
-    const n2 = Math.floor((Math.random() * 10) + 1);
-    console.log('moving player1 peg ****** ' + n2);
+    let n = Math.floor((Math.random() * 10) + 10);
+    let n2 = Math.floor((Math.random() * 10) + 10);
+    console.log("moving player1 peg ****** "+ n2);
     this.increaseScore(n, this.p1);
     console.log('moving the black peg -------' + n2);
     this.increaseScore(n2, this.comp);
