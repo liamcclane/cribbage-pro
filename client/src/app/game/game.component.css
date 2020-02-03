@@ -38,6 +38,7 @@
     /* display: flex; */
     flex-grow: 2;
 }
+
 img, .card {
     height: 96px;
     width: 71px;
@@ -45,7 +46,34 @@ img, .card {
     display: inline-block;
     margin: 0px 15px;
     box-shadow: 5px 5px 5px rgb(14, 13, 13);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
 }
+
+.selectableCard {
+    height: 96px;
+    width: 71px;
+    margin-top:50px;
+    display: inline-block;
+    margin: 0px 15px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.selectableCard:hover {
+    -webkit-transform: translate(0, -1em);
+    -moz-transform: translate(0, -1em);
+    -o-transform: translate(0, -1em);
+    -ms-transform: translate(0, -1em);
+    transform: translate(0, -1em);
+    box-shadow: 12px 12px 12px rgba(14, 13, 13, 0.445);
+}
+
 h1 {
     color: whitesmoke;
     display: inline-block;
@@ -64,7 +92,7 @@ h1 {
 }
 .score{
     background-color: rgba(240, 248, 255, 0.801);
-    padding: 10px 10px; 
+    padding: 10px 10px;
     border: whitesmoke;
     border-radius: 20px;
 }
@@ -258,6 +286,9 @@ h1 {
     vertical-align: top;
     padding: 0px;
 }
+
+
+/* .card */
 @media only screen and (max-width: 480px){ /*phone*/
 
 }@media only screen and (min-width: 481px ) and (max-width: 1040px){ /*tablet*/

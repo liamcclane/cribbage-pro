@@ -1,14 +1,13 @@
-import { Deck } from './deck'
-import { ThrowStmt } from '@angular/compiler'
+import { Deck } from './deck';
 import { Card } from './card';
 
 export class Player {
-    scoreA: number
-    scoreB: number
-    hand:Deck;
-    ghostHand:Deck;
-    name:string
-    constructor(n:string){
+    scoreA: number;
+    scoreB: number;
+    hand: Deck;
+    ghostHand: Deck;
+    name: string;
+    constructor(n: string) {
         this.name = n;
         this.scoreA = 0;
         this.scoreB = 0;

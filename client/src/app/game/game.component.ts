@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Player } from '../player';
 import { Deck } from '../deck';
 import { Card } from '../card';
@@ -22,18 +22,23 @@ export class GameComponent implements OnInit {
   crib: Deck = new Deck();
   theCount: Deck = new Deck();
   theStartCard: Card = new Card('', 0);
-  roundIncrease: number[] = [0,0,0];
+  roundIncrease: number[] = [0, 0, 0];
   revealCrib = false;
   // all of these var are for making the crib board
   scoreDivs1tp40: number[] = [];
   scoreDivs40to80: number[] = [];
   scoreDivs80to120: number[] = [];
   constructor() { }
+
   ngOnInit() {
     for (let i = -1; i <= 121; i++) {
-      if(i>80) this.scoreDivs80to120.unshift(i);
-      else if(i>40)this.scoreDivs40to80.push(i);
-      else this.scoreDivs1tp40.unshift(i);
+      if ( i > 80 ) {
+        this.scoreDivs80to120.unshift(i);
+      } else if ( i > 40 ) {
+        this.scoreDivs40to80.push(i);
+      } else {
+        this.scoreDivs1tp40.unshift(i);
+      }
     }
     this.crib.owner = this.p1;
     this.p1.scoreB = -1;
@@ -42,12 +47,13 @@ export class GameComponent implements OnInit {
     this.gameStarted = false;
     // this.startGame();
   }
+
   readyToBegin() {
     this.gameStarted = true;
     this.startGame();
   }
   fakeCardIntoCount() {
-    if (this.theCount.order.length-1 >= 8) {
+    if (this.theCount.order.length - 1 >= 8) {
       // LAST CARD!
       console.log('Last card!!');
       this.atCountEnd();
@@ -56,7 +62,6 @@ export class GameComponent implements OnInit {
       this.theCount.push(this.comp.hand.pop());
       this.comp.ghostHand.pop();
     }
-  
   }
   startGame() {
     // while there is not winner
@@ -73,15 +78,22 @@ export class GameComponent implements OnInit {
     this.p1.ghostHand.empty();
     this.comp.hand.empty();
     this.comp.ghostHand.empty();
-    this.roundIncrease = [0,0,0];
+    this.roundIncrease = [0, 0, 0];
     this.revealCrib = false;
     this.swapDealer();
     this.deal6Cards();
   }
-  swapDealer(){
-    if(this.crib.owner == this.p1) this.crib.owner = this.comp;
-    else this.crib.owner = this.p1;
+
+
+
+  swapDealer() {
+    if (this.crib.owner === this.p1) {
+      this.crib.owner = this.comp;
+    } else {
+      this.crib.owner = this.p1;
+    }
   }
+
   deal6Cards() {
     for (let i = 0; i < 6; i++) {
       // console.log(this.p1);
@@ -166,9 +178,9 @@ export class GameComponent implements OnInit {
     return true;
   }
   movePegsRand() {
-    let n = Math.floor((Math.random() * 10) + 10);
-    let n2 = Math.floor((Math.random() * 10) + 10);
-    console.log("moving player1 peg ****** "+ n2);
+    const n = Math.floor((Math.random() * 10) + 10);
+    const n2 = Math.floor((Math.random() * 10) + 10);
+    console.log('moving player1 peg ****** ' + n2);
     this.increaseScore(n, this.p1);
     console.log('moving the black peg -------' + n2);
     this.increaseScore(n2, this.comp);
@@ -221,9 +233,12 @@ export class GameComponent implements OnInit {
     // console.log('***THE START CARD IS***');
     // console.log(card);
     this.theStartCard = card;
-    if(card.val== 11){
-      if(this.crib.owner == this.p1) this.increaseScore(2,this.p1);
-      else this.increaseScore(2,this.comp);
+    if (card.val === 11) {
+      if (this.crib.owner === this.p1) {
+        this.increaseScore(2, this.p1);
+      } else {
+        this.increaseScore(2, this.comp);
+      }
     }
   }
 
@@ -263,15 +278,25 @@ export class GameComponent implements OnInit {
     this.increaseScore(playerScore.total, this.p1);
     this.increaseScore(compScore.total, this.comp);
 
-    if(this.crib.owner == this.p1) this.increaseScore(cribScore.total,this.p1);
-    else this.increaseScore(cribScore.total,this.comp);
+    if (this.crib.owner === this.p1) { this.increaseScore(cribScore.total, this.p1 );
+    } else { this.increaseScore(cribScore.total, this.comp); }
 
     this.checkIfGameOver();
 
   }
-  checkIfGameOver(){
-    if(this.p1.scoreA > 120 || this.comp.scoreA>120){
-      this.gameStarted = false
+  checkIfGameOver() {
+    if(this.p1.scoreA > 120 || this.comp.scoreA > 120) {
+      this.gameStarted = false;
     }
+  }
+
+  cardHoverIn(card) {
+    console.log('HOVERING IN CARD');
+    console.log(card);
+  }
+
+  cardHoverOut(card) {
+    console.log('HOVERING OUT CARD');
+    console.log(card);
   }
 }
