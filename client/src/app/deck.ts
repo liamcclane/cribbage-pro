@@ -1,6 +1,5 @@
 import { Card } from './card';
 import { Player } from './player';
-import { ThrowStmt } from '@angular/compiler';
 
 export class Deck {
     order: Card[] = [];
@@ -54,8 +53,8 @@ export class Deck {
     /**
      * takes a card and a deck and passes that card to the deck that was passed in okay? okay.
      * AND removes that card from called upon's players hand
-     * @param c
-     * @param d
+     * @param c is the card
+     * @param d is the deck
      */
     giveToDeck(c: Card, d: Deck) {
         let ind = 0;

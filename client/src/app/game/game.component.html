@@ -85,7 +85,7 @@
                     <!-- Player 1 Cards-->
                     <div class="inLine" *ngFor="let c of p1.ghostHand.order">
                         <ng-container *ngIf="c.val != 20">
-                            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                            <img (click)="discard(c)" (mouseover)="cardHoverIn(c)" (mouseout)="cardHoverOut(c)" class="selectableCard" src="./../../assets/images/{{c.imgConCat}}.png"
                                 alt="{{c.cardWords}}">
                         </ng-container>
                     </div>
