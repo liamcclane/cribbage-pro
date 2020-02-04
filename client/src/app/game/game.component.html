@@ -26,7 +26,31 @@
                 </div>
 
             </div>
-
+            <div class="compHand text-left">
+                <div class="inLine">
+                    <h1> Computer DB Hand </h1>
+                </div>
+                <div class="centerMe inLine">
+                    <!-- Crib Area-->
+                    <div class="inLine" *ngIf="crib.owner==comp">
+                        <div class="inLine" *ngFor="let c of crib.order">
+                            <ng-container *ngIf="c!=crib.order[crib.order.length-1]">
+                                <img class="cardSlice cribCard" src="./../../assets/images/b2pl.png"
+                                    alt="{{c.cardWords}}">
+                            </ng-container>
+                            <ng-container *ngIf="c==crib.order[crib.order.length-1]">
+                                <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
+                            </ng-container>
+                        </div>
+                    </div>
+                    <!--Hand Area-->
+                    <div class="tableTop inLine">
+                        <div class="inLine" *ngFor="let c of comp.hand.order">
+                            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="compHand text-left">
                 <div class="inLine">
                     <h1> Computer </h1>
@@ -46,7 +70,7 @@
                     </div>
                     <!--Hand Area-->
                     <div class="tableTop inLine">
-                        <div class="inLine" *ngFor="let c of comp.hand.order">
+                        <div class="inLine" *ngFor="let c of comp.ghostHand.order">
                             <img class="card" src="./../../assets/images/b2fv.png" alt="{{c.cardWords}}">
                         </div>
                     </div>
@@ -54,17 +78,21 @@
             </div>
 
             <div class="row text-left" id="countArea">
+                <h5>
+                    {{roundCount}}
+                </h5>
                 <div class="inLine">
                     <!-- <p>Start Card</p> -->
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                    <img class="card stackedCards cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
                         alt="theStartCard">
                     <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
                 <div class="tableTop inLine" id="layDown" *ngFor="let c of theCount.order">
+                    <ng-container *ngIf="c.isActive" >Active</ng-container>
                     <div style="padding: 20px 0px;">
                         <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
                             alt="{{c.cardWords}}">

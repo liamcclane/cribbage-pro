@@ -8,6 +8,7 @@ export class Card {
     cardWords: string;
     owner: Player;
     isStart;
+    isActive:boolean;
     /**
      * When constucting a Card please pass in the single charater suit
      * and then the val for the card, if you want a facedown card put val 0

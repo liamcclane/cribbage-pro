@@ -24,6 +24,8 @@ export class GameComponent implements OnInit {
   theStartCard: Card = new Card('', 0);
   roundIncrease: number[] = [0, 0, 0];
   revealCrib = false;
+  outputText: string;
+  roundCount: number;
   // all of these var are for making the crib board
   scoreDivs1tp40: number[] = [];
   scoreDivs40to80: number[] = [];
@@ -31,37 +33,85 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    for (let i = -1; i <= 121; i++) {
-      if ( i > 80 ) {
-        this.scoreDivs80to120.unshift(i);
-      } else if ( i > 40 ) {
-        this.scoreDivs40to80.push(i);
-      } else {
-        this.scoreDivs1tp40.unshift(i);
-      }
-    }
-    this.crib.owner = this.p1;
+    this.getTheDivs();
+    this.crib.owner = this.comp;
     this.p1.scoreB = -1;
     this.p1.scoreA = 0;
     this.comp.scoreB = -1;
     this.gameStarted = false;
     // this.startGame();
   }
-
+  /**
+   * This function deals with the human discarding their cards into either the crib
+   * or the count,
+   * We always save the index of the card that human is discarding
+   * Then, if the length of the human HAND(not ghost hand) is > 4 discard into cribe changing both the
+   * ghost and actualy DB hand
+   * Else make a copy of the card into theCrib and delete from ghost but SAVE the hand DB
+   * @param c : this is a Card Object
+   */
+  discard(c: Card) {
+    // console.log(c);
+    if (this.p1.hand.order.length > 4) {
+      this.p1.hand.giveToDeck(c, this.crib);
+      this.p1.ghostHand.removeByCard(c);
+      if (this.p1.hand.order.length === 4) {
+        this.getTheStartCard();
+        this.discarded = true;
+        return;
+      }
+      return;
+    }
+    // checking if the player is trying to discard a blank space
+    if (c.val === 0 || c.val === 20) { return; }
+    // check whos turn it is
+    // --- COUNT VALIDATION GOES HERE */
+    // validate if you can play this card
+    if (this.p1.ghostHand.canPlayIntoCount(c, this.theCount)) {
+      c.isActive = true;
+      this.theCount.push(c);
+      this.p1.ghostHand.removeByCard(c);
+      this.roundCount += c.cribbageVal;
+    } else {
+      this.outputText = "you cannot play that card into the count";
+      return;
+    }
+    if (this.theCount.total() == 31) {
+      this.increaseScore(2,this.theCount.order[this.theCount.order.length - 1].owner);
+      this.theCount.deactive();
+      this.roundCount = 0;
+    } else if(false){
+      // this path is when neither player can play...
+    }
+    if (this.theCount.order.length === 8) {
+      this.atCountEnd();
+    }
+  }
+  fakeCardIntoCount() {
+    if (this.theCount.order.length - 1 < 8) {
+      let c = this.comp.ghostHand.pop();
+      c.isActive = true;
+      this.theCount.push(c);
+      this.roundCount += c.cribbageVal;
+    } else {
+      // LAST CARD!
+      this.atCountEnd();
+    }
+  }
+  getTheDivs() {
+    for (let i = -1; i <= 121; i++) {
+      if (i > 80) {
+        this.scoreDivs80to120.unshift(i);
+      } else if (i > 40) {
+        this.scoreDivs40to80.push(i);
+      } else {
+        this.scoreDivs1tp40.unshift(i);
+      }
+    }
+  }
   readyToBegin() {
     this.gameStarted = true;
     this.startGame();
-  }
-  fakeCardIntoCount() {
-    if (this.theCount.order.length - 1 >= 8) {
-      // LAST CARD!
-      console.log('Last card!!');
-      this.atCountEnd();
-
-    } else {
-      this.theCount.push(this.comp.hand.pop());
-      this.comp.ghostHand.pop();
-    }
   }
   startGame() {
     // while there is not winner
@@ -78,14 +128,13 @@ export class GameComponent implements OnInit {
     this.p1.ghostHand.empty();
     this.comp.hand.empty();
     this.comp.ghostHand.empty();
+    this.outputText = '';
+    this.roundCount = 0;
     this.roundIncrease = [0, 0, 0];
     this.revealCrib = false;
     this.swapDealer();
     this.deal6Cards();
   }
-
-
-
   swapDealer() {
     if (this.crib.owner === this.p1) {
       this.crib.owner = this.comp;
@@ -108,9 +157,9 @@ export class GameComponent implements OnInit {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.p1.hand.order.length; i++) {
       this.p1.hand.order[i].owner = this.p1;
-      console.log('we are pushing a copy of');
-      console.log(this.p1.hand.order[i]);
-      console.log('in to the ghost hand');
+      // console.log('we are pushing a copy of');
+      // console.log(this.p1.hand.order[i]);
+      // console.log('in to the ghost hand');
       copy.push(this.p1.hand.order[i]);
     }
     this.p1.ghostHand = copy;
@@ -118,9 +167,9 @@ export class GameComponent implements OnInit {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.comp.hand.order.length; i++) {
       this.comp.hand.order[i].owner = this.comp;
-      console.log('we are pushing a copy of');
-      console.log(this.comp.hand.order[i]);
-      console.log('in to the ghost hand');
+      // console.log('we are pushing a copy of');
+      // console.log(this.comp.hand.order[i]);
+      // console.log('in to the ghost hand');
       copy2.push(this.comp.hand.order[i]);
     }
     this.comp.ghostHand = copy2;
@@ -129,53 +178,11 @@ export class GameComponent implements OnInit {
     this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
     this.comp.ghostHand.pop();
-    // console.log(this.crib);
-  }
-  /**
-   * This function deals with the human discarding their cards into either the crib
-   * or the count,
-   * We always save the index of the card that human is discarding
-   * Then, if the length of the human HAND(not ghost hand) is > 4 discard into cribe changing both the
-   * ghost and actualy DB hand
-   * Else make a copy of the card into theCrib and delete from ghost but SAVE the hand DB
-   * @param c : this is a Card Object
-   */
-  discard(c: Card) {
-    console.log(c);
-    if (this.p1.hand.order.length > 4) {
-      this.p1.hand.giveToDeck(c, this.crib);
-      this.p1.ghostHand.removeByCard(c);
-      if (this.p1.hand.order.length === 4) {
-        this.getTheStartCard();
-        this.discarded = true;
-        // and starting the count
-      }
-      // console.log(this.crib);
-      // console.log(this.p1);
-    } else {
-      // checking if the player is trying to discard a blank space
-      if (c.val === 0 || c.val === 20) { return; }
-      // check whos turn it is
-      // --- COUNT VALIDATION GOES HERE */
-      // validate if you can play this card
-      if (this.canPlayCard()) {
-        console.log('pushing this card into the count');
-        console.log(c);
-        this.theCount.push(c);
-        this.p1.ghostHand.removeByCard(c);
-      }
-
-      if (this.theCount.order.length === 8) {
-        // LAST CARD!
-        console.log('Last card!!');
-        this.atCountEnd();
-
-        // this.scoreHands(this.p1.hand.order, this.theStartCard, false);
-      }
-    }
-  }
-  canPlayCard() {
-    return true;
+    // then sort the users cards
+    this.p1.hand.sortBySuit();
+    this.p1.ghostHand.sortBySuit();
+    this.comp.hand.sortBySuit();
+    this.comp.ghostHand.sortBySuit();
   }
   movePegsRand() {
     const n = Math.floor((Math.random() * 10) + 10);
@@ -204,9 +211,9 @@ export class GameComponent implements OnInit {
   }
   clearScore() {
     this.p1.scoreA = 0;
-    this.p1.scoreB = 0;
+    this.p1.scoreB = -1;
     this.comp.scoreA = 0;
-    this.comp.scoreB = 0;
+    this.comp.scoreB = -1;
   }
   /**
    * This is nice that move the pegs smoothly every second
@@ -239,6 +246,12 @@ export class GameComponent implements OnInit {
       } else {
         this.increaseScore(2, this.comp);
       }
+    }
+    if (this.crib.owner == this.p1) {
+      let c = this.comp.ghostHand.pop();
+      c.isActive = true;
+      this.theCount.push(c);
+      this.roundCount += c.cribbageVal;
     }
   }
 
@@ -278,25 +291,26 @@ export class GameComponent implements OnInit {
     this.increaseScore(playerScore.total, this.p1);
     this.increaseScore(compScore.total, this.comp);
 
-    if (this.crib.owner === this.p1) { this.increaseScore(cribScore.total, this.p1 );
+    if (this.crib.owner === this.p1) {
+      this.increaseScore(cribScore.total, this.p1);
     } else { this.increaseScore(cribScore.total, this.comp); }
 
     this.checkIfGameOver();
 
   }
   checkIfGameOver() {
-    if(this.p1.scoreA > 120 || this.comp.scoreA > 120) {
+    if (this.p1.scoreA > 120 || this.comp.scoreA > 120) {
       this.gameStarted = false;
     }
   }
 
   cardHoverIn(card) {
-    console.log('HOVERING IN CARD');
-    console.log(card);
+    // console.log('HOVERING IN CARD');
+    // console.log(card);
   }
 
   cardHoverOut(card) {
-    console.log('HOVERING OUT CARD');
-    console.log(card);
+    // console.log('HOVERING OUT CARD');
+    // console.log(card);
   }
 }
