@@ -2,7 +2,7 @@
 /* *{
     outline: 1px dotted red;
 } */
-.container {
+.main {
     background-image: url('./assets/images/serene1.gif');
     background-position: center;
     background-repeat: no-repeat;
@@ -12,21 +12,26 @@
     /* display: inline-block; */
     display: flex;
 }
-.cardArea{
+.wrap{
     display: inline-block;
     flex-grow: 2;
     /* max-width: fit-content; */
     padding-top: 25px;
 }
-.playground{
+.outlet{
     margin: 0px 14% 0px auto ;
     text-align: center;
-    max-width: 1000px;
+    max-width: 90%;
     padding: 30px;
     border: 2px solid rgba(29, 28, 28, 0.753);
     border-radius: 20px;
     box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
     background-color: rgba(240, 248, 255, 0.253);
+}
+.playArea{
+    border: 1px solid red;
+    display: inline-block;
+    width: 70%;
 }
 .centerMe{
     text-align: center;
