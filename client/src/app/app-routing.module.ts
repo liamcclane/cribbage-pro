@@ -5,9 +5,9 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 
 
 const routes: Routes = [
-  {path:'', pathMatch:'full', component: GameComponent},
+  {path: '', pathMatch: 'full', component: GameComponent},
   // {path:'/teachMe', pathMatch:'full', component: TutorialComponent},
-  {path:'**', redirectTo:"/"},
+  {path: '**', redirectTo: '/'},
 ];
 
 @NgModule({
