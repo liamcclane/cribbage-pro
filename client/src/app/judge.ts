@@ -150,12 +150,12 @@ export class Judge {
       currentScore.flush.push(cards);
     }
 
-    if (cards[cards.length - 1].val === 11) {
-      if (this.isKnobs(cards)) {
-        currentScore.total += 1;
-        currentScore.knobs.push(true);
-      }
+    // if (cards[cards.length - 1].val === 11) {
+    if (this.isKnobs(cards)) {
+      currentScore.total += 1;
+      currentScore.knobs.push(true);
     }
+    // }
     // log it
     console.log(currentScore);
     return currentScore;
@@ -245,9 +245,10 @@ export class Judge {
 
   isKnobs(cards: any) {
     let knobs = false;
-    const knobSuit = cards[cards.length - 1].suit;
+    const sharedSuit = cards[cards.length - 1].suit;
+
     for (let i = 0; i < cards.length - 1; i++) {
-      if (knobSuit === cards[i].suit) {
+      if (sharedSuit === cards[i].suit && cards[i].val === 11) {
         knobs = true;
       }
     }
