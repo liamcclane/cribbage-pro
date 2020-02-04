@@ -13,19 +13,32 @@
     display: flex;
 }
 .wrap{
+    border: 1px solid lawngreen;
     display: inline-block;
     flex-grow: 2;
     /* max-width: fit-content; */
-    padding-top: 25px;
+    /* padding-top: 25px; */
+    /* padding: 15px; */
+    text-align: center;
+    display: block;
 }
 .outlet{
-    margin: 0px 14% 0px auto ;
-    text-align: center;
-    max-width: 90%;
-    padding: 30px;
-    border: 2px solid rgba(29, 28, 28, 0.753);
+    display: inline-block;
+    vertical-align: middle;
+    /* margin: 0px 0px 0px 0px; */
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: -2em;
+    /* text-align: center; */
+    /* max-width: 90%; */
+    width: 85%;
+    /* padding: 30px; */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /* border: 2px solid rgba(29, 28, 28, 0.753); */
+    border: 2px solid orange;
     border-radius: 20px;
-    box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788);
+    /* box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788); */
     background-color: rgba(240, 248, 255, 0.253);
 }
 .playArea{
@@ -88,7 +101,24 @@ h1 {
     background-position: center;
     border-radius: 50px;
     box-shadow: 5px 5px 5px black;
-    color: #291904;
+    /* color: #291904; */
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid black;
+    margin-right: 20px;
+    vertical-align: top;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.logo {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    /* color: #291904; */
+    color: rgba(0, 0, 0, 1);
     border: 1px solid black;
     margin-right: 20px;
     vertical-align: top;
@@ -211,11 +241,12 @@ h1 {
     text-align: center;
     padding: 30px 10px 20px 10px;
     border-radius: 50px;
-    box-shadow: 10px 10px 10px black;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
     margin-right: 20px;
     border: 1px solid black;
     color: #291904;
     font-weight: bold;
+    /* float: right; */
 }
 .peg{
     height: 10px;
@@ -241,6 +272,7 @@ h1 {
 .rasecourse{
     width: 100%;
     display: inline-block;
+    /* padding: -5px; */
     /* width: 222px; */
 }
 .circle{
@@ -293,6 +325,42 @@ h1 {
     padding: 0px;
 }
 
+.motd {
+    padding: 0px;
+    margin: 0px;
+    color: yellow;
+    font-weight: bold;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.motd-container {
+    font-size: larger;
+    transform: rotate(10deg);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 58%;
+    /* padding-right: 34%; */
+    margin: 0px;
+    display: block;
+    text-align: right;
+    position: absolute;
+    margin-top: -80px;
+    animation-duration: 2s;
+    animation-name: floating-message;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating-message {
+    from {
+        margin-top: -85px;
+      }
+
+      to {
+        margin-top: -65px;
+      }
+    }
 
 /* .card */
 @media only screen and (max-width: 480px){ /*phone*/
