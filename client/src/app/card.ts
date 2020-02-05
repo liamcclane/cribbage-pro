@@ -35,13 +35,14 @@ export class Card {
      */
     getImgConCat(v: number, s: string) {
         // the 14 is for making dummy cards
-        const dict = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv', 20: 'blank'};
+        const dict = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv.png', 20: 'blank'};
+        // const dict2 = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv.png', 20: 'blank'};
         if ( v > 10) {
             this.imgConCat = s + dict[v];
         } else if (v === 0 || v === 20) {
             this.imgConCat = dict[v];
         } else {
-            this.imgConCat = s + v;
+            this.imgConCat = s + v +'.png';
         }
     }
     /**

@@ -45,7 +45,7 @@
                     <!--Hand Area-->
                     <div class="tableTop inLine">
                         <div class="inLine" *ngFor="let c of comp.hand.order">
-                            <img class="card" src="./../../assets/images/{{c.imgConCat}}.png" alt="{{c.cardWords}}">
+                            <img class="card" src="./../../assets/images/{{c.imgConCat}}" alt="{{c.cardWords}}">
                         </div>
                     </div>
                 </div>
@@ -85,19 +85,19 @@
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
                     <img class="cardSlice stackedCards cribCard" src="./../../assets/images/b2pl.png" alt="cardWord">
-                    <img class="card stackedCards cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png"
+                    <img class="card stackedCards cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}"
                         alt="theStartCard">
-                    <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}.png" alt="{{theStartCard.cardWords}}">
+                    <!-- <img class="card cribCard" src="./../../assets/images/{{theStartCard.imgConCat}}" alt="{{theStartCard.cardWords}}">
                     <img class="card cribCard" src="./../../assets/images/b2fv.png" alt="{{theStartCard.cardWords}}"> -->
                 </div>
                 <div class="tableTop inLine" id="layDown" *ngFor="let c of theCount.order">
                     <ng-container *ngIf="c.isActive" >Active</ng-container>
                     <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
+                        <img *ngIf="c.owner!=p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}"
                             alt="{{c.cardWords}}">
                     </div>
                     <div style="padding: 20px 0px;">
-                        <img *ngIf="c.owner==p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}.png"
+                        <img *ngIf="c.owner==p1" class="card lessMargin" src="./../../assets/images/{{c.imgConCat}}"
                             alt="{{c.cardWords}}">
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <!-- Player 1 Cards-->
                     <div class="inLine" *ngFor="let c of p1.ghostHand.order">
                         <ng-container *ngIf="c.val != 20">
-                            <img (click)="discard(c)" (mouseover)="cardHoverIn(c)" (mouseout)="cardHoverOut(c)" class="selectableCard" src="./../../assets/images/{{c.imgConCat}}.png"
+                            <img (click)="discard(c)" (mouseover)="cardHoverIn(c)" (mouseout)="cardHoverOut(c)" class="selectableCard" src="./../../assets/images/{{c.imgConCat}}"
                                 alt="{{c.cardWords}}">
                         </ng-container>
                     </div>
@@ -138,7 +138,7 @@
                 <div class="centerMe inLine">
                     <div class="inLine" *ngFor="let c of crib.order">
                         <ng-container *ngIf="c.val != 20">
-                            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}.png"
+                            <img (click)="discard(c)" class="card" src="./../../assets/images/{{c.imgConCat}}"
                                 alt="{{c.cardWords}}">
                         </ng-container>
                     </div>
