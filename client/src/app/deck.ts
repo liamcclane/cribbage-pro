@@ -107,6 +107,30 @@ export class Deck {
         return false;
     }
     /**
+     * only get called after verification
+     * @param d 
+     */
+    findCPUCountCard(d: Deck):Card{
+        let num = d.total();
+        for(let c of this.order){
+            if(c.val + num <= 31){
+                return c;
+            }
+        }
+    }
+    canCPUPlayIntoCount(d:Deck):boolean{
+        let num = d.total();
+        for(let c of this.order){
+            if(c.cribbageVal + num <= 31){
+                return true;
+            }
+        }
+        // if(c.cribbageVal + d.total() <= 31){
+        //     return true;
+        // }
+        return false;
+    }
+    /**
      * loops though the deck and returns the total current count of the deck only
      * looking at active cards
      */

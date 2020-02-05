@@ -3,10 +3,10 @@
     outline: 1px dotted red;
 } */
 .main {
-    background-image: url('./assets/images/serene1.gif');
+    /* background-image: url('./assets/images/serene1.gif');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     /* max-width: 1280px; */
     /* display: inline-block; */
     display: flex;
@@ -365,9 +365,23 @@ h1 {
 
 /* .card */
 @media only screen and (max-width: 480px){ /*phone*/
-
-}@media only screen and (min-width: 481px ) and (max-width: 1040px){ /*tablet*/
+    .main{
+        background-image: url('./assets/images/s9.png');
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+    }
 }
-
-@media only screen and (min-width: 1042px){ /*computer screen*/
+@media only screen and (min-width: 481px ) and (max-width: 1425px){ /*tablet*/
+    .main{
+        background-color: black;
+    }
+}
+@media only screen and (min-width: 1426px){ /*computer screen*/
+    .main{
+        background-image: url('./assets/images/serene1.gif');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }

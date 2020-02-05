@@ -67,14 +67,25 @@ export class GameComponent implements OnInit {
     // check whos turn it is
     // --- COUNT VALIDATION GOES HERE */
     // validate if you can play this card
-    if (this.p1.ghostHand.canPlayIntoCount(c, this.theCount)) {
+    let pPlay = this.p1.ghostHand.canPlayIntoCount(c, this.theCount);
+    if (pPlay) {
       c.isActive = true;
       this.theCount.push(c);
       this.p1.ghostHand.removeByCard(c);
       this.roundCount += c.cribbageVal;
     } else {
       this.outputText = "you cannot play that card into the count";
-      return;
+      // return;
+    }
+    let canCompPlay = this.comp.ghostHand.canCPUPlayIntoCount(this.theCount);
+    if(canCompPlay){
+      let aCard = this.comp.ghostHand.findCPUCountCard(this.theCount);
+      aCard.isActive = true;
+      this.theCount.push(aCard);
+      this.comp.ghostHand.removeByCard(aCard);
+      this.roundCount += aCard.cribbageVal;
+    } else if(!pPlay && !canCompPlay){
+      this.outputText = "No one cam go"
     }
     if (this.theCount.total() == 31) {
       this.increaseScore(2,this.theCount.order[this.theCount.order.length - 1].owner);
