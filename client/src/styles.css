@@ -27,7 +27,7 @@
     /* margin: 0px 0px 0px 0px; */
     margin-top: 1px;
     margin-bottom: 1px;
-    margin-right: -2em;
+    /* margin-right: -3em; */
     /* text-align: center; */
     /* max-width: 90%; */
     width: 85%;
@@ -39,10 +39,89 @@
     border-radius: 20px;
     /* box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788); */
     background-color: rgba(240, 248, 255, 0.253);
+    vertical-align: top;
 }
-*{
+
+.nav-button {
     border: 1px solid red;
+    background-image: url('./assets/images/wood90.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 5em; */
+    /* padding: 2px; */
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0 5px 5px rgb(14, 13, 13);
+    width: 50%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 2em;
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
 }
+
+.play-button {
+    border: 1px solid red;
+    background-image: url('./assets/images/wood90.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20em;
+    /* padding: 2px; */
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0 5px 5px rgb(14, 13, 13);
+    /* width: 50%; */
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 20em;
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.play-button:hover {
+    -webkit-transform: translate(-1em, 0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-transform: translate(-1em, 0);
+    -o-transform: translate(-1em, 0);
+    -ms-transform: translate(-1em, 0);
+    transform: translate(-1em, 0);
+    padding-right: 1em;
+}
+
+.nav-button:hover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-transform: translate(-1em, 0);
+    -moz-transform: translate(-1em, 0);
+    -o-transform: translate(-1em, 0);
+    -ms-transform: translate(-1em, 0);
+    transform: translate(-1em, 0);
+    padding-right: 1em;
+}
+/* *{
+    border: 1px solid red;
+} */
+
+.navigation {
+    border: 1px solid aqua;
+    display: inline-block;
+    width: 6em;
+    height: 75%;
+    /* margin-top: 3em; */
+    text-align: right;
+}
+
 .playArea{
     display: inline-block;
     width: 70%;
@@ -325,6 +404,14 @@ h1 {
     vertical-align: top;
     padding: 0px;
 }
+
+.spacer{
+    height: 1045px;
+}
+
+
+
+
 
 .motd {
     padding: 0px;

@@ -29,7 +29,20 @@ export class AppComponent implements OnInit {
     'drug free!',
     'no additional additives!',
     'better than a kick in the butt!',
-    'oh no the snack table!'
+    'oh no the snack table!',
+    'easy peasy lemon squeezy!',
+    'difficult difficult lemon difficult',
+    'somewhat better than sex!',
+    'tobacco free since \'93!',
+    'old timey fun timey!',
+    'awesome possum!',
+    'rather nifty!',
+    'ayyy lmao',
+    'ready set go!',
+    'quality pegging!',
+    'oh god oh frick',
+    'sea monkeys are not primates!',
+    'no butts about it!'
   ];
 
   messageOfTheDay = this.messages[Math.floor(Math.random() * this.messages.length)];
