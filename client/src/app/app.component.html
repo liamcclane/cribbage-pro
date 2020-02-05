@@ -1,11 +1,27 @@
 <div class="main">
     <div class="wrap">
-        <div class='motd-container'>
-            <span class='motd'>{{ messageOfTheDay }}</span>
+        <div>
+            <div class='motd-container'>
+                <span class='motd'>{{ messageOfTheDay }}</span>
+            </div>
+            <h1 class="logo">
+                CRIBBAGE ~ PRO ohhh daaang
+            </h1>
         </div>
-        <h1 class="logo">
-            CRIBBAGE ~ PRO ohhh daaang
-        </h1>
+        <div class='navigation'>
+            <div class='nav-button' [routerLink]="['/home']">
+                <p>HOME</p>
+            </div>
+            <div class='nav-button' [routerLink]="['/teachMe']">
+                <p>TUTORIAL</p>
+            </div>
+            <div class='nav-button' [routerLink]="['/about']">
+                <p>ABOUT</p>
+            </div>
+            <div class='play-button' [routerLink]="['/game']">
+                <p>PLAY</p>
+            </div>
+        </div>
         <div class="outlet">
             <router-outlet></router-outlet>
         </div>
