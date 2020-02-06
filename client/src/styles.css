@@ -71,7 +71,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 20em;
-    /* padding: 2px; */
+    /* padding: 20px; */
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     box-shadow: 0 5px 5px rgb(14, 13, 13);
@@ -87,7 +87,9 @@
     -o-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
 }
-
+.play-button :first-child{
+    margin-top: 30px;
+}
 .play-button:hover {
     -webkit-transform: translate(-1em, 0);
     background-repeat: no-repeat;
