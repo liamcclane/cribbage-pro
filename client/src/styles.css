@@ -32,14 +32,61 @@
     /* max-width: 90%; */
     width: 85%;
     /* padding: 30px; */
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
     /* border: 2px solid rgba(29, 28, 28, 0.753); */
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
     border-radius: 20px;
     /* box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788); */
     background-color: rgba(240, 248, 255, 0.253);
     vertical-align: top;
+    /* backdrop-filter: blur(2px); */
+}
+
+.componentTitle {
+    text-align: left;
+    /* margin-left: 36%; */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.componentSection {
+    display: block;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(240, 248, 255, 0.8);
+    /* backdrop-filter: blur(2px); */
+}
+
+.sectionColumn {
+    vertical-align: top;
+    height: inherit;
+    text-align: left;
+    /* margin: 20px;
+    padding: 20px; */
+    width: 47%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.componentSection p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    word-spacing: 0.8px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-top: 15px;
+}
+
+.indent {
+    padding-left: 1em;
 }
 
 .nav-button {
@@ -109,9 +156,6 @@
     transform: translate(-1em, 0);
     padding-right: 1em;
 }
-/* *{
-    border: 1px solid red;
-} */
 
 .navigation {
     border: 1px solid aqua;
@@ -189,6 +233,18 @@ h1 {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+h2 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 7px;
+    background-image: url('./assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid black;
+    vertical-align: top;
+}
 .logo {
     color: whitesmoke;
     display: inline-block;
@@ -200,7 +256,7 @@ h1 {
     /* color: #291904; */
     color: rgba(0, 0, 0, 1);
     border: 1px solid black;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     vertical-align: top;
 }
 #fixME{
@@ -349,7 +405,7 @@ h1 {
 /* .rightHalf{
     margin-left: 62px;
 } */
-.rasecourse{
+.racecourse{
     width: 100%;
     display: inline-block;
     /* padding: -5px; */
@@ -426,7 +482,7 @@ h1 {
     transform: rotate(10deg);
     padding-top: 0px;
     padding-bottom: 0px;
-    padding-left: 58%;
+    padding-left: 55%;
     /* padding-right: 34%; */
     margin: 0px;
     display: block;

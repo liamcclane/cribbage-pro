@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     'better than a kick in the butt!',
     'oh no the snack table!',
     'easy peasy lemon squeezy!',
-    'difficult difficult lemon difficult',
+    'difficult difficult lemon difficult!',
     'somewhat better than sex!',
     'tobacco free since \'93!',
     'old timey fun timey!',
@@ -42,7 +42,14 @@ export class AppComponent implements OnInit {
     'quality pegging!',
     'oh god oh frick',
     'sea monkeys are not primates!',
-    'no butts about it!'
+    'no butts about it!',
+    'more bean for your buck!',
+    'hey you kids, get off my lawn!',
+    'that\'s snazzy!',
+    'please subscribe!',
+    'open sourced!',
+    'independently owned and operated!',
+    'ooooo spoooky!'
   ];
 
   messageOfTheDay = this.messages[Math.floor(Math.random() * this.messages.length)];
