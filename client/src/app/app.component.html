@@ -31,9 +31,39 @@
 
 
 <div class='grid'>
-    <div class='board'>
-        <div class='tint-soft'>
+    <div class='background'>
 
+    </div>
+    <div class='card-area'>
+        <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+        <img src="./assets/small/deck_3.png" class='card' alt="card">
+    </div>
+    <div class='board-area'>
+
+    </div>
+    <div class='board'>
+        <div class='column'>
+
+            <ng-container *ngFor="let r of scorePegHoles">
+                <ng-container *ngIf="r<40 && r>81">
+                    <div class='row' id='row{{r}}'>
+                        <div class='peg'>{{r}}</div>
+                        <div class='peg'>{{r}}</div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="r>41">
+                    <div class='row sucks' id='row{{r}}'>
+                        <div class='peg'>{{r}}</div>
+                        <div class='peg'>{{r}}</div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="r<80">
+                    <div class='row' id='row{{r}}'>
+                        <div class='peg'>{{r}}</div>
+                        <div class='peg'>{{r}}</div>
+                    </div>
+                </ng-container>
+            </ng-container>
         </div>
     </div>
 </div>

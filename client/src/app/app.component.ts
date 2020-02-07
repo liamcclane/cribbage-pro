@@ -6,11 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  scoreDivs1tp40: number[] = [];
-  scoreDivs40to80: number[] = [];
-  scoreDivs80to120: number[] = [];
-
   messages = [
     'good to the last drop!',
     'better late than never!',
@@ -49,12 +44,31 @@ export class AppComponent implements OnInit {
     'please subscribe!',
     'open sourced!',
     'independently owned and operated!',
-    'ooooo spoooky!'
+    'ooooo spoooky!',
+    'and that\'s all she wrote!'
   ];
-
+  scorePegHole80to120: number[] = [];
+  scorePegHole40to80: number[] = [];
+  scorePegHole1tp40: number[] = [];
+  scorePegHoles: number[] = [];
   messageOfTheDay = this.messages[Math.floor(Math.random() * this.messages.length)];
 
   ngOnInit() {
     console.log(this.messageOfTheDay);
+    this.getPegs();
+
+    console.log(this.scorePegHole1tp40);
+  }
+  getPegs() {
+    for (let i = -1; i <= 121; i++) {
+      this.scorePegHoles.push(i);
+      if (i > 80) {
+        this.scorePegHole80to120.unshift(i);
+      } else if (i > 40) {
+        this.scorePegHole40to80.push(i);
+      } else {
+        this.scorePegHole1tp40.unshift(i);
+      }
+    }
   }
 }
