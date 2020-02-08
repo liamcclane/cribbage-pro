@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
     // console.log(this.scorePegHole1tp40);
   }
   getPegs() {
-    for (let i = -1; i <= 122; i++) {
+    for (let i = -1; i <= 121; i++) {
       this.scorePegHoles.push(i);
       
       if (i > 80) {

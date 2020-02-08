@@ -7,11 +7,8 @@
 
 .grid {
     display: grid;
-    /* border-style: solid; */
-    /* border-color: red; */
     grid-template-columns: 6em 1fr 1fr 1fr 6em;
     grid-template-rows: 6em 1fr 1fr 1fr 6em;
-    /* grid-gap: 10px; */
     width: 100vw;
     height: 100vh;
     background: #000000;  /* fallback for old browsers */
@@ -19,26 +16,19 @@
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
 .background {
     background:
     /* top, transparent red, faked with gradient */
     linear-gradient(
-      rgba(240, 248, 255, 0.45),
-      rgba(240, 248, 255, 0.45)
+      rgba(240, 248, 255, 0.22),
+      rgba(240, 248, 255, 0.22)
     ), url('./assets/images/river.gif');
-
-    /* border-style: solid; */
-    /* border-color: blue; */
     grid-column: 2 / 5;
     grid-row: 2 / 5;
-    /* border-radius: 1.2%; */
-    /* background-color: rgba(240, 248, 255, 0.253); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: auto 100%;
-    /* background-color: rgba(240, 248, 255, 0.75); */
 }
 
 .card-area {
@@ -51,84 +41,68 @@
     grid-row: 2 / 5;
 }
 
-.board-area {
-    background: rgba(172, 172, 172, 0.45);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: auto 100%;
-    grid-column: 4 / 5;
-    grid-row: 2 / 5;
-}
-
 .board {
     display: flex;
-    /* align-items: flex-start; */
-    padding: 1em;
-    /* background: rgba(172, 172, 172, 0.45); */
-    grid-column: 4 / 5;
-    grid-row: 2 / 5;
-    width: 100%;
+    background: rgba(253, 253, 253, 0.315);
     justify-content: space-around;
 }
 
-.card {
-    box-shadow: 5px 5px 5px rgb(75, 75, 75);
-    margin: 10px;
-    /* height: 100%;
-    width: 100%; */
-}
-
-/* .column {
-    width: 98%;
-    border: 1px dashed red;
+.column{
     display: flex;
-    flex-flow: wrap column;
     justify-content: space-around;
     align-items: center;
 }
 
-.row {
-    background-color: rgb(206, 128, 128);
-    height: 10px;
-    width: 20px;
-    margin: 2px;
+.row{
     display: flex;
-} */
-@media only screen and (max-width: 600px){ /*phone*/
-    .background {
-        background:
-        /* top, transparent red, faked with gradient */
-        linear-gradient(
-          rgba(240, 248, 255, 0.45),
-          rgba(240, 248, 255, 0.45)
-        ), url('./assets/images/river.gif');
+    justify-content: center;
+}
 
-        /* border-style: solid; */
-        /* border-color: blue; */
+.peg{
+    background-color: rgba(0, 0, 0, 0.616);
+    margin: 2px;
+}
+
+.card {
+    box-shadow: 5px 5px 5px rgba(12, 12, 12, 0.904);
+    height: auto;
+    /* margin: 10px; */
+}
+
+.pegging-tray{
+    background: rgba(0, 0, 0, 0.425);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-size: auto 100%;
+}
+
+.player-tray{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cpu-tray{
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+@media only screen and (max-width: 900px){ /*phone*/
+    .background {
         grid-column: 2 / 5;
         grid-row: 2 / 6;
-        /* border-radius: 1.2%; */
-        /* background-color: rgba(240, 248, 255, 0.253); */
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
-        /* background-color: rgba(240, 248, 255, 0.75); */
     }
 
     .title{
-        /* background: rgba(28, 206, 28, 0.45); */
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
         background-size: auto 100%;
         grid-column: 2 / 4;
         grid-row: 1 / 2;
-        /* padding: 1em; */
         display: flex;
         align-items: center;
-        /* justify-content: center; */
     }
 
     .title h1 {
@@ -137,7 +111,6 @@
         font-size: 20px;
         height: auto;
         width: auto;
-        /* padding: 10px; */
         padding-bottom: 5px;
         padding-top: 5px;
         padding-right: 50px;
@@ -146,10 +119,8 @@
 
     .grid {
         display: grid;
-        /* border-style: solid; */
         grid-template-columns: 1em 1fr 1fr 1fr 1em;
         grid-template-rows: 3em 1fr 1fr 1fr 1fr 1em;
-        /* grid-gap: 10px; */
         width: 100vw;
         height: 100vh;
     }
@@ -186,131 +157,53 @@
     }
 
     .card {
-        box-shadow: 3px 3px 3px rgb(75, 75, 75);
         margin: 4px;
         max-width: 90px;
-        height: auto;
     }
     .compBoard{
         visibility: hidden;
     }
     .board {
-        display: flex;
-        /* align-items: flex-start; */
         padding: 0em;
-        /* background: rgba(172, 172, 172, 0.45); */
         grid-column: 2 / 5;
         grid-row: 5 / 6;
-        /* width: 100%; */
-        /* flex-wrap: wrap; */
         flex-direction: column;
-        justify-content: space-around;
     }
 
     .column {
-        width: 98%;
-        border: 1px dashed red;
-        display: flex;
-        flex-flow: wrap row-reverse;
-        justify-content: space-between;
-        align-items: center;
+        height: 98%;
+        /* border: 1px dashed red; */
+        flex-flow: wrap row;
+        
     }
 
-    
     .row {
-        border: 1px dotted black;
-        background-color: rgba(138, 151, 82, 0.623);
-
-        height: 30px;
+        height: 20px;
         width: 10px;
-        display: flex;
         flex-flow: column;
     }
 
     .peg {
-        /* display: inline-block; */
-        /* position: relative; */
-        background-color: black;
-        width: 2px;
-        height: 2px;
-        margin: 2px;
-    }
-
-    .peg5 {
-        display: inline-block;
-        position: relative;
-        background-color: rgb(192, 24, 24);
-        width: 8px;
-        height: 8px;
-        margin: 2px;
-    }
-    .board-area {
-        background: rgba(172, 172, 172, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
-        grid-column: 2 / 5;
-        grid-row: 4 / 5;
+        width: 5px;
+        height: 5px;
     }
 
     .cpu-tray {
-        background: rgba(0, 73, 230, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        /* background-size: auto 100%; */
         grid-column: 2 / 5;
         grid-row: 2 / 3;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     .pegging-tray {
-        background: rgba(9, 226, 74, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
         grid-column: 2 / 5;
         grid-row: 3 / 4;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     .player-tray {
-        background: rgba(230, 0, 219, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
         grid-column: 2 / 5;
         grid-row: 4 / 5;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 }
-@media only screen and (min-width: 601px ) and (max-width: 1200px){ /*tablet*/
-    .grid {
-        display: grid;
-        /* border-style: solid; */
-        grid-template-columns: 6em 1fr 1fr 1fr 6em;
-        grid-template-rows: 6em 1fr 1fr 1fr 6em;
-        /* grid-gap: 10px; */
-        width: 100vw;
-        height: 100vh;
-    }
-    .card {
-        box-shadow: 5px 5px 5px rgb(75, 75, 75);
-        margin: 8px;
-        max-width: 80px;
-        height: auto;
-    }
-}
-@media only screen and (min-width: 1201px){ /*computer screen*/
+@media only screen and (min-width: 901px){ /*computer screen*/
 
     .title{
         /* background: rgba(28, 206, 28, 0.45); */
@@ -343,8 +236,8 @@
         background:
         /* top, transparent red, faked with gradient */
         linear-gradient(
-          rgba(240, 248, 255, 0.45),
-          rgba(240, 248, 255, 0.45)
+          rgba(240, 248, 255, 0.12),
+          rgba(240, 248, 255, 0.12)
         ), url('./assets/images/river.gif');
 
         /* border-style: solid; */
@@ -371,11 +264,20 @@
         height: 100vh;
     }
     .card {
-        box-shadow: 5px 5px 5px rgb(75, 75, 75);
         margin: 10px;
         max-width: 100px;
-        height: auto;
+        display: inline-block;
     }
+    
+    .crib{
+        width: 150px;
+        display: inline-block;
+    }
+    .stack-card{
+        display: inline-block;
+        /* margin-left: -30px; */
+    }
+
 
     .card-area {
         background: rgba(63, 63, 63, 0.45);
@@ -387,7 +289,7 @@
         grid-row: 2 / 5;
     }
 
-    .board-area {
+    /* .board-area {
         background: rgba(172, 172, 172, 0.45);
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -395,45 +297,21 @@
         background-size: auto 100%;
         grid-column: 4 / 5;
         grid-row: 2 / 5;
-    }
+    } */
 
     .cpu-tray {
-        background: rgba(0, 73, 230, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        /* background-size: auto 100%; */
         grid-column: 2 / 4;
         grid-row: 2 / 3;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     .pegging-tray {
-        background: rgba(9, 226, 74, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
         grid-column: 2 / 4;
         grid-row: 3 / 4;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     .player-tray {
-        background: rgba(230, 0, 219, 0.45);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: auto 100%;
         grid-column: 2 / 4;
         grid-row: 4 / 5;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     .phoneBoard{
@@ -441,31 +319,20 @@
     }
 
     .board {
-        display: flex;
-        /* align-items: flex-start; */
         padding: 1em;
-        /* background: rgba(172, 172, 172, 0.45); */
         grid-column: 4 / 5;
         grid-row: 2 / 5;
-        width: 100%;
-        justify-content: space-around;
     }
 
     .column {
-        width: 32%;
-        border: 1px dashed red;
-        display: flex;
-        flex-flow: nowrap column;
-        justify-content: space-around;
-        align-items: center;
+        width: 98%;
+        flex-flow: wrap column-reverse;
     }
 
     .row {
-        background-color: rgb(206, 128, 128);
         height: 10px;
-        width: 20px;
-        margin: 2px;
-        display: flex;
+        width: 28px;
+        margin: 1% 0px;
     }
     #smallRow122{
         background-color: rgba(238, 198, 238, 0.623);
@@ -473,21 +340,16 @@
         justify-content: center;
     }
     .peg {
-        display: inline-block;
-        position: relative;
-        background-color: black;
         width: 10px;
         height: 10px;
-        margin: 2px;
     }
-
-    /* .peg5 {
-        display: inline-block;
-        position: relative;
-        background-color: rgb(192, 24, 24);
-        width: 8px;
-        height: 8px;
-        margin: 2px;
-    } */
+    .p1PegA{
+        background-color: rgba(218, 165, 32, 0.883);
+        border: 1px solid black;
+    }
+    .compPegA{
+        background-color: rgba(0, 0, 0, 0.883);
+        border: 1px solid whitesmoke;
+    }
 
 }

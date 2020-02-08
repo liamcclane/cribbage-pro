@@ -57,13 +57,65 @@
 
     </div>
     <div class='player-tray'>
-
+        <!--if the player is the dealer-->
+        <div class="crib">
+            <img src="./assets/small/deck_3.png" class='card stack-card' alt="card">
+            <img src="./assets/small/deck_3.png" class='card stack-card' alt="card">
+            <img src="./assets/small/deck_3.png" class='card stack-card' alt="card">
+            <img src="./assets/small/deck_3.png" class='card' alt="card">
+        </div>
+        <div>
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dq.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dj.png" class='card' alt="card">
+            <img src="./assets/small/card_a_d10.png" class='card' alt="card">
+            <img src="./assets/small/card_a_d9.png" class='card' alt="card">
+            <img src="./assets/small/card_a_c5.png" class='card' alt="card">
+        </div>
     </div>
-    <div class='board-area'>
+    <!-- <div class='board-area'>
 
-    </div>
+    </div> -->
     <div class='board compBoard'>
+        <!-- the comp board with 1 column -->
         <div class="column">
+            <ng-container *ngFor="let d of scorePegHoles">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">5</div>
+                <div *ngIf="d == 10">10</div>
+                <div *ngIf="d == 15">15</div>
+                <div *ngIf="d == 20">20</div>
+                <div *ngIf="d == 25">25</div>
+                <div *ngIf="d == 30">30</div>
+                <div *ngIf="d == 35">35</div>
+                <div *ngIf="d == 40">40</div>
+                <div *ngIf="d == 45">45</div>
+                <div *ngIf="d == 50">50</div>
+                <div *ngIf="d == 55">55</div>
+                <div *ngIf="d == 60">60</div>
+                <div *ngIf="d == 65">65</div>
+                <div *ngIf="d == 70">70</div>
+                <div *ngIf="d == 80">80</div>
+                <div *ngIf="d == 75">75</div>
+                <div *ngIf="d == 85">85</div>
+                <div *ngIf="d == 90">90</div>
+                <div *ngIf="d == 95">95</div>
+                <div *ngIf="d == 100">100</div>
+                <div *ngIf="d == 105">105</div>
+                <div *ngIf="d == 110">110</div>
+                <div *ngIf="d == 115">115</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row" *ngIf="d == 121">
+                    <div class="peg"></div>
+                </div>
+                <div class="row" *ngIf="d != 121">
+                    <div class="peg p1PegA"></div>
+                    <div class="peg compPegA"></div>
+                </div>
+            </ng-container>
+        </div>
+        <!-- the comp board with 3 colums broken up-->
+        <!-- <div class="column">
             <ng-container *ngFor="let d of scorePegHole1to40">
                 <div *ngIf="d == 0">S</div>
                 <div *ngIf="d == 5">--</div>
@@ -111,21 +163,48 @@
                     <div class="peg"></div>
                 </div>
             </ng-container>
-        </div>
+        </div> -->
     </div>
     <div class='board phoneBoard'>
-        <!--Working full screen mode with 3 hard coded "columns"-->
-        <div class='column'>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHoles">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">5</div>
+                <div *ngIf="d == 10">10</div>
+                <div *ngIf="d == 15">15</div>
+                <div *ngIf="d == 20">20</div>
+                <div *ngIf="d == 25">25</div>
+                <div *ngIf="d == 30">30</div>
+                <div *ngIf="d == 35">35</div>
+                <div *ngIf="d == 40">40</div>
+                <div *ngIf="d == 45">45</div>
+                <div *ngIf="d == 50">50</div>
+                <div *ngIf="d == 55">55</div>
+                <div *ngIf="d == 60">60</div>
+                <div *ngIf="d == 65">65</div>
+                <div *ngIf="d == 70">70</div>
+                <div *ngIf="d == 80">80</div>
+                <div *ngIf="d == 75">75</div>
+                <div *ngIf="d == 85">85</div>
+                <div *ngIf="d == 90">90</div>
+                <div *ngIf="d == 95">95</div>
+                <div *ngIf="d == 100">100</div>
+                <div *ngIf="d == 105">105</div>
+                <div *ngIf="d == 110">110</div>
+                <div *ngIf="d == 115">115</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row" *ngIf="d == 121">
+                    <div class="peg"></div>
+                </div>
+                <div class="row" *ngIf="d != 121">
+                    <div class="peg"></div>
+                    <div class="peg"></div>
+                </div>
+            </ng-container>
+        </div>
+        <!--Working full screen mode with 4 hard coded "columns"-->
+        <!-- <div class='column'>
             <ng-container *ngFor="let d of scorePegHole1to30">
-                <!-- <div *ngIf="d == 35">--</div>
-                    <div *ngIf="d == 85">--</div>
-                    <div *ngIf="d == 90">--</div>
-                    <div *ngIf="d == 95">--</div>
-                    <div *ngIf="d == 100">--</div>
-                    <div *ngIf="d == 105">--</div>
-                    <div *ngIf="d == 110">--</div>
-                    <div *ngIf="d == 115">--</div>
-                    <div *ngIf="d == 121">W</div> -->
                     <div class="row" id="smallRow{{d}}">
                         <div class="emptyPeg peg">
                         </div>
@@ -246,7 +325,7 @@
                 <div *ngIf="d == 70">--</div>
                 <div *ngIf="d == 75">--</div>
             </ng-container>
-        </div>
+        </div> -->
 
     </div>
 </div>
