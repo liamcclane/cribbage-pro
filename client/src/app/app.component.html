@@ -1,11 +1,11 @@
-<div class="main">
+<!-- <div class="main">
     <div class="wrap">
         <div>
             <div class='motd-container'>
                 <span class='motd'>{{ messageOfTheDay }}</span>
             </div>
             <h1 class="logo">
-                CRIBBAGE ~ PRO ohhh daaang
+                CRIBBAGE-PRO.com
             </h1>
         </div>
         <div class='navigation'>
@@ -28,5 +28,225 @@
         <div class="outlet">
             <router-outlet></router-outlet>
         </div>
+    </div>
+</div> -->
+
+
+
+<div class='grid'>
+    <div class='background'>
+
+    </div>
+    <div class='title'>
+        <h1>
+            cribbage-pro.com
+        </h1>
+    </div>
+    <div class="cpu-tray">
+        <div class='six-tray'>
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+            <img src="./assets/small/card_a_dk.png" class='card' alt="card">
+
+        </div>
+    </div>
+    <div class='pegging-tray'>
+
+    </div>
+    <div class='player-tray'>
+
+    </div>
+    <div class='board-area'>
+
+    </div>
+    <div class='board compBoard'>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole1to40">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">--</div>
+                <div *ngIf="d == 10">--</div>
+                <div *ngIf="d == 15">--</div>
+                <div *ngIf="d == 20">--</div>
+                <div *ngIf="d == 25">--</div>
+                <div *ngIf="d == 30">--</div>
+                <div *ngIf="d == 35">--</div>
+                <div class="row">
+                    <div class="peg">r</div>
+                    <div class="peg"></div>
+                </div>
+            </ng-container>
+
+        </div>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole40to80">
+                <div class="row">
+                    <div class="peg"></div>
+                    <div class="peg"></div>
+                </div>
+                <div *ngIf="d == 45">--</div>
+                <div *ngIf="d == 50">--</div>
+                <div *ngIf="d == 55">--</div>
+                <div *ngIf="d == 60">--</div>
+                <div *ngIf="d == 65">--</div>
+                <div *ngIf="d == 70">--</div>
+                <div *ngIf="d == 75">--</div>
+            </ng-container>
+
+        </div>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole80to120">
+                <div *ngIf="d == 85">--</div>
+                <div *ngIf="d == 90">--</div>
+                <div *ngIf="d == 95">--</div>
+                <div *ngIf="d == 100">--</div>
+                <div *ngIf="d == 105">--</div>
+                <div *ngIf="d == 110">--</div>
+                <div *ngIf="d == 115">--</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row">
+                    <div class="peg"></div>
+                    <div class="peg"></div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class='board phoneBoard'>
+        <!--Working full screen mode with 3 hard coded "columns"-->
+        <div class='column'>
+            <ng-container *ngFor="let d of scorePegHole1to30">
+                <!-- <div *ngIf="d == 35">--</div>
+                    <div *ngIf="d == 85">--</div>
+                    <div *ngIf="d == 90">--</div>
+                    <div *ngIf="d == 95">--</div>
+                    <div *ngIf="d == 100">--</div>
+                    <div *ngIf="d == 105">--</div>
+                    <div *ngIf="d == 110">--</div>
+                    <div *ngIf="d == 115">--</div>
+                    <div *ngIf="d == 121">W</div> -->
+                    <div class="row" id="smallRow{{d}}">
+                        <div class="emptyPeg peg">
+                        </div>
+                        <div class="emptyPeg peg">
+                        </div>
+                    </div>
+                    <div *ngIf="d == 45">--</div>
+                    <div *ngIf="d == 50">--</div>
+                    <div *ngIf="d == 55">--</div>
+                    <div *ngIf="d == 60">--</div>
+                    <div *ngIf="d == 65">--</div>
+                    <div *ngIf="d == 70">--</div>
+                    <div *ngIf="d == 75">--</div>
+                    <div *ngIf="d == 0">S</div>
+                    <div *ngIf="d == 5">--</div>
+                    <div *ngIf="d == 10">--</div>
+                    <div *ngIf="d == 15">--</div>
+                    <div *ngIf="d == 20">--</div>
+                    <div *ngIf="d == 25">--</div>
+                    <div *ngIf="d == 30">--</div>
+            </ng-container>
+        </div>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole30to60">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">--</div>
+                <div *ngIf="d == 10">--</div>
+                <div *ngIf="d == 15">--</div>
+                <div *ngIf="d == 20">--</div>
+                <div *ngIf="d == 25">--</div>
+                <div *ngIf="d == 30">--</div>
+                <div *ngIf="d == 35">--</div>
+                <div *ngIf="d == 85">--</div>
+                <div *ngIf="d == 90">--</div>
+                <div *ngIf="d == 95">--</div>
+                <div *ngIf="d == 100">--</div>
+                <div *ngIf="d == 105">--</div>
+                <div *ngIf="d == 110">--</div>
+                <div *ngIf="d == 115">--</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row" id="smallRow{{d}}">
+                    <div class="emptyPeg peg">
+                    </div>
+                    <div class="emptyPeg peg">
+                    </div>
+                </div>
+                <div *ngIf="d == 45">--</div>
+                <div *ngIf="d == 50">--</div>
+                <div *ngIf="d == 55">--</div>
+                <div *ngIf="d == 60">--</div>
+                <div *ngIf="d == 65">--</div>
+                <div *ngIf="d == 70">--</div>
+                <div *ngIf="d == 75">--</div>
+            </ng-container>
+        </div>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole60to90">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">--</div>
+                <div *ngIf="d == 10">--</div>
+                <div *ngIf="d == 15">--</div>
+                <div *ngIf="d == 20">--</div>
+                <div *ngIf="d == 25">--</div>
+                <div *ngIf="d == 30">--</div>
+                <div *ngIf="d == 35">--</div>
+                <div *ngIf="d == 85">--</div>
+                <div *ngIf="d == 90">--</div>
+                <div *ngIf="d == 95">--</div>
+                <div *ngIf="d == 100">--</div>
+                <div *ngIf="d == 105">--</div>
+                <div *ngIf="d == 110">--</div>
+                <div *ngIf="d == 115">--</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row" id="smallRow{{d}}">
+                    <div class="emptyPeg peg">
+                    </div>
+                    <div class="emptyPeg peg">
+                    </div>
+                </div>
+                <div *ngIf="d == 45">--</div>
+                <div *ngIf="d == 50">--</div>
+                <div *ngIf="d == 55">--</div>
+                <div *ngIf="d == 60">--</div>
+                <div *ngIf="d == 65">--</div>
+                <div *ngIf="d == 70">--</div>
+                <div *ngIf="d == 75">--</div>
+            </ng-container>
+        </div>
+        <div class="column">
+            <ng-container *ngFor="let d of scorePegHole90to120">
+                <div *ngIf="d == 0">S</div>
+                <div *ngIf="d == 5">--</div>
+                <div *ngIf="d == 10">--</div>
+                <div *ngIf="d == 15">--</div>
+                <div *ngIf="d == 20">--</div>
+                <div *ngIf="d == 25">--</div>
+                <div *ngIf="d == 30">--</div>
+                <div *ngIf="d == 35">--</div>
+                <div *ngIf="d == 85">--</div>
+                <div *ngIf="d == 90">--</div>
+                <div *ngIf="d == 95">--</div>
+                <div *ngIf="d == 100">--</div>
+                <div *ngIf="d == 105">--</div>
+                <div *ngIf="d == 110">--</div>
+                <div *ngIf="d == 115">--</div>
+                <div *ngIf="d == 121">W</div>
+                <div class="row" id="smallRow{{d}}">
+                    <div class="emptyPeg peg">
+                    </div>
+                    <div class="emptyPeg peg">
+                    </div>
+                </div>
+                <div *ngIf="d == 45">--</div>
+                <div *ngIf="d == 50">--</div>
+                <div *ngIf="d == 55">--</div>
+                <div *ngIf="d == 60">--</div>
+                <div *ngIf="d == 65">--</div>
+                <div *ngIf="d == 70">--</div>
+                <div *ngIf="d == 75">--</div>
+            </ng-container>
+        </div>
+
     </div>
 </div>

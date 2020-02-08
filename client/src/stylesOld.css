@@ -1,0 +1,530 @@
+/* You can add global styles to this file, and also import other style files */
+/* *{
+    outline: 1px dotted red;
+} */
+.main {
+    /* background-image: url('./assets/images/serene1.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* max-width: 1280px; */
+    /* display: inline-block; */
+    display: flex;
+}
+.wrap{
+    border: 1px solid lawngreen;
+    display: inline-block;
+    flex-grow: 2;
+    /* max-width: fit-content; */
+    /* padding-top: 25px; */
+    /* padding: 15px; */
+    text-align: center;
+    display: block;
+}
+.outlet{
+    display: inline-block;
+    vertical-align: middle;
+    /* margin: 0px 0px 0px 0px; */
+    margin-top: 1px;
+    margin-bottom: 1px;
+    /* margin-right: -3em; */
+    /* text-align: center; */
+    /* max-width: 90%; */
+    width: 85%;
+    /* padding: 30px; */
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+    /* border: 2px solid rgba(29, 28, 28, 0.753); */
+    /* border: 2px solid orange; */
+    border-radius: 20px;
+    /* box-sizing: 10px 10px 10px rgba(20, 20, 20, 0.788); */
+    background-color: rgba(240, 248, 255, 0.253);
+    vertical-align: top;
+    /* backdrop-filter: blur(2px); */
+}
+
+.componentTitle {
+    text-align: left;
+    /* margin-left: 36%; */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.componentSection {
+    display: block;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(240, 248, 255, 0.8);
+    /* backdrop-filter: blur(2px); */
+}
+
+.sectionColumn {
+    vertical-align: top;
+    height: inherit;
+    text-align: left;
+    /* margin: 20px;
+    padding: 20px; */
+    width: 47%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.componentSection p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    word-spacing: 0.8px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-top: 15px;
+}
+
+.indent {
+    padding-left: 1em;
+}
+
+.nav-button {
+    border: 1px solid red;
+    background-image: url('./assets/images/wood90.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 5em; */
+    /* padding: 2px; */
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0 5px 5px rgb(14, 13, 13);
+    width: 50%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 2em;
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.play-button {
+    border: 1px solid red;
+    background-image: url('./assets/images/wood90.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20em;
+    /* padding: 2px; */
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0 5px 5px rgb(14, 13, 13);
+    /* width: 50%; */
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 20em;
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.play-button:hover {
+    -webkit-transform: translate(-1em, 0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-transform: translate(-1em, 0);
+    -o-transform: translate(-1em, 0);
+    -ms-transform: translate(-1em, 0);
+    transform: translate(-1em, 0);
+    padding-right: 1em;
+}
+
+.nav-button:hover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-transform: translate(-1em, 0);
+    -moz-transform: translate(-1em, 0);
+    -o-transform: translate(-1em, 0);
+    -ms-transform: translate(-1em, 0);
+    transform: translate(-1em, 0);
+    padding-right: 1em;
+}
+
+.navigation {
+    border: 1px solid aqua;
+    display: inline-block;
+    width: 6em;
+    height: 75%;
+    /* margin-top: 3em; */
+    text-align: right;
+}
+
+.playArea{
+    display: inline-block;
+    width: 70%;
+}
+.centerMe{
+    text-align: center;
+}
+.compHand{
+    min-height: 200px;
+    text-align: left;
+    text-align: center;
+    padding-top: 20px;
+    /* display: flex; */
+    flex-grow: 2;
+}
+
+img, .card {
+    height: 96px;
+    width: 71px;
+    margin-top:50px;
+    display: inline-block;
+    margin: 0px 15px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.selectableCard {
+    height: 96px;
+    width: 71px;
+    margin-top:50px;
+    display: inline-block;
+    margin: 0px 15px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+.selectableCard:hover {
+    -webkit-transform: translate(0, -1em);
+    -moz-transform: translate(0, -1em);
+    -o-transform: translate(0, -1em);
+    -ms-transform: translate(0, -1em);
+    transform: translate(0, -1em);
+    box-shadow: 12px 12px 12px rgba(14, 13, 13, 0.445);
+}
+
+h1 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    /* color: #291904; */
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid black;
+    margin-right: 20px;
+    vertical-align: top;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+h2 {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 7px;
+    background-image: url('./assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid black;
+    vertical-align: top;
+}
+.logo {
+    color: whitesmoke;
+    display: inline-block;
+    padding: 10px;
+    background-image: url('./assets/images/wood90.png');
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+    /* color: #291904; */
+    color: rgba(0, 0, 0, 1);
+    border: 1px solid black;
+    /* margin-right: 20px; */
+    vertical-align: top;
+}
+#fixME{
+    vertical-align: top;
+}
+.score{
+    background-color: rgba(240, 248, 255, 0.801);
+    padding: 10px 10px;
+    border: whitesmoke;
+    border-radius: 20px;
+}
+.inLine{
+    display: inline-block;
+}
+    .inLine span{
+        font-weight: bolder;
+    }
+.text-left{
+    text-align: left;
+}
+.up {
+    background-color: rgba(165, 42, 42, 0.253);
+    padding-bottom: 50px;
+}
+.tableTop {
+    vertical-align: top;
+    display: inline-block;
+    padding: 10px 5px;
+}
+.scoreBoard {
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    height: 500px;
+    width: 100px;
+    position:absolute;
+}
+
+#firstRow, #secondRow{
+    margin-top:50px;
+}
+
+#smallRow38{
+    transform: rotate(30deg);
+    margin-left: 5px;
+}
+
+#smallRow39{
+    transform: rotate(45deg);
+    margin-left: 20px;
+}
+
+#smallRow40{
+    transform: rotate(60deg);
+    margin-left: 50px;
+}
+#lbl-40{
+    display: inline-block;
+    margin-top: 40px;
+}
+#smallRow41{
+    transform: rotate(-60deg);
+    margin-right: 50px;
+}
+#smallRow42{
+    transform: rotate(-45deg);
+    margin-right: 20px;
+}
+#smallRow43{
+    transform: rotate(-30deg);
+    margin-right: 5px;
+}
+
+#smallRow78{
+    transform: rotate(-30deg);
+    margin-left: 5px;
+}
+
+#smallRow79{
+    transform: rotate(-45deg);
+    margin-left: 20px;
+}
+
+#smallRow80{
+    transform: rotate(-60deg);
+    margin-left: 50px;
+}
+
+#lbl-80{
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 40px;
+}
+
+#smallRow81{
+    transform: rotate(60deg);
+    margin-right: 50px;
+}
+
+#smallRow82{
+    transform: rotate(45deg);
+    margin-right: 20px;
+}
+
+#smallRow83{
+    transform: rotate(30deg);
+    margin-right: 5px;
+}
+
+.cribBoard{
+    display: inline-block;
+    min-width: 300px;
+    height: fit-content;
+    vertical-align: top;
+    background-image: url('./assets/images/wood.jfif');
+    background-position: center;
+    text-align: center;
+    padding: 30px 10px 20px 10px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px rgb(14, 13, 13);
+    margin-right: 20px;
+    border: 1px solid black;
+    color: #291904;
+    font-weight: bold;
+    /* float: right; */
+}
+.peg{
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+}
+.smallRow{
+    display: block;
+    /* background-color: rgba(255, 192, 203, 0.555) ; */
+    /* width: 50px; */
+}
+.halfOfBoard{
+    display: inline-block;
+    /* border: 3px solid blue; */
+    vertical-align: top;
+}
+.emptyPeg{
+    background-color: rgba(32, 31, 31, 0.733);
+}
+/* .rightHalf{
+    margin-left: 62px;
+} */
+.racecourse{
+    width: 100%;
+    display: inline-block;
+    /* padding: -5px; */
+    /* width: 222px; */
+}
+.circle{
+    border-radius: 50%;
+}
+#player1PositionA,#player1PositionB{
+    border: 1px solid black;
+    background-color: gold;
+}
+#compPositionA,#compPositionB{
+    color: white;
+    border: 2px solid white;
+    background-color: black;
+}
+#countArea{
+    /* position: absolute; */
+    /* height: 30%; */
+    vertical-align: top;
+    background-color: rgba(240, 248, 255, 0.473);
+    padding: 10px 0px 10px 20px;
+}
+.compPWrapper{
+    margin-left: 4px;
+}
+.topCount, .bottomCount{
+    display: block;
+}
+.offSet{
+    padding: 20px 0px;
+}
+.centerThis {
+    margin: 0px auto;
+}
+.cardSlice{
+    width: 13px;
+    height: 96px;
+}
+.cribCard{
+    margin: 0px;
+}
+.stackedCards{
+    margin-left: -10px;
+}
+.text-right{
+    text-align: right;
+}
+.lessMargin{
+    margin: 0px 2px;
+    vertical-align: top;
+    padding: 0px;
+}
+
+.spacer{
+    height: 1045px;
+}
+
+
+
+
+
+.motd {
+    padding: 0px;
+    margin: 0px;
+    color: yellow;
+    font-weight: bold;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.motd-container {
+    font-size: larger;
+    transform: rotate(10deg);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 55%;
+    /* padding-right: 34%; */
+    margin: 0px;
+    display: block;
+    text-align: right;
+    position: absolute;
+    margin-top: -80px;
+    animation-duration: 2s;
+    animation-name: floating-message;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating-message {
+    from {
+        margin-top: -85px;
+      }
+
+      to {
+        margin-top: -65px;
+      }
+    }
+
+/* .card */
+@media only screen and (max-width: 480px){ /*phone*/
+    .main{
+        background-image: url('./assets/images/s9.png');
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+    }
+}
+@media only screen and (min-width: 481px ) and (max-width: 1425px){ /*tablet*/
+    .main{
+        background-color: black;
+    }
+}
+@media only screen and (min-width: 1426px){ /*computer screen*/
+    .main{
+        background-image: url('./assets/images/serene1.gif');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
