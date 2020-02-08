@@ -1,4 +1,5 @@
 *{
+    /* outline: 1px dotted red; */
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -30,6 +31,25 @@
     background-position: center;
     background-size: auto 100%;
 }
+
+.navigation {
+    /* background-color: rgba(167, 72, 255, 0.45); */
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation h1 {
+    /* margin-top: 1em; */
+    margin-bottom: 1em;
+}
+
+/* .navigation :last-child {
+    align-items: flex-end;
+} */
+
+
 
 .label {
     color: white;
@@ -68,7 +88,9 @@
     background-color: rgba(0, 0, 0, 0.616);
     margin: 2px;
 }
-
+.score-marker{
+    font-size: 15px;
+}
 .card {
     box-shadow: 5px 5px 5px rgba(12, 12, 12, 0.904);
     height: auto;
@@ -83,11 +105,18 @@
     background-size: auto 100%;
 }
 
+/* .pegging-tray *{
+    outline: 1px dotted red;
+} */
 .pegging-area {
-    widows: 80%;
-    border: 1px dotted darkorchid;
+    width: 75%;
 }
-
+.from-cpu{
+    transform: translateY(-20px);
+}
+.from-p1{
+    transform: translateY(20px);
+}
 .player-tray{
     display: flex;
     justify-content: space-around;
@@ -98,6 +127,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+.player-crib{
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+.cpu-crib{
+    justify-content: flex-start;
+    padding-left: 5%;
 }
 .reverse-fan {
     display: flex;
@@ -154,6 +191,16 @@
     transform: rotate(30deg) translateY(15px);
     margin-left: -50px;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -253,6 +300,16 @@
         grid-row: 4 / 5;
     }
 }
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 901px){ /*computer screen*/
 
     .title{
@@ -318,18 +375,18 @@
         max-width: 100px;
         /* display: inline-block; */
     }
-
-    .player-tray *{
-        outline: 1px dotted salmon;
+    .peg-card{
+        width: 15%;
+        margin: 0px 0px 0px -3%;
+        /* padding: 20px 0px; */
     }
-
+    .pegging-area img:first-child{
+        margin: 0px;
+    }
     .stack-cards{
         /* display: inline-block; */
         margin-left: -100px;
     }
-
-
-
 
     .card-area {
         background: rgba(63, 63, 63, 0.45);

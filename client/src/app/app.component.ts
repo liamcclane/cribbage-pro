@@ -63,9 +63,8 @@ export class AppComponent implements OnInit {
     // console.log(this.scorePegHole1tp40);
   }
   getPegs() {
-    for (let i = -1; i <= 121; i++) {
+    for (let i = -2; i <= 121; i++) {
       this.scorePegHoles.push(i);
-      
       if (i > 80) {
         this.scorePegHole80to120.push(i);
       } else if (i > 40) {
@@ -78,7 +77,7 @@ export class AppComponent implements OnInit {
         this.scorePegHole90to120.push(i);
       } else if (i > 60) {
         this.scorePegHole60to90.push(i);
-      } else if(i > 30) {
+      } else if (i > 30) {
         this.scorePegHole30to60.push(i);
       } else {
         this.scorePegHole1to30.push(i);
