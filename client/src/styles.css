@@ -1,1 +1,470 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    /* outline: 1px dotted red; */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+
+  }
+
+.grid {
+    display: grid;
+    grid-template-columns: 6em 1fr 1fr 1fr 6em;
+    grid-template-rows: 6em 1fr 1fr 1fr 6em;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.background {
+    background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(
+      rgba(240, 248, 255, 0.22),
+      rgba(240, 248, 255, 0.22)
+    ), url('./assets/images/river.gif');
+    grid-column: 2 / 5;
+    grid-row: 2 / 5;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: auto 100%;
+}
+
+.navigation {
+    /* background-color: rgba(167, 72, 255, 0.45); */
+    grid-column: 1 / 2;
+    grid-row: 2 / 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation h1 {
+    /* margin-top: 1em; */
+    margin-bottom: 1em;
+}
+
+/* .navigation :last-child {
+    align-items: flex-end;
+} */
+
+
+
+.label {
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.card-area {
+    background: rgba(63, 63, 63, 0.45);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: auto 100%;
+    grid-column: 2 / 4;
+    grid-row: 2 / 5;
+}
+
+.board {
+    display: flex;
+    background: rgba(253, 253, 253, 0.315);
+    justify-content: space-around;
+}
+
+.column{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+.peg{
+    background-color: rgba(0, 0, 0, 0.616);
+    margin: 2px;
+}
+.score-marker{
+    font-size: 15px;
+    color: white;
+    font-weight: 300;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.card {
+    box-shadow: 5px 5px 5px rgba(12, 12, 12, 0.904);
+    height: auto;
+    /* margin: 10px; */
+}
+
+.pegging-tray{
+    background: rgba(0, 0, 0, 0.425);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-size: auto 100%;
+}
+
+/* .pegging-tray *{
+    outline: 1px dotted red;
+} */
+.pegging-area {
+    width: 75%;
+}
+.from-cpu{
+    transform: translateY(-20px);
+}
+.from-p1{
+    transform: translateY(20px);
+}
+.player-tray{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cpu-tray{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.player-crib{
+    justify-content: flex-end;
+    padding-right: 5%;
+}
+.cpu-crib{
+    justify-content: flex-start;
+    padding-left: 5%;
+}
+.reverse-fan {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+}
+
+.reverse-fan img:nth-child(1){
+    transform: rotate(15deg) translateY(2px);
+}
+
+.reverse-fan img:nth-child(2){
+    transform: rotate(5deg) translateY(10px);
+    margin-left: -50px;
+}
+
+.reverse-fan img:nth-child(3){
+    transform: rotate(-5deg) translateY(10px);
+    margin-left: -50px;
+}
+
+.reverse-fan img:nth-child(4){
+    transform: rotate(-15deg) translateY(-2px);
+    margin-left: -50px;
+}
+.card-fan {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+}
+
+.card-fan img:nth-child(1){
+    transform: rotate(-30deg);
+    /* margin-right: -10px; */
+}
+.card-fan img:nth-child(2){
+    /* overflow: visible; */
+    transform: rotate(-10deg) translateY(-10px);        margin-left: -50px;
+    /* margin-top: -75px; */
+}
+.card-fan img:nth-child(3){
+    transform: translateY(-15px);
+    margin-left: -50px;
+}
+.card-fan img:nth-child(4){
+    transform: rotate(10deg) translateY(-10px);
+    margin-left: -50px;
+}
+.card-fan img:nth-child(5){
+    transform: rotate(20deg);
+    margin-left: -50px;
+}
+.card-fan img:nth-child(6){
+    transform: rotate(30deg) translateY(15px);
+    margin-left: -50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 900px){ /*phone*/
+    .background {
+        grid-column: 2 / 5;
+        grid-row: 2 / 6;
+    }
+
+    .title{
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: auto 100%;
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+        display: flex;
+        align-items: center;
+    }
+
+    .title h1 {
+        color: white;
+        font-weight: 300;
+        font-size: 20px;
+        height: auto;
+        width: auto;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        padding-right: 50px;
+        border-bottom: 1px solid white;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1em 1fr 1fr 1fr 1em;
+        grid-template-rows: 3em 1fr 1fr 1fr 1fr 1em;
+        width: 100vw;
+        height: 100vh;
+    }
+
+
+    .card {
+        margin: 4px;
+        max-width: 70px;
+    }
+    .crib {
+        justify-self: flex-end;
+
+    }
+    .small-card {
+        max-width: 40px;
+    }
+    .stack-cards{
+        /* display: inline-block; */
+        margin-left: -39px;
+    }
+    .compBoard{
+        visibility: hidden;
+    }
+    .board {
+        padding: 0em;
+        grid-column: 2 / 5;
+        grid-row: 5 / 6;
+        flex-direction: column;
+    }
+
+    .column {
+        height: 98%;
+        /* border: 1px dashed red; */
+        flex-flow: wrap row;
+
+    }
+
+    .row {
+        height: 20px;
+        width: 10px;
+        flex-flow: column;
+    }
+
+    .peg {
+        width: 5px;
+        height: 5px;
+    }
+
+    .cpu-tray {
+        grid-column: 2 / 5;
+        grid-row: 2 / 3;
+    }
+
+    .pegging-tray {
+        grid-column: 2 / 5;
+        grid-row: 3 / 4;
+    }
+
+    .player-tray {
+        grid-column: 2 / 5;
+        grid-row: 4 / 5;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 901px){ /*computer screen*/
+
+    .title{
+        /* background: rgba(28, 206, 28, 0.45); */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: auto 100%;
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+        /* padding: 1em; */
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+    }
+
+    .title h1 {
+        color: white;
+        font-weight: 300;
+        font-size: 60px;
+        height: auto;
+        width: auto;
+        /* padding: 10px; */
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-right: 50px;
+        border-bottom: 3px solid white;
+
+    }
+
+    .background {
+        background:
+        /* top, transparent red, faked with gradient */
+        linear-gradient(
+          rgba(240, 248, 255, 0.12),
+          rgba(240, 248, 255, 0.12)
+        ), url('./assets/images/river.gif');
+
+        /* border-style: solid; */
+        /* border-color: blue; */
+        grid-column: 2 / 5;
+        grid-row: 2 / 5;
+        /* border-radius: 1.2%; */
+        /* background-color: rgba(240, 248, 255, 0.253); */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: auto 100%;
+        /* background-color: rgba(240, 248, 255, 0.75); */
+    }
+
+
+    .grid {
+        display: grid;
+        /* border-style: solid; */
+        grid-template-columns: 9em 1fr 1fr 1fr 9em;
+        grid-template-rows: 9em 1fr 1fr 1fr 9em;
+        /* grid-gap: 10px; */
+        width: 100vw;
+        height: 100vh;
+    }
+    .card {
+        margin: 10px;
+        max-width: 100px;
+        /* display: inline-block; */
+    }
+    .peg-card{
+        width: 15%;
+        margin: 0px 0px 0px -3%;
+        /* padding: 20px 0px; */
+    }
+    .pegging-area img:first-child{
+        margin: 0px;
+    }
+    .stack-cards{
+        /* display: inline-block; */
+        margin-left: -100px;
+    }
+
+    .card-area {
+        background: rgba(63, 63, 63, 0.45);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: auto 100%;
+        grid-column: 2 / 4;
+        grid-row: 2 / 5;
+    }
+
+    /* .board-area {
+        background: rgba(172, 172, 172, 0.45);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: auto 100%;
+        grid-column: 4 / 5;
+        grid-row: 2 / 5;
+    } */
+
+    .cpu-tray {
+        grid-column: 2 / 4;
+        grid-row: 2 / 3;
+    }
+
+    .pegging-tray {
+        grid-column: 2 / 4;
+        grid-row: 3 / 4;
+    }
+
+    .player-tray {
+        grid-column: 2 / 4;
+        grid-row: 4 / 5;
+    }
+
+    .phoneBoard{
+        visibility: hidden;
+    }
+
+    .board {
+        padding: 1em;
+        grid-column: 4 / 5;
+        grid-row: 2 / 5;
+    }
+
+    .column {
+        width: 98%;
+        flex-flow: wrap column-reverse;
+    }
+
+    .row {
+        height: 10px;
+        width: 28px;
+        margin: 1% 0px;
+    }
+    #smallRow122{
+        background-color: rgba(238, 198, 238, 0.623);
+        /* text-align: center; */
+        justify-content: center;
+    }
+    .peg {
+        width: 10px;
+        height: 10px;
+    }
+    .p1PegA{
+        background-color: rgba(218, 165, 32, 0.883);
+        border: 1px solid black;
+    }
+    .compPegA{
+        background-color: rgba(0, 0, 0, 0.883);
+        border: 1px solid whitesmoke;
+    }
+
+}

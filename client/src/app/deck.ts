@@ -64,11 +64,88 @@ export class Deck {
         d.push(c);
         this.order.splice(ind, 1);
     }
-
+    sortBySuit(){
+        let sorted: Card[] = [];
+        // let suitVal = {'s':1,'d':2,'h':3,'c':4};
+        for(let c of this.order){
+            if(c.suit == 's'){
+                sorted.push(c);
+            }
+        }
+        for(let c of this.order){
+            if(c.suit == 'd'){
+                sorted.push(c);
+            }
+        }
+        for(let c of this.order){
+            if(c.suit == 'c'){
+                sorted.push(c);
+            }
+        }
+        for(let c of this.order){
+            if(c.suit == 'h'){
+                sorted.push(c);
+            }
+        }
+        this.order = sorted;
+    }
     /**
      * this function empty the deck
      */
     empty() {
         this.order = [];
+    }
+    /**
+     * this function only cross checks if it can be played into the count
+     * @param c : card user is tring to play
+     * @param d : this should always be the count deck
+     */
+    canPlayIntoCount(c:Card,d:Deck):boolean{
+        if(c.cribbageVal + d.total() <= 31){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * only get called after verification
+     * @param d 
+     */
+    findCPUCountCard(d: Deck):Card{
+        let num = d.total();
+        for(let c of this.order){
+            if(c.val + num <= 31){
+                return c;
+            }
+        }
+    }
+    canCPUPlayIntoCount(d:Deck):boolean{
+        let num = d.total();
+        for(let c of this.order){
+            if(c.cribbageVal + num <= 31){
+                return true;
+            }
+        }
+        // if(c.cribbageVal + d.total() <= 31){
+        //     return true;
+        // }
+        return false;
+    }
+    /**
+     * loops though the deck and returns the total current count of the deck only
+     * looking at active cards
+     */
+    total():number{
+        let tot = 0;
+        for(let c of this.order){
+            if(c.isActive){
+                tot += c.cribbageVal;
+            }
+        }
+        return tot;
+    }
+    deactive(){
+        for(let c of this.order){
+            c.isActive = false;
+        }
     }
 }
