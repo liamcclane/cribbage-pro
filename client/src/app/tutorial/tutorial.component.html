@@ -1,0 +1,126 @@
+<div class='scrollable'>
+    <div class='scroll-content'>
+        <h3>Object of the Game</h3>
+        <p>Be the first player to score 121 points.</p>
+        <h3>Number of Players</h3>
+        <p>Historically cribbage can be played with up to three sets of pegs, and with teams of players. Cribbage-pro.com can only be played with two players: a user and a cpu. Multiplayer version coming soon!</p>
+        <h3>Cards</h3>
+        <p>A standard pack of 52 playing cards with the Jokers discarded. All four suits are considered equal. The order of cards by rank is King high down to Ace low. All face cards have a value of 10, and the Ace has a value of 1.</p>
+        <h3>The Board</h3>
+        <p>The board is used to show the accumulated score by each player during the play of the game with the front most peg, and the latest increment of score with the difference between first and second. The pegs leapfrog each other.</p>
+        <h3>The Sequence of Play:</h3>
+        <h4>Dealing:</h4>
+        <p>Both players are dealt six cards.</p>
+        <h4>Discard:</h4>
+        <p>players discard two cards two the dealer’s ‘crib’.</p>
+        <h4>Cut and Starter Turn:</h4>
+        <p>The deck is cut for the dealer to reveal the starter card. If it is a Jack, the dealer is immediately aware 2 points. The non-dealer may then begin the pegging.</p>
+        <h4>Pegging:</h4>
+        <p>Players alternative play one card at the time, counting a cumulative total of all the card values played so far. When a player can not play a card without the total exceeding 31, that player must call ‘go’. The opponent continues to play all cards possible, not exceeding 31. The player who calls ‘go’ plays first in the following 31-count.</p>
+        <h4>Scoring:</h4>
+        <p>When both players have played all their cards, both hands are totaled according to the scoring chart. The non-dealer’s points are awarded first, and then the dealer’s hand and crib are totaled as well.</p>
+        <p>Dealing alternates until one player has earned 121 points.</p>
+
+
+        <table>
+            <tr>
+              <th></th>
+              <th>points earned</th>
+              <th></th>
+            </tr>
+            <tr>
+                <th>cards</th>
+                <th>during pegging</th>
+                <th>as hand / crib in count</th>
+              </tr>
+            <tr>
+              <td>
+                <p>jack turned by dealer as start</p>
+                <img src="./../assets/images/cardAssets/PNG-cards-1.3/sj.png" class='card' alt="card">
+              </td>
+              <td>2</td>
+              <td>-</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>jack in hand or crib, same suit as starter card</p>
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/dj.png" class='card' alt="card">
+                    +
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/d5.png" class='card' alt="card">
+                </td>
+              <td>-</td>
+              <td>1</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>two of a kind</p>
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/h7.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/c7.png" class='card' alt="card">
+                </td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>
+                    <p>three of a kind</p>
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/s5.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/d5.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/c5.png" class='card' alt="card">
+                </td>
+                <td>6</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>
+                    <p>four of a kind</p>
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/dq.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/hq.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/cq.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/sq.png" class='card' alt="card">
+                </td>
+                <td>12</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>
+                    <p>straights of three or more in any order</p>
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/h1.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/d3.png" class='card' alt="card">
+                    <img src="./../assets/images/cardAssets/PNG-cards-1.3/c2.png" class='card' alt="card">
+                </td>
+                <td>1 per card</td>
+                <td>1 per card</td>
+              </tr>
+              <tr>
+                <td>15-count (sum of any comb)</td>
+                <td>-</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>four-card flush (only in hand, not crib)</td>
+                <td>-</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>five-card flush</td>
+                <td>-</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>reaching a 15-count exactly</td>
+                <td>2</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>reaching 31-count exactly</td>
+                <td>2</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>final card played</td>
+                <td>1</td>
+                <td>-</td>
+              </tr>
+          </table>
+    </div>
+</div>
