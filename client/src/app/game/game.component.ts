@@ -105,6 +105,9 @@ export class GameComponent implements OnInit {
     console.log(this.p1.hand.order);
     console.log(this.comp.hand.order);
   }
+  verifiedStage(){
+    console.log("push the cards into the crib");
+  }
   dicardIntoCount(card:Card){
     this.p1.ghostHand.removeByCard(card);
     this.theCount.push(card);
