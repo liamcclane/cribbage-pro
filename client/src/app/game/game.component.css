@@ -1,3 +1,12 @@
 :host {
     display: contents;
 }
+
+.selectableCard:hover {
+    -webkit-transform: translateY(-1em);
+    -moz-transform: translateY(-1em);
+    -o-transform: translateY(-1em);
+    -ms-transform: translateY(-1em);
+    transform: translateY(-2em);
+    /* box-shadow: 12px 12px 12px rgba(14, 13, 13, 0.445); */
+}
