@@ -37,14 +37,15 @@ export class Card {
         // the 14 is for making dummy cards
         const dict = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv.png', 20: 'blank'};
         // const dict2 = {11: 'j', 12: 'q' , 13: 'k', 0: 'b2fv.png', 20: 'blank'};
-        this.imgConCat += "cardAssets/PNG-cards-1.3/"
+        // this.imgConCat += "cardAssets/PNG-cards-1.3/"
         if ( v > 10) {
-            this.imgConCat += s + dict[v];
+            this.imgConCat = s + dict[v];
         } else if (v === 0 || v === 20) {
-            this.imgConCat += dict[v];
+            this.imgConCat = dict[v];
         } else {
-            this.imgConCat += s + v +'.png';
+            this.imgConCat = s + v;
         }
+        this.imgConCat += ".png";
     }
     /**
      * This fucntion attaches a nice full sentance for each card

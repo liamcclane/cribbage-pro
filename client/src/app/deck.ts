@@ -21,7 +21,7 @@ export class Deck {
             }
         }
         this.order = d;
-        this.shuffle();
+        // this.shuffle();
     }
     /**
      * quick shuffle function
