@@ -91,22 +91,10 @@ export class GameComponent implements OnInit {
     this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
     this.comp.ghostHand.pop();
-    /* below is harding coding the p1 to push to crib automatically */
-    // this.crib.push(this.p1.hand.pop());
-    // this.p1.ghostHand.pop();
-    // this.crib.push(this.p1.hand.pop());
-    // this.p1.ghostHand.pop()
-    /* end of hard code */
-    /* hard coding the pegging to start */
-    // this.beginPegging = true;
-    this.p1.hand.sortBySuit();
-    this.p1.ghostHand.sortBySuit();
-    this.comp.hand.sortBySuit();
-    this.comp.ghostHand.sortBySuit();
-    // console.log(this.comp.ghostHand.order);
-    // console.log(this.p1.ghostHand.order);
-    // console.log(this.p1.hand.order);
-    // console.log(this.comp.hand.order);
+    // this.p1.hand.sortBySuit();
+    // this.p1.ghostHand.sortBySuit();
+    // this.comp.hand.sortBySuit();
+    // this.comp.ghostHand.sortBySuit();
   }
   returnToHand(card:Card){
     console.log(card);
@@ -120,11 +108,28 @@ export class GameComponent implements OnInit {
     }
     this.theCount.order.length = 0;
     this.beginPegging = true;
+    // this.p1.hand.sortBySuit();
+    this.peggingTime();
+  }
+  peggingTime(){
+    if(this.theCount.order.length == 0){
+      // computer goes first
+      if(this.crib.owner == this.p1){
+        let c = this.comp.findCardForCount(this.theCount);
+        this.theCount.push(c);
+      }
+    }
+    else if(this.theCount.order.length < 8){
+      this.theCount.push(this.comp.ghostHand.pop());
+    } else if(this.theCount.order.length == 8){
+      this.theCount.push(this.comp.ghostHand.pop());
+    }
+    console.log(this.theCount)
   }
   dicardIntoCount(card:Card){
     this.p1.ghostHand.removeByCard(card);
     this.theCount.push(card);
-    this.theCount.push(this.comp.ghostHand.pop());
+    this.peggingTime();
   }
   stageMe(card:Card){
     console.log(card);

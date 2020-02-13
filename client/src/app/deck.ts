@@ -21,7 +21,7 @@ export class Deck {
             }
         }
         this.order = d;
-        // this.shuffle();
+        this.shuffle();
     }
     /**
      * quick shuffle function
@@ -118,6 +118,10 @@ export class Deck {
             }
         }
     }
+    /**
+     * this fucntion should be called on the computers 
+     * @param d 
+     */
     canCPUPlayIntoCount(d:Deck):boolean{
         let num = d.total();
         for(let c of this.order){
