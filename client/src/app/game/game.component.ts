@@ -35,6 +35,7 @@ export class GameComponent implements OnInit {
   revealCrib = false;
   outputText: string;
   roundCount: number;
+  beginPegging: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -90,23 +91,35 @@ export class GameComponent implements OnInit {
     this.comp.ghostHand.pop();
     this.crib.push(this.comp.hand.pop());
     this.comp.ghostHand.pop();
-    /* below is harding coding the p1 to push to cri automatically */
-    this.crib.push(this.p1.hand.pop());
-    this.p1.ghostHand.pop();
-    this.crib.push(this.p1.hand.pop());
-    this.p1.ghostHand.pop()
+    /* below is harding coding the p1 to push to crib automatically */
+    // this.crib.push(this.p1.hand.pop());
+    // this.p1.ghostHand.pop();
+    // this.crib.push(this.p1.hand.pop());
+    // this.p1.ghostHand.pop()
     /* end of hard code */
+    /* hard coding the pegging to start */
+    // this.beginPegging = true;
     this.p1.hand.sortBySuit();
     this.p1.ghostHand.sortBySuit();
     this.comp.hand.sortBySuit();
     this.comp.ghostHand.sortBySuit();
-    console.log(this.comp.ghostHand.order);
-    console.log(this.p1.ghostHand.order);
-    console.log(this.p1.hand.order);
-    console.log(this.comp.hand.order);
+    // console.log(this.comp.ghostHand.order);
+    // console.log(this.p1.ghostHand.order);
+    // console.log(this.p1.hand.order);
+    // console.log(this.comp.hand.order);
+  }
+  returnToHand(card:Card){
+    console.log(card);
+    this.theCount.removeByCard(card);
+    this.p1.ghostHand.push(card);
+    this.p1.hand.push(card);
   }
   verifiedStage(){
-    console.log("push the cards into the crib");
+    for(let i=0; i< 2; i++){
+      this.crib.push(this.theCount.order[i]);
+    }
+    this.theCount.order.length = 0;
+    this.beginPegging = true;
   }
   dicardIntoCount(card:Card){
     this.p1.ghostHand.removeByCard(card);
@@ -115,6 +128,9 @@ export class GameComponent implements OnInit {
   }
   stageMe(card:Card){
     console.log(card);
+    this.p1.hand.removeByCard(card);
+    this.p1.ghostHand.removeByCard(card);
+    this.theCount.push(card);
   }
   swapDealers(){
     if(this.crib.owner == this.p1){
