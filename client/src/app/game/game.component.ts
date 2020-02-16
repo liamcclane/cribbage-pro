@@ -35,7 +35,8 @@ export class GameComponent implements OnInit {
   revealCrib = false;
   outputText: string;
   roundCount: number;
-  beginPegging: boolean = false;
+  showGoBtn = false;
+  beginPegging = false;
   constructor() { }
 
   ngOnInit() {
@@ -46,25 +47,26 @@ export class GameComponent implements OnInit {
     this.p1.scoreA = 0;
     this.comp.scoreB = -1;
   }
-  startGame(){
+  startGame() {
     this.mainDeck = new Deck();
     this.startRound();
   }
-  startRound(){
+  startRound() {
     this.mainDeck.createDeck();
     this.crib.empty();
     this.theCount.empty();
-    this.theStartCard = new Card('',0);
+    this.theStartCard = new Card('', 0);
     this.resetPlayersHands();
     this.outputText = '';
     this.roundCount = 0;
-    this.roundIncrease = [0,0,0];
+    this.roundIncrease = [0, 0, 0];
     this.revealCrib = false;
+    this.showGoBtn = false;
     this.swapDealers();
     this.dealOutToPlayers();
   }
-  dealOutToPlayers(){
-    for (let i = 0; i < 6 ; i++) {
+  dealOutToPlayers() {
+    for (let i = 0; i < 6; i++) {
       // console.log(this.p1);
       const cardForPlayer = this.mainDeck.pop();
       const cardForComp = this.mainDeck.pop();
@@ -75,15 +77,15 @@ export class GameComponent implements OnInit {
     }
     const copy = new Deck();
     // tslint:disable-next-line:prefer-for-of
-    for(let c of this.p1.hand.order){
+    for (const c of this.p1.hand.order) {
       c.owner = this.p1;
-      copy.push(c)
+      copy.push(c);
     }
     this.p1.ghostHand = copy;
     const copy2 = new Deck();
-    for(let c of this.comp.hand.order){
+    for (const c of this.comp.hand.order) {
       c.owner = this.comp;
-      copy2.push(c)
+      copy2.push(c);
     }
     this.comp.ghostHand = copy2;
     // automatically have computer push into the crib
@@ -96,59 +98,157 @@ export class GameComponent implements OnInit {
     // this.comp.hand.sortBySuit();
     // this.comp.ghostHand.sortBySuit();
   }
-  returnToHand(card:Card){
+  returnToHand(card: Card) {
     console.log(card);
     this.theCount.removeByCard(card);
     this.p1.ghostHand.push(card);
     this.p1.hand.push(card);
   }
-  verifiedStage(){
-    for(let i=0; i< 2; i++){
+  verifiedStage() {
+    for (let i = 0; i < 2; i++) {
       this.crib.push(this.theCount.order[i]);
     }
     this.theCount.order.length = 0;
     this.beginPegging = true;
-    // this.p1.hand.sortBySuit();
-    this.peggingTime();
+    // get the start card
+    // console.log(this.theStartCard);
+    this.theStartCard = this.mainDeck.pop();
+    // console.log(this.theStartCard);
+    if (this.theStartCard.val === 11) {
+      // nibs occurs
+      // give two points to who ever is the dealer
+    }
+    // below is a check for if the computer needs to play into the count first
+    if (this.crib.owner === this.p1) {
+      this.cpuPlay();
+    }
   }
-  peggingTime(){
-    if(this.theCount.order.length == 0){
-      // computer goes first
-      if(this.crib.owner == this.p1){
-        let c = this.comp.findCardForCount(this.theCount);
-        this.theCount.push(c);
+  discardIntoCount(card: Card) {
+    // check if you can discard the card
+
+      card.isActive = true;
+      this.p1.ghostHand.removeByCard(card);
+      this.roundCount += card.cribbageVal;
+      this.theCount.push(card);
+
+      // score the card
+      const isEnd = this.endOfCount();
+
+      if (isEnd) {
+        // call judge and ready for next round
+      } else {
+        // cpu play
+        this.cpuPlay();
+      }
+
+      this.check31();
+
+      const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
+      if (!p1CanPlay) {
+        this.showGoBtn = true;
+      }
+  }
+  playerSaysGo() {
+    this.p1.go = true;
+    this.showGoBtn = false;
+    if (this.comp.go) {
+      this.roundCount = 0;
+      this.theCount.deactivate();
+    }
+    this.cpuPlay();
+  }
+  endOfCount() {
+    if (this.theCount.order.length === 8) {
+      return true;
+    }
+    return false;
+  }
+
+  cpuPlay() {
+
+
+    // check if player has go and self has go
+    // reset count
+
+    const canPlay = this.comp.canPlayIntoCount(this.theCount);
+
+    if (canPlay) {
+      const card = this.comp.findCardForCount(this.theCount);
+      card.isActive = true;
+      // this.comp.ghostHand.removeByCard(card);
+      this.roundCount += card.cribbageVal;
+      this.theCount.push(card);
+
+      this.check31();
+    } else {
+      // #message Computer says Go
+      this.comp.go = true;
+      if (this.p1.go) {
+        this.roundCount = 0;
+        this.theCount.deactivate();
+        return;
       }
     }
-    else if(this.theCount.order.length < 8){
-      this.theCount.push(this.comp.ghostHand.pop());
-    } else if(this.theCount.order.length == 8){
-      this.theCount.push(this.comp.ghostHand.pop());
+    // check if display go button
+    const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
+    console.log('********** p1 can play')
+    console.log(p1CanPlay);
+    if (!p1CanPlay) {
+      console.log('********** the go button should show')
+      this.showGoBtn = true;
     }
-    console.log(this.theCount)
+
   }
-  dicardIntoCount(card:Card){
-    this.p1.ghostHand.removeByCard(card);
-    this.theCount.push(card);
-    this.peggingTime();
+  check31() {
+    if (this.roundCount === 31) {
+      this.roundCount = 0;
+      this.theCount.deactivate();
+    }
+
+    // check the last card and give player 2 points
+    const lastCard = this.theCount.order[this.theCount.order.length - 1];
   }
-  stageMe(card:Card){
+  stageMe(card: Card) {
     console.log(card);
     this.p1.hand.removeByCard(card);
     this.p1.ghostHand.removeByCard(card);
     this.theCount.push(card);
   }
-  swapDealers(){
-    if(this.crib.owner == this.p1){
+  swapDealers() {
+    if (this.crib.owner === this.p1) {
       this.crib.owner = this.comp;
     } else {
       this.crib.owner = this.p1;
     }
   }
-  resetPlayersHands(){
+  resetPlayersHands() {
     this.p1.hand.empty();
     this.p1.ghostHand.empty();
     this.comp.hand.empty();
     this.comp.ghostHand.empty();
+  }
+  /**
+   * / takes a card which has an owner
+   * make it active
+   * increases running count
+   * push into count
+   * gives points to card's owner
+   * calls animations
+   *  la fin
+   * @param card:asldjf
+   */
+  pegCard(card: Card) {
+    // takes a card which has an owner
+    // make it active
+    card.isActive = true;
+    // increases running count
+    // push into count
+    this.roundCount += card.cribbageVal;
+    this.theCount.push(card);
+    // gives points to card's owner
+    //
+    // calls animations
+    // la fin
   }
   getPegs() {
     for (let i = -2; i <= 121; i++) {
@@ -173,4 +273,19 @@ export class GameComponent implements OnInit {
     }
   }
 
+  //   if (this.theCount.order.length === 0) {
+  //     // computer goes first
+  //     if (this.crib.owner === this.p1) {
+  //       const c = this.comp.findCardForCount(this.theCount);
+  //       this.pegCard(c);
+  //       // this.theCount.push(c);
+  //     }
+  //   } else if (this.theCount.order.length < 8) {
+
+  //     this.theCount.push(this.comp.ghostHand.pop());
+  //   } else if (this.theCount.order.length === 8) {
+  //     this.theCount.push(this.comp.ghostHand.pop());
+  //   }
+  //   console.log(this.theCount);
+  // }
 }

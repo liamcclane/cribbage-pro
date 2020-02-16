@@ -7,6 +7,7 @@ export class Player {
     hand: Deck;
     ghostHand: Deck;
     name: string;
+    go;
     constructor(n: string) {
         this.name = n;
         this.scoreA = 0;
@@ -15,17 +16,17 @@ export class Player {
         this.hand = new Deck();
     }
     /**
-     * this function should be called on either the computer or the 
-     * player, it checks to see if they have a vlaid card in their ghost 
+     * this function should be called on either the computer or the
+     * player, it checks to see if they have a vlaid card in their ghost
      * hand that they can play into the count witout busting
      * @param d :this deck should be theCount, it will only loop though
      * active cards to get the total
      */
-    canPlayIntoCount(d:Deck):boolean{
-        let tot = d.total();
-        for(let card of this.ghostHand.order){
-            if(card.cribbageVal + tot <= 31 ){
-                return true
+    canPlayIntoCount(d: Deck): boolean {
+        const tot = d.total();
+        for (const card of this.ghostHand.order) {
+            if (card.cribbageVal + tot <= 31 ) {
+                return true;
             }
         }
         return false;
@@ -36,17 +37,16 @@ export class Player {
      * to be put into the count area
      * @param d : this needs to the theCount deck
      */
-    findCardForCount(d:Deck):Card{
-        let tot = d.total();
-        let max = 31-tot;
+    findCardForCount(d: Deck): Card {
+        const tot = d.total();
+        const max = 31 - tot;
         let theCard: Card;
-        for(let card of this.ghostHand.order){
-            if(card.cribbageVal == max){
+        for (const card of this.ghostHand.order) {
+            if (card.cribbageVal === max) {
                 this.ghostHand.removeByCard(card);
                 // d.push(card);
                 return card;
-            }
-            else if(card.cribbageVal < max){
+            } else if (card.cribbageVal < max) {
                 theCard = card;
             }
         }

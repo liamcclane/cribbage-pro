@@ -8,6 +8,6 @@ app.all("*", (req,res,next) => {
     res.sendFile(path.resolve("./../client/dist/client/index.html"))
 });
 
-app.listen(8000, () => {
-    console.log('server on port 8000');
-})
+app.listen(9000, () => {
+    console.log('server on port 9000');
+});

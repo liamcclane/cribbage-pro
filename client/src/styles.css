@@ -205,7 +205,7 @@ table {
 }
 .cpu-crib{
     justify-content: flex-start;
-    padding-left: 5%;
+    padding-left: 10em;
 }
 .reverse-fan {
     display: flex;

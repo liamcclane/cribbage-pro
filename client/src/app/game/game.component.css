@@ -20,3 +20,7 @@
 .stage-btn:hover{
     background-image: linear-gradient(to top, rgba(231, 217, 217, 0.449),rgba(255, 238, 238, 0.4));
 }
+.not-active{
+    padding: 0.5em;
+    background-color: black;
+}
