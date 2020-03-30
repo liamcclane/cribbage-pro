@@ -52,7 +52,9 @@ export class GameComponent implements OnInit {
     this.startRound();
   }
   startRound() {
-    this.mainDeck.createDeck();
+    // this.mainDeck.createDeck();
+    // or call
+    this.testHands();
     this.crib.empty();
     this.theCount.empty();
     this.theStartCard = new Card('', 0);
@@ -64,6 +66,29 @@ export class GameComponent implements OnInit {
     this.showGoBtn = false;
     this.swapDealers();
     this.dealOutToPlayers();
+
+  }
+  /**
+   * odds from the end are dealt to the player 
+   * while evens are dealt to the computer
+   * then this.mainDeck.order[0] will be the start card
+   */
+  testHands() {
+    this.mainDeck.order = [
+      new Card('c', 7), // theStartCard
+      new Card('h', 1), // comp
+      new Card('s', 6), 
+      new Card('h', 1), // comp
+      new Card('s', 5),
+      new Card('h', 1), // comp
+      new Card('s', 4),
+      new Card('h', 1), // comp
+      new Card('s', 3),
+      new Card('h', 1), // comp
+      new Card('s', 2),
+      new Card('h', 1), // comp
+      new Card('s', 1)
+    ];
   }
   dealOutToPlayers() {
     for (let i = 0; i < 6; i++) {
@@ -113,7 +138,7 @@ export class GameComponent implements OnInit {
     // get the start card
     // console.log(this.theStartCard);
     this.theStartCard = this.mainDeck.pop();
-    // console.log(this.theStartCard);
+    console.log(this.theStartCard);
     if (this.theStartCard.val === 11) {
       // nibs occurs
       // give two points to who ever is the dealer
@@ -126,27 +151,27 @@ export class GameComponent implements OnInit {
   discardIntoCount(card: Card) {
     // check if you can discard the card
 
-      card.isActive = true;
-      this.p1.ghostHand.removeByCard(card);
-      this.roundCount += card.cribbageVal;
-      this.theCount.push(card);
+    card.isActive = true;
+    this.p1.ghostHand.removeByCard(card);
+    this.roundCount += card.cribbageVal;
+    this.theCount.push(card);
 
-      // score the card
-      const isEnd = this.endOfCount();
+    // score the card
+    const isEnd = this.endOfCount();
 
-      if (isEnd) {
-        // call judge and ready for next round
-      } else {
-        // cpu play
-        this.cpuPlay();
-      }
+    if (isEnd) {
+      // call judge and ready for next round
+    } else {
+      // cpu play
+      this.cpuPlay();
+    }
 
-      this.check31();
+    this.check31();
 
-      const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
-      if (!p1CanPlay) {
-        this.showGoBtn = true;
-      }
+    const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
+    if (!p1CanPlay) {
+      this.showGoBtn = true;
+    }
   }
   playerSaysGo() {
     this.p1.go = true;
