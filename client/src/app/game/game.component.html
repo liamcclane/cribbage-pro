@@ -3,10 +3,10 @@
 <div class="cpu-tray">
     <div class='reverse-fan'>
         <ng-container *ngFor="let card of comp.ghostHand.order">
-            <img src="./../assets/images/cardAssets/PNG-cards-1.3/{{card.imgConCat}}" class='card peg-card  from-p1'
-                alt="card">
+            <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/{{card.imgConCat}}" class='card peg-card  from-p1'
+                alt="card"> -->
 
-            <!-- <img src="./assets/small/deck_3.png" class='card' alt="card"> -->
+            <img src="./../../assets/small/deck_3.png" class='card' alt="card">
 
         </ng-container>
         <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card' alt="card">
@@ -32,7 +32,12 @@
         <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
         <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
         <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/{{theStartCard.imgConCat}}" class='card stack-cards small-card' alt="card">
+        <ng-container *ngIf="theStartCard.suit">
+            <img src="./../assets/images/cardAssets/PNG-cards-1.3/{{theStartCard.imgConCat}}" class='card stack-cards small-card' alt="card">
+        </ng-container>
+        <ng-container *ngIf="!theStartCard.suit">
+            <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
+        </ng-container>
     </div>
 
     <div *ngIf="beginPegging" class='pegging-area'>
@@ -75,7 +80,7 @@
         <div class="card-fan">
             <ng-container *ngFor="let card of p1.ghostHand.order">
                 <img (click)="stageMe(card)" src="./../../assets/images/cardAssets/PNG-cards-1.3/{{card.imgConCat}}"
-                    class='card peg-card ' alt="card">
+                    class='card peg-card selectableCard' alt="card">
             </ng-container>
         </div>
     </ng-container>
@@ -96,7 +101,7 @@
                     class='selectableCard card peg-card ' alt="card">
             </ng-container>
             <ng-container *ngIf="showGoBtn">
-                <div class="stage-btn" (click)="playerSaysGo()">You Must Say Go!</div>
+                <div class="stage-btn" (click)="playerSaysGo()">{{outputText}}</div>
             </ng-container>
             <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card' alt="card">
             <img src="./../assets/images/cardAssets/PNG-cards-1.3/s3.png" class='card' alt="card">
@@ -115,11 +120,26 @@
 </div>
 <!-- <div class='board-area'>
 
-    </div> -->
+</div> -->
 <div class='board compBoard'>
     <!-- the comp board with 1 column -->
     <div class="column">
         <ng-container *ngFor="let d of scorePegHoles">
+            <div class="row" *ngIf="d != 121">
+                <div class="peg">
+                    <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg" id="player1PositionA">
+                    </div>
+                    <div *ngIf="p1.scoreB==d" class="peg" id="player1PositionB">
+                    </div>
+                </div>
+                <div class="peg">
+                    <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle"
+                    id="compPositionA">
+                </div>
+                <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB">
+                    </div>
+                </div>
+            </div>
             <div class="score-marker" *ngIf="d == 0">S</div>
             <div class="score-marker" *ngIf="d == 5">5</div>
             <div class="score-marker" *ngIf="d == 10">10</div>
@@ -148,10 +168,6 @@
             <div class="row" *ngIf="d == 121">
                 <div class="peg"></div>
             </div>
-            <div class="row" *ngIf="d != 121">
-                <div class="peg"></div>
-                <div class="peg"></div>
-            </div>
         </ng-container>
     </div>
 
@@ -159,6 +175,21 @@
 <div class='board phoneBoard'>
     <div class="column">
         <ng-container *ngFor="let d of scorePegHoles">
+            <div class="row" *ngIf="d != 121">
+                <div class="peg">
+                    <div *ngIf="p1.scoreA==d && p1.scoreA!=p1.scoreB" class="peg" id="player1PositionA">
+                    </div>
+                    <div *ngIf="p1.scoreB==d" class="peg" id="player1PositionB">
+                    </div>
+                </div>
+                <div class="peg">
+                    <div *ngIf="comp.scoreA==d && comp.scoreA!=comp.scoreB" class="peg circle"
+                    id="compPositionA">
+                    </div>
+                    <div *ngIf="comp.scoreB==d" class="peg circle" id="compPositionB">
+                    </div>
+                </div>
+            </div>
             <div *ngIf="d == 0">S</div>
             <div *ngIf="d == 5">5</div>
             <div *ngIf="d == 10">10</div>
@@ -185,10 +216,6 @@
             <div *ngIf="d == 115">115</div>
             <div *ngIf="d == 121">W</div>
             <div class="row" *ngIf="d == 121">
-                <div class="peg"></div>
-            </div>
-            <div class="row" *ngIf="d != 121">
-                <div class="peg"></div>
                 <div class="peg"></div>
             </div>
         </ng-container>
