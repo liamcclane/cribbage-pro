@@ -108,7 +108,7 @@ export class Deck {
     }
     /**
      * only get called after verification
-     * @param d 
+     * @param d
      */
     findCPUCountCard(d: Deck):Card{
         let num = d.total();
@@ -118,6 +118,10 @@ export class Deck {
             }
         }
     }
+    /**
+     * this fucntion should be called on the computers
+     * @param d
+     */
     canCPUPlayIntoCount(d:Deck):boolean{
         let num = d.total();
         for(let c of this.order){
@@ -143,9 +147,11 @@ export class Deck {
         }
         return tot;
     }
-    deactive(){
+    deactivate(){
         for(let c of this.order){
-            c.isActive = false;
+            if(c.isActive){
+                c.isActive = false;
+            }
         }
     }
 }
