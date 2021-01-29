@@ -1,17 +1,9 @@
-<!-- <div class='grid'> -->
-
 <div class="cpu-tray">
     <div class='reverse-fan'>
         <ng-container *ngFor="let card of comp.ghostHand.order">
             <img src="./../assets/images/cardAssets/PNG-cards-1.3/{{card.imgConCat}}" class='card peg-card  from-p1'
                 alt="card">
-
-            <!-- <img src="./assets/small/deck_3.png" class='card' alt="card"> -->
-
         </ng-container>
-        <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card' alt="card">
-        <img src="./assets/small/deck_3.png" class='card' alt="card">
-        <img src="./assets/small/deck_3.png" class='card' alt="card"> -->
     </div>
 </div>
 <div *ngIf="crib.owner == comp" class="cpu-tray cpu-crib">
@@ -19,10 +11,6 @@
         <ng-container *ngFor="let card of crib.order">
             <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
         </ng-container>
-        <!-- <img src="./assets/small/deck_3.png" class='card small-card' alt="card">
-        <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
-        <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card">
-        <img src="./assets/small/deck_3.png" class='card stack-cards small-card' alt="card"> -->
     </div>
 </div>
 <div class='pegging-tray'>
@@ -52,12 +40,6 @@
                     alt="card">
             </ng-container>
         </ng-container>
-        <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card peg-card  from-cpu' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/s10.png" class='card peg-card  from-p1' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/h4.png" class='card peg-card  from-cpu' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card peg-card  from-p1' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card peg-card  from-cpu' alt="card">
-        <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card peg-card  from-p1' alt="card"> -->
     </div>
     <div *ngIf="!beginPegging" class='pegging-area'>
         <ng-container *ngFor="let card of theCount.order">
@@ -98,10 +80,6 @@
             <ng-container *ngIf="showGoBtn">
                 <div class="stage-btn" (click)="playerSaysGo()">You Must Say Go!</div>
             </ng-container>
-            <!-- <img src="./../assets/images/cardAssets/PNG-cards-1.3/sk.png" class='card' alt="card">
-            <img src="./../assets/images/cardAssets/PNG-cards-1.3/s3.png" class='card' alt="card">
-            <img src="./../assets/images/cardAssets/PNG-cards-1.3/h3.png" class='card' alt="card">
-            <img src="./../assets/images/cardAssets/PNG-cards-1.3/h1.png" class='card' alt="card"> -->
         </div>
     </ng-container>
 </div>
@@ -195,5 +173,3 @@
     </div>
 
 </div>
-
-<!-- </div> -->
