@@ -11,13 +11,6 @@ import { Judge } from '../judge';
 })
 export class GameComponent implements OnInit {
 
-  scorePegHole80to120: number[] = [];
-  scorePegHole40to80: number[] = [];
-  scorePegHole1to40: number[] = [];
-  scorePegHole1to30: number[] = [];
-  scorePegHole30to60: number[] = [];
-  scorePegHole60to90: number[] = [];
-  scorePegHole90to120: number[] = [];
   scorePegHoles: number[] = [];
   // messageOfTheDay = this.messages[Math.floor(Math.random() * this.messages.length)];
   // will only get reset at END scores of 121
@@ -52,14 +45,14 @@ export class GameComponent implements OnInit {
     this.startRound();
   }
   startRound() {
-    // this.mainDeck.createDeck();
+    this.mainDeck.createDeck();
     // or call
-    this.testHands();
+    // this.testHands();
     this.crib.empty();
     this.theCount.empty();
     this.theStartCard = new Card('', 0);
     this.resetPlayersHands();
-    this.outputText = '';
+    this.outputText = 'You Must Say Go!';
     this.roundCount = 0;
     this.roundIncrease = [0, 0, 0];
     this.revealCrib = false;
@@ -75,19 +68,19 @@ export class GameComponent implements OnInit {
    */
   testHands() {
     this.mainDeck.order = [
-      new Card('c', 7), // theStartCard
-      new Card('h', 1), // comp
-      new Card('s', 6), 
+      new Card('c', 11), // theStartCard
       new Card('h', 1), // comp
       new Card('s', 5),
       new Card('h', 1), // comp
-      new Card('s', 4),
+      new Card('h', 5),
       new Card('h', 1), // comp
-      new Card('s', 3),
+      new Card('c', 5),
       new Card('h', 1), // comp
-      new Card('s', 2),
+      new Card('d', 5),
       new Card('h', 1), // comp
-      new Card('s', 1)
+      new Card('s', 11),
+      new Card('h', 1), // comp
+      new Card('d', 11)
     ];
   }
   dealOutToPlayers() {
@@ -124,7 +117,7 @@ export class GameComponent implements OnInit {
     // this.comp.ghostHand.sortBySuit();
   }
   returnToHand(card: Card) {
-    console.log(card);
+    // console.log(card);
     this.theCount.removeByCard(card);
     this.p1.ghostHand.push(card);
     this.p1.hand.push(card);
@@ -142,6 +135,7 @@ export class GameComponent implements OnInit {
     if (this.theStartCard.val === 11) {
       // nibs occurs
       // give two points to who ever is the dealer
+      this.increaseScore(2, this.crib.owner === this.p1 ? this.p1 : this.comp);
     }
     // below is a check for if the computer needs to play into the count first
     if (this.crib.owner === this.p1) {
@@ -161,19 +155,20 @@ export class GameComponent implements OnInit {
 
     if (isEnd) {
       // call judge and ready for next round
+      this.atCountEnd();
     } else {
       // cpu play
       this.cpuPlay();
     }
-
     this.check31();
-
     const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
     if (!p1CanPlay) {
       this.showGoBtn = true;
+      this.outputText = "Score Hand";
     }
   }
   playerSaysGo() {
+    this.increaseScore(1, this.comp);
     this.p1.go = true;
     this.showGoBtn = false;
     if (this.comp.go) {
@@ -216,16 +211,18 @@ export class GameComponent implements OnInit {
     }
     // check if display go button
     const p1CanPlay = this.p1.canPlayIntoCount(this.theCount);
-    console.log('********** p1 can play')
+    // console.log('********** p1 can play')
     console.log(p1CanPlay);
     if (!p1CanPlay) {
-      console.log('********** the go button should show')
+      // console.log('********** the go button should show')
       this.showGoBtn = true;
     }
 
   }
   check31() {
     if (this.roundCount === 31) {
+      const c = this.theCount.order[this.theCount.order.length - 1];
+      this.increaseScore(2, c.owner);
       this.roundCount = 0;
       this.theCount.deactivate();
     }
@@ -253,6 +250,58 @@ export class GameComponent implements OnInit {
     this.comp.ghostHand.empty();
   }
   /**
+ * this function is called for lasklkajsd
+ */
+  atCountEnd() {
+    this.revealCrib = true;
+    const playerScore = this.scoreHands(this.p1.hand.order, this.theStartCard, false);
+    const compScore = this.scoreHands(this.comp.hand.order, this.theStartCard, false);
+    const cribScore = this.scoreHands(this.crib.order, this.theStartCard, true);
+
+    // console.log('player score', playerScore);
+    // console.log('comp score', compScore);
+    // console.log('crib score', cribScore);
+
+    this.roundIncrease[0] = playerScore.total;
+    this.roundIncrease[1] = compScore.total;
+    this.roundIncrease[2] = cribScore.total;
+
+    // let n = Math.floor((Math.random() * 10) + 10);
+    // let n2 = Math.floor((Math.random() * 10) + 10);
+    // console.log("moving player1 peg ****** "+ n2);
+    // this.increaseScore(, this.p1);
+    // console.log('moving the black peg -------' + n2);
+    this.increaseScore(playerScore.total, this.p1);
+    this.increaseScore(compScore.total, this.comp);
+
+    if (this.crib.owner === this.p1) {
+      this.increaseScore(cribScore.total, this.p1);
+    } else { this.increaseScore(cribScore.total, this.comp); }
+
+    this.checkIfGameOver();
+  }
+  checkIfGameOver() {
+    if (this.p1.scoreA > 120 || this.comp.scoreA > 120) {
+      this.gameStarted = false;
+    }
+  }
+  /**
+   * 
+   * @param hand 
+   * @param start 
+   * @param isCrib 
+   */
+  scoreHands(hand, start, isCrib) {
+    const cards = [];
+    start.isStart = true;
+    for (const i of hand) {
+      console.log(i);
+      cards.push(i);
+    }
+    cards.push(start);
+    return this.judge.countHand(cards, isCrib);
+  }
+  /**
    * / takes a card which has an owner
    * make it active
    * increases running count
@@ -276,28 +325,46 @@ export class GameComponent implements OnInit {
     // la fin
   }
   getPegs() {
-    for (let i = -2; i <= 121; i++) {
+    for (let i = -1; i <= 121; i++) {
       this.scorePegHoles.push(i);
-      if (i > 80) {
-        this.scorePegHole80to120.push(i);
-      } else if (i > 40) {
-        this.scorePegHole40to80.push(i);
-      } else {
-        this.scorePegHole1to40.push(i);
-      }
-
-      if (i > 90) {
-        this.scorePegHole90to120.push(i);
-      } else if (i > 60) {
-        this.scorePegHole60to90.push(i);
-      } else if (i > 30) {
-        this.scorePegHole30to60.push(i);
-      } else {
-        this.scorePegHole1to30.push(i);
-      }
     }
   }
-
+  /**
+   * This is nice that move the pegs smoothly every second
+   * @param n : number that the peg will be moving
+   * @param p : Player either human or computer
+   * @param whichPeg : this is either 'A' or 'B'
+   * @param additionalTimeD : most of the time this will be zero while the B peg is catching
+   */
+  movePegsTimeDelay(n: number, p: Player, whichPeg: string, additionalTimeD: number) {
+    // doing some math to make the peg move faster
+    for (let i = 0; i < n; i++) {
+      const myVar = setTimeout(() => {
+        if (whichPeg === 'A') {
+          p.scoreA++;
+        } else {
+          p.scoreB++;
+        }
+      }, 500 * i + (additionalTimeD * 500));
+    }
+  }
+  /**
+   * this function deals with moving Peg B to catch up with peg A
+   * then inside it calls the movePegsTimeDelay function with correct time and timeDelay
+   * @param scoreIncrease :number this is the score increase from the round
+   * @param p :Player this is either the human or the computer
+   */
+  increaseScore(scoreIncrease: number, p: Player) {
+    // move peg B
+    const diff = p.scoreA - p.scoreB;
+    console.log(diff);
+    console.log('moving peg b ' + diff + 'times');
+    this.movePegsTimeDelay(diff, p, 'B', 0);
+    // now pegs are at the same place,
+    // continue to move foward the given points
+    console.log('moving peg a ' + diff + 'times with extra time delay');
+    this.movePegsTimeDelay(scoreIncrease, p, 'A', diff);
+  }
   //   if (this.theCount.order.length === 0) {
   //     // computer goes first
   //     if (this.crib.owner === this.p1) {

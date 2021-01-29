@@ -10,7 +10,10 @@
     transform: translateY(-2em);
 }
 .stage-btn{
-    width: 3em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     border-radius: 2em;
     padding: 1em;
@@ -22,5 +25,14 @@
 }
 .not-active{
     padding: 0.5em;
+    background-color: black;
+}
+#player1PositionA,#player1PositionB{
+    border: 1px solid black;
+    background-color: gold;
+}
+#compPositionA,#compPositionB{
+    color: white;
+    border: 2px solid white;
     background-color: black;
 }
