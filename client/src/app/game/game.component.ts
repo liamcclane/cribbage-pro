@@ -166,6 +166,11 @@ export class GameComponent implements OnInit {
       this.showGoBtn = true;
       this.outputText = "Score Hand";
     }
+    // score the card
+    if (this.endOfCount()) {
+      // call judge and ready for next round
+      this.atCountEnd();
+    }
   }
   playerSaysGo() {
     this.increaseScore(1, this.comp);
