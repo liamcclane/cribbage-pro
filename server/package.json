@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/liamcclane/cribbage-pro#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "path": "^0.12.7"
   }
 }
